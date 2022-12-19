@@ -1,12 +1,17 @@
 import React from 'react';
-
 import './App.css';
+import {HashRouter} from "react-router-dom";
+import Pages from "./Pages";
 
 function App() {
   return (
-    <div className="App">
+      <HashRouter >
+          <div className="App">
+              <Pages/>
+              <h1>TEST</h1>
+          </div>
+      </HashRouter>
 
-    </div>
   );
 }
 
