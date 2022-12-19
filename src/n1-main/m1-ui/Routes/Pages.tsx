@@ -1,11 +1,11 @@
 import React from 'react'
 import {Routes, Route, Navigate} from 'react-router-dom'
-import Profile from "./components/Profile/Profile";
-import Login from "./components/Login/Login";
-import Register from "./components/Register/Register";
-import PassRecovery from "./components/PassRecovery/PassRecovery";
-import NewPass from "./components/NewPass/NewPass";
-import Error404 from "./components/Error404/Error404";
+import Profile from "../../../components/Profile/Profile";
+import Login from "../../../n2-features/f1-auth/a1-login/Login/Login";
+import Register from "../../../n2-features/f1-auth/a2-register/Register/Register";
+import PassRecovery from "../../../components/PassRecovery/PassRecovery";
+import NewPass from "../../../components/NewPass/NewPass";
+import Error404 from "../../../components/Error404/Error404";
 
 
 export const PATH = {
@@ -22,9 +22,9 @@ function Pages() {
         <div>
             <Routes>
 
-                <Route path='/' element={<Navigate to={PATH.PROFILE}/>}/>
+                {/*<Route path='/' element={<Navigate to={PATH.PROFILE}/>}/>*/}
 
-                <Route path={PATH.PROFILE} element={<Profile/>} />
+                <Route path={PATH.PROFILE} element={<Profile/>}/>
                 <Route path={PATH.LOGIN} element={<Login/>}/>
                 <Route path={PATH.REGISTER} element={<Register/>}/>
                 <Route path={PATH.PASS_RECOVERY} element={<PassRecovery/>}/>
