@@ -4,9 +4,9 @@ import './App.css'
 import { Provider } from 'react-redux'
 import { HashRouter } from 'react-router-dom'
 
-import store from '../m2-bll/redux/store'
+import Header from '../features/Header/Header'
 
-import Header from './Header/Header'
+import store from './store'
 
 function App() {
   return (

@@ -2,12 +2,12 @@ import React from 'react'
 
 import { Routes, Route, Navigate } from 'react-router-dom'
 
-import Error404 from '../../../components/Error404/Error404'
-import NewPass from '../../../components/NewPass/NewPass'
-import PassRecovery from '../../../components/PassRecovery/PassRecovery'
-import Profile from '../../../components/Profile/Profile'
-import Login from '../../../n2-features/f1-auth/a1-login/Login/Login'
-import Register from '../../../n2-features/f1-auth/a2-register/Register/Register'
+import Error404 from '../../features/Error404/Error404'
+import Login from '../../features/login/Login'
+import NewPass from '../../features/NewPass/NewPass'
+import PassRecovery from '../../features/PassRecovery/PassRecovery'
+import Profile from '../../features/Profile/Profile'
+import Register from '../../features/register/Register'
 
 export const PATH = {
   LOGIN: '/login',
