@@ -1,11 +1,7 @@
-import React from 'react';
+import React from 'react'
 
 const PassRecovery = () => {
-    return (
-        <div>
-            PassRecovery
-        </div>
-    );
-};
+  return <div>PassRecovery</div>
+}
 
-export default PassRecovery;
+export default PassRecovery

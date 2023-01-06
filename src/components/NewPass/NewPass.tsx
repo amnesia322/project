@@ -1,11 +1,7 @@
-import React from 'react';
+import React from 'react'
 
 const NewPass = () => {
-    return (
-        <div>
-            NewPass
-        </div>
-    );
-};
+  return <div>NewPass</div>
+}
 
-export default NewPass;
+export default NewPass

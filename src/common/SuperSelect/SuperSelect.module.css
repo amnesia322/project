@@ -1,0 +1,21 @@
+.select {
+  width: 165px;
+  height: 24px;
+  padding: 3px;
+
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+
+  background: #ffffff;
+  border: 1px solid #c2c2c2;
+  border-radius: 2px;
+  outline: none;
+}
+
+.select:focus {
+  border: 1px solid #c2c2c2;
+}
+
+.option:hover {
+}
