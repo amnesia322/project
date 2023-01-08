@@ -148,5 +148,9 @@ export const Register = () => {
 type FormikErrorType = {
   email?: string
   password?: string
+<<<<<<< HEAD
   confirmPassword?: string
+=======
+  rememberMe?: boolean
+>>>>>>> origin/features/register
 }
