@@ -2,6 +2,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { combineReducers, legacy_createStore, applyMiddleware, AnyAction } from 'redux'
 import thunkMiddleware, { ThunkDispatch } from 'redux-thunk'
 
+import { profileReducer } from '../features/Profile/profileReducer'
 import { registerReducer } from '../features/register/register-reducer'
 
 import { loadingReducer } from './appReducer'
@@ -9,6 +10,7 @@ import { loadingReducer } from './appReducer'
 const reducers = combineReducers({
   loading: loadingReducer,
   register: registerReducer,
+  profile: profileReducer,
 })
 
 export const store = legacy_createStore(reducers, applyMiddleware(thunkMiddleware))

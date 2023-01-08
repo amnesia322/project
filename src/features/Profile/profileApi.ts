@@ -9,6 +9,12 @@ export const profileAPI = {
   updateProfileData(model: UpdateProfileModelType) {
     return instance.put<'', AxiosResponse<ResponseType>, UpdateProfileModelType>('/auth/me', model)
   },
+  login(data: LoginDataType) {
+    return instance.post<ProfileDataType>('auth/login', data)
+  },
+  logOut() {
+    return instance.delete('auth/me')
+  },
 }
 
 export type ProfileDataType = {
@@ -29,4 +35,9 @@ export type ResponseType = {
   updatedUser: ProfileDataType
 
   error?: string
+}
+export type LoginDataType = {
+  email: string
+  password: string
+  rememberMe?: boolean
 }
