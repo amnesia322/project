@@ -29,10 +29,10 @@ export const registerAC = (isRegister: boolean) =>
 export const registerTC = (payload: registerPayloadType) => (dispatch: Dispatch) => {
   registerAPI
     .register(payload)
-    .then(res => {
-      console.log('then: ', res)
+    .then(() => {
+      dispatch(registerAC(true))
     })
     .catch(err => {
-      console.log('err: ', err)
+      alert(err.response.data.error)
     })
 }
