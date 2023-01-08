@@ -6,6 +6,7 @@ import { HashRouter } from 'react-router-dom'
 
 import Header from '../features/Header/Header'
 
+import Pages from './Routes/Pages'
 import store from './store'
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
       <Provider store={store}>
         <div className="App">
           <Header />
-          <h1>TEST</h1>
+          <Pages />
         </div>
       </Provider>
     </HashRouter>
