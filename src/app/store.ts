@@ -1,16 +1,26 @@
-import { combineReducers, legacy_createStore } from 'redux'
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import { combineReducers, legacy_createStore, applyMiddleware, AnyAction } from 'redux'
+import thunkMiddleware, { ThunkDispatch } from 'redux-thunk'
+
+import { registerReducer } from '../features/register/register-reducer'
 
 import { loadingReducer } from './appReducer'
 
 const reducers = combineReducers({
   loading: loadingReducer,
+  register: registerReducer,
 })
 
-const store = legacy_createStore(reducers)
+export const store = legacy_createStore(reducers, applyMiddleware(thunkMiddleware))
 
-export default store
+export type AppRootStateType = ReturnType<typeof reducers>
+
+export type AppThunkDispatch = ThunkDispatch<AppRootStateType, any, AnyAction>
+
+export const useAppDispatch = () => useDispatch<AppThunkDispatch>()
+export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelector
 
 export type AppStoreType = ReturnType<typeof reducers>
 
 // @ts-ignore
-window.store = store // for dev // для того чтобы автотесты видели состояние данных
+window.store = store // for dev
