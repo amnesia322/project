@@ -46,6 +46,11 @@ export const Register = () => {
       } else if (values.password.length < 3) {
         errors.password = 'Password must contain at least 3 characters'
       }
+      if (!values.confirmPassword) {
+        errors.confirmPassword = 'Required'
+      } else if (values.confirmPassword !== values.password) {
+        errors.confirmPassword = 'Passwords must match'
+      }
 
       return errors
     },
@@ -148,9 +153,5 @@ export const Register = () => {
 type FormikErrorType = {
   email?: string
   password?: string
-<<<<<<< HEAD
   confirmPassword?: string
-=======
-  rememberMe?: boolean
->>>>>>> origin/features/register
 }
