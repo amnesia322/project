@@ -16,20 +16,33 @@ import {
 import { useFormik } from 'formik'
 import { NavLink } from 'react-router-dom'
 
+import { useAppDispatch } from '../../app/store'
 import SuperButton from '../../common/components/SuperButton/SuperButton'
 
+import { LoginTC } from './login-reducer'
 import s from './Login.module.css'
 
+export type FormikValueType = {
+  email: string
+  password: string
+  rememberMe: boolean
+}
+export type LoginParamsType = {
+  email: string
+  password: string
+  rememberMe?: boolean
+}
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
   const handleClickShowPassword = () => setShowPassword(show => !show)
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
   }
+  const dispatch = useAppDispatch()
 
   const validate = () => {}
 
-  const formik = useFormik({
+  const formik = useFormik<FormikValueType>({
     initialValues: {
       email: '',
       password: '',
@@ -37,7 +50,7 @@ const Login = () => {
     },
     validate,
     onSubmit: values => {
-      alert(JSON.stringify(values))
+      dispatch(LoginTC(values))
       formik.resetForm()
     },
   })
@@ -45,7 +58,7 @@ const Login = () => {
   return (
     <div className={s.wrapperLogin}>
       <h2 className={s.title}>Sign in</h2>
-      <form className={s.form}>
+      <form className={s.form} onSubmit={formik.handleSubmit}>
         <FormGroup>
           <TextField
             type="email"
@@ -53,6 +66,7 @@ const Login = () => {
             label="Email"
             variant="standard"
             margin="normal"
+            {...formik.getFieldProps('email')}
           />
           <FormControl variant="standard">
             <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
@@ -70,11 +84,12 @@ const Login = () => {
                   </IconButton>
                 </InputAdornment>
               }
+              {...formik.getFieldProps('password')}
             />
           </FormControl>
           <FormControlLabel
             className={s.checkbox}
-            label={'Remember me'}
+            label={'Remember Me'}
             control={<Checkbox />}
             {...formik.getFieldProps('rememberMe')}
             checked={formik.values.rememberMe}

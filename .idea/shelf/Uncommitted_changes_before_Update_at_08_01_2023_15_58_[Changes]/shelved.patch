@@ -1,0 +1,52 @@
+Index: src/app/Routes/Pages.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React from 'react'\n\nimport { Routes, Route, Navigate } from 'react-router-dom'\n\nimport Error404 from '../../features/Error404/Error404'\nimport Login from '../../features/login/Login'\nimport NewPass from '../../features/NewPass/NewPass'\nimport PassRecovery from '../../features/PassRecovery/PassRecovery'\nimport Profile from '../../features/Profile/Profile'\nimport { Register } from '../../features/register/Register'\n\nexport const PATH = {\n  LOGIN: '/login',\n  REGISTER: '/register',\n  PROFILE: '/profile',\n  ERROR: '/error404',\n  PASS_RECOVERY: '/pass_recovery',\n  NEW_PASS: '/new_pass',\n}\n\nfunction Pages() {\n  return (\n    <div>\n      <Routes>\n        <Route path=\"/\" element={<Navigate to={PATH.PROFILE} />} />\n\n        <Route path={PATH.PROFILE} element={<Profile />} />\n        <Route path={PATH.LOGIN} element={<Login />} />\n        <Route path={PATH.REGISTER} element={<Register />} />\n        <Route path={PATH.PASS_RECOVERY} element={<PassRecovery />} />\n        <Route path={PATH.NEW_PASS} element={<NewPass />} />\n        <Route path={'*'} element={<Navigate to={PATH.ERROR} />} />\n\n        <Route path={PATH.ERROR} element={<Error404 />} />\n      </Routes>\n    </div>\n  )\n}\n\nexport default Pages\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/app/Routes/Pages.tsx b/src/app/Routes/Pages.tsx
+--- a/src/app/Routes/Pages.tsx	(revision 91711a0ff64a4283851efb7cb6efeba188b05d08)
++++ b/src/app/Routes/Pages.tsx	(date 1673182222050)
+@@ -7,7 +7,7 @@
+ import NewPass from '../../features/NewPass/NewPass'
+ import PassRecovery from '../../features/PassRecovery/PassRecovery'
+ import Profile from '../../features/Profile/Profile'
+-import { Register } from '../../features/register/Register'
++import Register from '../../features/register/Register'
+ 
+ export const PATH = {
+   LOGIN: '/login',
+Index: src/features/register/Register.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React from 'react'\n\nconst Register = () => {\n  return <div>Register</div>\n}\n\nexport default Register\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/features/register/Register.tsx b/src/features/register/Register.tsx
+--- a/src/features/register/Register.tsx	(revision 91711a0ff64a4283851efb7cb6efeba188b05d08)
++++ b/src/features/register/Register.tsx	(date 1673181971892)
+@@ -1,7 +1,7 @@
+ import React from 'react'
+ 
+ const Register = () => {
+-  return <div>Register</div>
++  return <div> Register</div>
+ }
+ 
+ export default Register
+Index: .idea/jsLinters/eslint.xml
+===================================================================
+diff --git a/.idea/jsLinters/eslint.xml b/.idea/jsLinters/eslint.xml
+deleted file mode 100644
+--- a/.idea/jsLinters/eslint.xml	(revision 91711a0ff64a4283851efb7cb6efeba188b05d08)
++++ /dev/null	(revision 91711a0ff64a4283851efb7cb6efeba188b05d08)
+@@ -1,6 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="EslintConfiguration">
+-    <option name="fix-on-save" value="true" />
+-  </component>
+-</project>
+\ No newline at end of file

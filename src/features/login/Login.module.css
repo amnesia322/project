@@ -57,6 +57,8 @@
 }
 
 .form .button {
+  cursor: pointer;
+
   display: inline-block;
 
   width: 100%;

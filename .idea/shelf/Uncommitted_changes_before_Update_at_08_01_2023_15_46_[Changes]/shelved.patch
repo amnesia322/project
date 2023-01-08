@@ -1,0 +1,36 @@
+Index: .idea/jsLinters/eslint.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/jsLinters/eslint.xml b/.idea/jsLinters/eslint.xml
+deleted file mode 100644
+--- a/.idea/jsLinters/eslint.xml	(revision a852694461b1eec61ffa110b5691d78d042886ce)
++++ /dev/null	(revision a852694461b1eec61ffa110b5691d78d042886ce)
+@@ -1,6 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="EslintConfiguration">
+-    <option name="fix-on-save" value="true" />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: src/features/register/Register.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React from 'react'\n\nconst Register = () => {\n  return <div>Register</div>\n}\n\nexport default Register\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/features/register/Register.tsx b/src/features/register/Register.tsx
+--- a/src/features/register/Register.tsx	(revision a852694461b1eec61ffa110b5691d78d042886ce)
++++ b/src/features/register/Register.tsx	(date 1673114318542)
+@@ -1,7 +1,7 @@
+ import React from 'react'
+ 
+ const Register = () => {
+-  return <div>Register</div>
++  return <div> Register</div>
+ }
+ 
+ export default Register

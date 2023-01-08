@@ -2,12 +2,11 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { combineReducers, legacy_createStore, applyMiddleware, AnyAction } from 'redux'
 import thunkMiddleware, { ThunkDispatch } from 'redux-thunk'
 
+import { loginReducer } from '../features/login/login-reducer'
 import { registerReducer } from '../features/register/register-reducer'
 
-import { loadingReducer } from './appReducer'
-
 const reducers = combineReducers({
-  loading: loadingReducer,
+  loading: loginReducer,
   register: registerReducer,
 })
 
