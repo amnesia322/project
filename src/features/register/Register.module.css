@@ -1,0 +1,41 @@
+.registerPage {
+  display: flex;
+  justify-content: center;
+}
+
+.registerContainer {
+  display: flex;
+  justify-content: center;
+
+  width: 413px;
+  margin-top: 60px;
+  padding: 35px;
+
+  font-size: 13px;
+  text-align: center;
+
+  border-radius: 2px;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.registerTitle {
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.registerDescription {
+  margin-top: 30px;
+
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+
+  opacity: 0.5;
+}
+
+.registerLink {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+}
