@@ -2,7 +2,7 @@ import { ThunkAction } from 'redux-thunk'
 
 import { AppStoreType } from '../../app/store'
 
-import { LoginDataType, profileAPI, ProfileDataType, UpdateProfileModelType } from './profileApi'
+import { LoginDataType, profileAPI, ProfileDataType, UpdateProfileModelType } from './profile-api'
 
 const initialState = {
   user: {
@@ -14,18 +14,6 @@ const initialState = {
     avatar: '' as string,
   } as ProfileDataType,
 }
-
-type InitialStateType = typeof initialState
-type SetProfileDataType = ReturnType<typeof setProfileData>
-
-export type ProfileActionType = SetProfileDataType
-
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  AppStoreType,
-  unknown,
-  ProfileActionType
->
 
 export const profileReducer = (
   state: InitialStateType = initialState,
@@ -47,6 +35,7 @@ export const getProfileDataTC = (): AppThunk => async dispatch => {
     const response = await profileAPI.getProfileData()
 
     dispatch(setProfileData(response.data))
+    console.log('getProfileDataTC')
   } catch (error) {
     console.log('Error')
   }
@@ -59,6 +48,7 @@ export const updateProfileDataTC =
       const response = await profileAPI.updateProfileData(model)
 
       dispatch(setProfileData(response.data.updatedUser))
+      console.log('updateProfileDataTC')
     } catch (error) {
       console.log('Error')
     }
@@ -80,8 +70,20 @@ export const loginTC =
     try {
       const response = await profileAPI.login(data)
 
-      // dispatch(getProfileEmail(response.data.email))
+      console.log('loginTC')
     } catch (error) {
       console.log(error)
     }
   }
+
+type InitialStateType = typeof initialState
+type SetProfileDataType = ReturnType<typeof setProfileData>
+
+export type ProfileActionType = SetProfileDataType
+
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  AppStoreType,
+  unknown,
+  ProfileActionType
+>

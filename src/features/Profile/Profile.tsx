@@ -11,8 +11,8 @@ import avatarImg from '../../assets/img/avatar.png'
 import SuperEditableSpan from '../../common/components/SuperEditableSpan/SuperEditableSpan'
 
 import s from './Profile.module.css'
-import { ProfileDataType } from './profileApi'
-import { getProfileDataTC, loginTC, logoutTC, updateProfileDataTC } from './profileReducer'
+import { ProfileDataType } from './profile-api'
+import { getProfileDataTC, loginTC, logoutTC, updateProfileDataTC } from './profile-reducer'
 
 const Profile = memo(() => {
   const dispatch = useAppDispatch()
