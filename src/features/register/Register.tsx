@@ -60,7 +60,6 @@ export const Register = () => {
       return errors
     },
     onSubmit: values => {
-      //dispatch(loginTC(values))
       const payload = { email: values.email, password: values.password }
 
       dispatch(registerTC(payload))
@@ -76,7 +75,7 @@ export const Register = () => {
     <div className={s.registerPage}>
       <div className={s.registerContainer}>
         <form onSubmit={formik.handleSubmit}>
-          <FormControl>
+          <FormControl sx={{ width: '347px' }}>
             <FormGroup>
               <h2 className={s.registerTitle}>Sign Up</h2>
               <FormControl margin="normal" fullWidth={true}>
