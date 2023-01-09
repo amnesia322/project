@@ -16,7 +16,7 @@ import { getProfileDataTC, loginTC, logoutTC, updateProfileDataTC } from './prof
 
 const Profile = memo(() => {
   const dispatch = useAppDispatch()
-  const user = useAppSelector<ProfileDataType>(state => state.user.user)
+  const user = useAppSelector<ProfileDataType>(state => state.profile.user)
 
   useEffect(() => {
     const thunk1 = loginTC({
