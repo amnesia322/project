@@ -1,50 +1,53 @@
-import React, { useEffect, useState } from 'react'
+import React, { memo, useCallback, useEffect, useState } from 'react'
 
 import LogoutIcon from '@mui/icons-material/Logout'
 import PhotoCameraOutlinedIcon from '@mui/icons-material/PhotoCameraOutlined'
 import { Avatar, Button, Fab } from '@mui/material'
+import { Navigate } from 'react-router-dom'
 
+import { PATH } from '../../app/Routes/Pages'
 import { useAppDispatch, useAppSelector } from '../../app/store'
 import avatarImg from '../../assets/img/avatar.png'
 import SuperEditableSpan from '../../common/components/SuperEditableSpan/SuperEditableSpan'
 
 import s from './Profile.module.css'
 import { ProfileDataType } from './profileApi'
-import {
-  changeProfileNameTC,
-  getProfileEmailTC,
-  getProfileNameTC,
-  loginTC,
-  logoutTC,
-} from './profileReducer'
+import { getProfileDataTC, loginTC, logoutTC, updateProfileDataTC } from './profileReducer'
 
-const Profile = () => {
+const Profile = memo(() => {
   const dispatch = useAppDispatch()
-  const user = useAppSelector<ProfileDataType>(state => state.profile)
+  const user = useAppSelector<ProfileDataType>(state => state.user.user)
 
   useEffect(() => {
     const thunk1 = loginTC({
       email: 'valitvinoff@mail.ru',
       password: '12345678',
     })
-    const thunk = getProfileEmailTC()
-    const thunk3 = getProfileNameTC()
+    const thunk = getProfileDataTC()
 
     dispatch(thunk1)
     dispatch(thunk)
-    dispatch(thunk3)
   }, [])
 
+  const [isLoggedIn, setIsLoggedIn] = useState(true)
   const [name, setName] = useState(user.name)
-  // const [avatar, setAvatar] = useState<string | undefined>('')
+  const [avatar, setAvatar] = useState<string | undefined>(avatarImg)
 
-  const onChangeNextHandler = (newName: string) => {
-    setName(newName)
-    dispatch(changeProfileNameTC({ name }))
-  }
+  const onChangeTextHandler = useCallback(
+    (newName: string) => {
+      setName(newName)
+      dispatch(updateProfileDataTC({ name }))
+    },
+    [dispatch]
+  )
 
-  const onclickHandler = () => {
+  const onclickHandler = useCallback(() => {
     dispatch(logoutTC())
+    setIsLoggedIn(false)
+  }, [dispatch])
+
+  if (!isLoggedIn) {
+    return <Navigate to={PATH.LOGIN} />
   }
 
   return (
@@ -52,19 +55,15 @@ const Profile = () => {
       <div className={s.profileContainer}>
         <h2 className={s.profileTitle}>Personal Information</h2>
         <div className={s.avatarContainer}>
-          <Avatar
-            alt="avatar"
-            src={user.avatar ? user.avatar : avatarImg}
-            sx={{ width: 96, height: 96 }}
-          />
+          <Avatar alt="avatar" src={avatar} sx={{ width: 96, height: 96 }} />
           <Fab size={'small'} sx={{ left: '-35px' }}>
             <PhotoCameraOutlinedIcon fontSize={'small'} />
           </Fab>
         </div>
         <div className={s.name}>
-          <SuperEditableSpan value={user.name} onChangeText={onChangeNextHandler} />
+          <SuperEditableSpan value={user.name} onChangeText={onChangeTextHandler} />
         </div>
-        <div>{user.email}</div>
+        <div className={s.email}>{user.email}</div>
         <Button
           color="primary"
           size="large"
@@ -86,6 +85,6 @@ const Profile = () => {
       </div>
     </div>
   )
-}
+})
 
 export default Profile
