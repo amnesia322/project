@@ -22,7 +22,7 @@ const Header = () => {
         New Pass
       </NavLink>
       <NavLink to={PATH.PASS_RECOVERY} className={s.link}>
-        Pass Recovery
+        Forgot Password
       </NavLink>
       <NavLink to={PATH.ERROR} className={s.link}>
         Error 404
