@@ -45,7 +45,7 @@ export const Login = () => {
     event.preventDefault()
   }
   const dispatch = useAppDispatch()
-  const isLogged = useAppSelector<boolean>(state => state.loading.isLogged)
+  const isLogged = useAppSelector<boolean>(state => state.login.isLogged)
 
   const validate = (values: FormikValueType) => {
     const errors: FormikErrorType = {}
@@ -75,9 +75,9 @@ export const Login = () => {
     },
   })
 
-  // if (!isLogged) {
-  //   return <Navigate to={PATH.PROFILE} />
-  // }
+  if (!isLogged) {
+    return <Navigate to={PATH.PROFILE} />
+  }
 
   return (
     <div className={s.wrapperLogin}>
@@ -138,7 +138,9 @@ export const Login = () => {
         <NavLink className={s.navLinkAccount} to={''}>
           Don’t have an account?
         </NavLink>
-        <h3 className={s.underTitle}>Sign in</h3>
+        <NavLink className={s.underTitle} to={PATH.REGISTER}>
+          Sign in
+        </NavLink>
       </form>
     </div>
   )
