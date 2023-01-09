@@ -63,7 +63,7 @@ const Profile = memo(() => {
         <div className={s.name}>
           <SuperEditableSpan value={user.name} onChangeText={onChangeTextHandler} />
         </div>
-        <div>{user.email}</div>
+        <div className={s.email}>{user.email}</div>
         <Button
           color="primary"
           size="large"
