@@ -3,11 +3,11 @@ import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 
 import Error404 from '../../features/Error404/Error404'
-import Login from '../../features/login/Login'
+import { Login } from '../../features/login/Login'
 import NewPass from '../../features/NewPass/NewPass'
 import PassRecovery from '../../features/PassRecovery/PassRecovery'
 import Profile from '../../features/Profile/Profile'
-import Register from '../../features/register/Register'
+import { Register } from '../../features/register/Register'
 
 export const PATH = {
   LOGIN: '/login',
