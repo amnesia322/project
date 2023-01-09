@@ -55,8 +55,8 @@ const Profile = memo(() => {
       <div className={s.profileContainer}>
         <h2 className={s.profileTitle}>Personal Information</h2>
         <div className={s.avatarContainer}>
-          <Avatar alt="avatar" src={avatar} sx={{ width: 96, height: 96 }} />
-          <Fab size={'small'} sx={{ left: '-35px' }}>
+          <Avatar alt="avatar" src={avatar} sx={{ width: 96, height: 96, left: 17 }} />
+          <Fab size={'small'} sx={{ left: '-17px' }}>
             <PhotoCameraOutlinedIcon fontSize={'small'} />
           </Fab>
         </div>
