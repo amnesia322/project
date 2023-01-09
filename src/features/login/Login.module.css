@@ -5,8 +5,8 @@
   height: 552px;
   margin: 60px auto 0;
 
-  background: #ffffff;
-  border-radius: 2px;
+  background: rgba(249, 249, 254, 1);
+  border-radius: 8px;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
 }
 
