@@ -1,8 +1,7 @@
-import { ThunkAction } from 'redux-thunk'
+import { AppThunk } from '../../app/store'
+import { setIsLoggedInAC } from '../login/login-reducer'
 
-import { AppStoreType } from '../../app/store'
-
-import { LoginDataType, profileAPI, ProfileDataType, UpdateProfileModelType } from './profile-api'
+import { profileAPI, ProfileDataType, UpdateProfileModelType } from './profile-api'
 
 const initialState = {
   user: {
@@ -35,7 +34,7 @@ export const getProfileDataTC = (): AppThunk => async dispatch => {
     const response = await profileAPI.getProfileData()
 
     dispatch(setProfileData(response.data))
-    console.log('getProfileDataTC')
+    console.log(response.data)
   } catch (error) {
     console.log('Error')
   }
@@ -56,34 +55,15 @@ export const updateProfileDataTC =
 
 export const logoutTC = (): AppThunk => async dispatch => {
   try {
-    const response = await profileAPI.logOut()
-
+    await profileAPI.logOut()
     dispatch(setProfileData(initialState.user))
+    dispatch(setIsLoggedInAC(false))
   } catch (error) {
     console.log(error)
   }
 }
 
-export const loginTC =
-  (data: LoginDataType): AppThunk =>
-  async dispatch => {
-    try {
-      const response = await profileAPI.login(data)
-
-      console.log('loginTC')
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
 type InitialStateType = typeof initialState
 type SetProfileDataType = ReturnType<typeof setProfileData>
 
 export type ProfileActionType = SetProfileDataType
-
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  AppStoreType,
-  unknown,
-  ProfileActionType
->

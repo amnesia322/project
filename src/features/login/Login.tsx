@@ -14,9 +14,10 @@ import {
   FormGroup,
 } from '@mui/material'
 import { useFormik } from 'formik'
-import { NavLink } from 'react-router-dom'
+import { Navigate, NavLink } from 'react-router-dom'
 
-import { useAppDispatch } from '../../app/store'
+import { PATH } from '../../app/Routes/Pages'
+import { useAppDispatch, useAppSelector } from '../../app/store'
 import SuperButton from '../../common/components/SuperButton/SuperButton'
 
 import { LoginTC } from './login-reducer'
@@ -39,7 +40,7 @@ const Login = () => {
     event.preventDefault()
   }
   const dispatch = useAppDispatch()
-
+  const isLogged = useAppSelector<boolean>(state => state.login.isLogged)
   const validate = () => {}
 
   const formik = useFormik<FormikValueType>({
@@ -54,6 +55,10 @@ const Login = () => {
       formik.resetForm()
     },
   })
+
+  if (isLogged) {
+    return <Navigate to={PATH.PROFILE} />
+  }
 
   return (
     <div className={s.wrapperLogin}>

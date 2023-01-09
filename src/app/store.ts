@@ -1,9 +1,9 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { combineReducers, legacy_createStore, applyMiddleware, AnyAction } from 'redux'
-import thunkMiddleware, { ThunkDispatch } from 'redux-thunk'
+import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk'
 
-import { loginReducer } from '../features/login/login-reducer'
-import { profileReducer } from '../features/Profile/profileReducer'
+import { LoginActionsType, loginReducer } from '../features/login/login-reducer'
+import { ProfileActionType, profileReducer } from '../features/Profile/profile-reducer'
 import { registerReducer } from '../features/register/register-reducer'
 
 import { loadingReducer } from './appReducer'
@@ -26,5 +26,13 @@ export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelecto
 
 export type AppStoreType = ReturnType<typeof reducers>
 
+type AppActionsType = ProfileActionType | LoginActionsType
+
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  AppStoreType,
+  unknown,
+  AppActionsType
+>
 // @ts-ignore
 window.store = store // for dev
