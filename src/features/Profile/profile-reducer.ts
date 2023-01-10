@@ -1,4 +1,7 @@
+import { AxiosError } from 'axios'
+
 import { AppThunk } from '../../app/store'
+import { errorUtils } from '../../common/utils/error-utils'
 import { setIsLoggedInAC } from '../login/login-reducer'
 
 import { profileAPI, ProfileDataType, UpdateProfileModelType } from './profile-api'
@@ -50,7 +53,10 @@ export const updateProfileDataTC =
       dispatch(setProfileData(response.data.updatedUser))
       console.log('updateProfileDataTC')
     } catch (error) {
-      console.log('Error')
+      const err = error as Error | AxiosError<{ error: string }>
+
+      errorUtils(err, dispatch)
+      console.log(err)
     }
   }
 
