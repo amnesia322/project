@@ -4,6 +4,12 @@ import { instance } from '../../app/api'
 
 import { FormikValueType, LoginParamsType } from './Login'
 
+export const loginApi = {
+  login(data: FormikValueType) {
+    return instance.post<LoginParamsType, AxiosResponse<ResponseType>>('auth/login', data)
+  },
+}
+
 export type ResponseType = {
   _id: string
   email: string
@@ -17,10 +23,4 @@ export type ResponseType = {
   __v: number
   token: string
   tokenDeathTime: number
-}
-
-export const loginApi = {
-  login(data: FormikValueType) {
-    return instance.post<LoginParamsType, AxiosResponse<ResponseType>>('auth/login', data)
-  },
 }
