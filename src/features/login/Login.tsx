@@ -23,21 +23,6 @@ import SuperButton from '../../common/components/SuperButton/SuperButton'
 import { LoginTC } from './login-reducer'
 import s from './Login.module.css'
 
-export type FormikValueType = {
-  email: string
-  password: string
-  rememberMe: boolean
-}
-export type LoginParamsType = {
-  email: string
-  password: string
-  rememberMe?: boolean
-}
-type FormikErrorType = {
-  email?: string
-  password?: string
-  rememberMe?: boolean
-}
 export const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
   const handleClickShowPassword = () => setShowPassword(show => !show)
@@ -144,4 +129,20 @@ export const Login = () => {
       </form>
     </div>
   )
+}
+
+export type FormikValueType = {
+  email: string
+  password: string
+  rememberMe: boolean
+}
+export type LoginParamsType = {
+  email: string
+  password: string
+  rememberMe?: boolean
+}
+type FormikErrorType = {
+  email?: string
+  password?: string
+  rememberMe?: boolean
 }

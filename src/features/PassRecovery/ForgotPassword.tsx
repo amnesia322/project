@@ -1,24 +1,21 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-import { TextField, FormControlLabel, Checkbox, FormGroup } from '@mui/material'
+import { TextField, FormGroup } from '@mui/material'
 import { useFormik } from 'formik'
-import { Navigate, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 import { PATH } from '../../app/Routes/Pages'
-import { useAppDispatch, useAppSelector } from '../../app/store'
+import { useAppDispatch } from '../../app/store'
 import SuperButton from '../../common/components/SuperButton/SuperButton'
 
+import { ForgotPasswordTC } from './forgotPassword-reducer'
 import s from './ForgotPassword.module.css'
 
-export type FormikValueType = {
-  email: string
-}
+// before use this component you have to registered in 'https://neko-back.herokuapp.com/2.0'
 
-type FormikErrorType = {
-  email?: string
-}
 export const ForgotPassword = () => {
-  const validate = (values: FormikValueType) => {
+  const dispatch = useAppDispatch()
+  const validate = (values: FormikValueTypeForgotPassword) => {
     const errors: FormikErrorType = {}
 
     if (!values.email) {
@@ -29,13 +26,13 @@ export const ForgotPassword = () => {
     return errors
   }
 
-  const formik = useFormik<FormikValueType>({
+  const formik = useFormik<FormikValueTypeForgotPassword>({
     initialValues: {
       email: '',
     },
     validate,
     onSubmit: values => {
-      // dispatch(LoginTC(values))
+      dispatch(ForgotPasswordTC(values))
       formik.resetForm()
     },
   })
@@ -73,4 +70,12 @@ export const ForgotPassword = () => {
       </form>
     </div>
   )
+}
+
+export type FormikValueTypeForgotPassword = {
+  email: string
+}
+
+type FormikErrorType = {
+  email?: string
 }
