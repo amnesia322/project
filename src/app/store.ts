@@ -4,10 +4,8 @@ import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk'
 
 import { LoginActionsType, loginReducer } from '../features/login/login-reducer'
 import { NewPassActionType, newPassReducer } from '../features/NewPass/newPass-reducer'
-import { ProfileActionType, profileReducer } from '../features/Profile/profile-reducer'
-import { loginReducer } from '../features/login/login-reducer'
 import { forgotPasswordReducer } from '../features/PassRecovery/forgotPassword-reducer'
-import { profileReducer } from '../features/Profile/profileReducer'
+import { ProfileActionType, profileReducer } from '../features/Profile/profile-reducer'
 import { registerReducer } from '../features/register/register-reducer'
 
 import { AppActionsType, appReducer } from './app-reducer'

@@ -29,7 +29,6 @@ const Profile = () => {
   const onChangeTextHandler = useCallback(
     (name: string) => {
       dispatch(updateProfileDataTC({ name }))
-      console.log(name)
     },
     [dispatch]
   )

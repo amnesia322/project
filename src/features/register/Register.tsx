@@ -48,7 +48,7 @@ export const Register = () => {
       }
       if (!values.password) {
         errors.password = 'Password required'
-      } else if (values.password.length < 3) {
+      } else if (values.password.length < 7) {
         errors.password = 'Password must be more than 7 characters...'
       }
       if (!values.confirmPassword) {

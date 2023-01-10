@@ -110,7 +110,7 @@ export const Login = () => {
             checked={formik.values.rememberMe}
           />
         </FormGroup>
-        <NavLink className={s.navLink} to={''}>
+        <NavLink className={s.navLink} to={PATH.PASS_RECOVERY}>
           Forgot Passport?
         </NavLink>
         <SuperButton
