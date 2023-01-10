@@ -49,11 +49,12 @@ export const ForgotPasswordTC = (data: FormikValueTypeForgotPassword) => (dispat
     from: 'test-front-admin <ai73a@yandex.by>',
     message: `<div style="background-color: grey; padding: 15px">
               password recovery link: 
-              <a href='http://localhost:3000/#/set-new-password/$token$'>
+              <a href='http://localhost:3000/#/new_pass/$token$'>
               link</a>
               </div>`, // хтмп-письмо, вместо $token$ бэк вставит токен
   }
 
+  debugger
   forgotPasswordApi
     .forgot(dataForRequest)
     .then(() => {

@@ -16,11 +16,13 @@ export const PATH = {
   PROFILE: '/profile',
   ERROR: '/error404',
   PASS_RECOVERY: '/forgot_password',
-  NEW_PASS: '/new_pass',
+  NEW_PASS: '/new_pass/*',
   CHECK_EMAIL: '/check_email',
 }
 
 function Pages() {
+  debugger
+
   return (
     <div>
       <Routes>
