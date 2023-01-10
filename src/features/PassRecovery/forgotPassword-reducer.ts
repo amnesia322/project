@@ -54,7 +54,6 @@ export const ForgotPasswordTC = (data: FormikValueTypeForgotPassword) => (dispat
               </div>`, // хтмп-письмо, вместо $token$ бэк вставит токен
   }
 
-  debugger
   forgotPasswordApi
     .forgot(dataForRequest)
     .then(() => {

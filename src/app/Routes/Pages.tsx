@@ -21,8 +21,6 @@ export const PATH = {
 }
 
 function Pages() {
-  debugger
-
   return (
     <div>
       <Routes>

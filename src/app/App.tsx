@@ -10,8 +10,6 @@ import Pages from './Routes/Pages'
 import { store } from './store'
 
 function App() {
-  debugger
-
   return (
     <HashRouter>
       <Provider store={store}>
