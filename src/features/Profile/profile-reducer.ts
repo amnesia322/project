@@ -33,6 +33,7 @@ export const getProfileDataTC = (): AppThunk => async dispatch => {
   try {
     const response = await profileAPI.getProfileData()
 
+    dispatch(setIsLoggedInAC(true))
     dispatch(setProfileData(response.data))
     console.log(response.data)
   } catch (error) {
