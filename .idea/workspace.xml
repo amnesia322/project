@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b13589aa-edbd-4833-aec1-cf26a83d6ef8" name="Changes" comment="feat(forgotPassword): added forgotPassword-reducer.ts">
-      <change afterPath="$PROJECT_DIR$/src/features/PassRecovery/forgotPassword-api.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/PassRecovery/forgotPassword-reducer.ts" afterDir="false" />
+    <list default="true" id="b13589aa-edbd-4833-aec1-cf26a83d6ef8" name="Changes" comment="feat(forgotPassword): added forgotPassword-reducer.ts  and chenged store.ts">
+      <change afterPath="$PROJECT_DIR$/src/assets/svg/Group 281.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/PassRecovery/CheckEmail.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/Routes/Pages.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Routes/Pages.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/PassRecovery/ForgotPassword.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/PassRecovery/ForgotPassword.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/PassRecovery/ForgotPassword.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/PassRecovery/ForgotPassword.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/login/Login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/login/login-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/login/login-api.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +131,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673337941327</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feat(forgotPassword): added forgotPassword-reducer.ts  and chenged store.ts">
+      <created>1673349803140</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1673349803140</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,6 +172,7 @@
     <MESSAGE value="feat(login): added login-reducer.ts with login-api.ts, change store" />
     <MESSAGE value="feat(forgotPassword): add new component ForgotPassword.tsx in new branch" />
     <MESSAGE value="feat(forgotPassword): added forgotPassword-reducer.ts" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(forgotPassword): added forgotPassword-reducer.ts" />
+    <MESSAGE value="feat(forgotPassword): added forgotPassword-reducer.ts  and chenged store.ts" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(forgotPassword): added forgotPassword-reducer.ts  and chenged store.ts" />
   </component>
 </project>

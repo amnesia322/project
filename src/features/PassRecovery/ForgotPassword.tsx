@@ -2,10 +2,10 @@ import React from 'react'
 
 import { TextField, FormGroup } from '@mui/material'
 import { useFormik } from 'formik'
-import { NavLink } from 'react-router-dom'
+import { Navigate, NavLink } from 'react-router-dom'
 
 import { PATH } from '../../app/Routes/Pages'
-import { useAppDispatch } from '../../app/store'
+import { useAppDispatch, useAppSelector } from '../../app/store'
 import SuperButton from '../../common/components/SuperButton/SuperButton'
 
 import { ForgotPasswordTC } from './forgotPassword-reducer'
@@ -15,6 +15,7 @@ import s from './ForgotPassword.module.css'
 
 export const ForgotPassword = () => {
   const dispatch = useAppDispatch()
+  const isSendEmail = useAppSelector<boolean>(state => state.forgotPassword.isSendEmail)
   const validate = (values: FormikValueTypeForgotPassword) => {
     const errors: FormikErrorType = {}
 
@@ -36,6 +37,10 @@ export const ForgotPassword = () => {
       formik.resetForm()
     },
   })
+
+  if (isSendEmail) {
+    return <Navigate to={PATH.CHECK_EMAIL} />
+  }
 
   return (
     <div className={s.wrapperLogin}>
@@ -64,7 +69,7 @@ export const ForgotPassword = () => {
         <NavLink className={s.navLinkAccount} to={''}>
           Did you remember your password?
         </NavLink>
-        <NavLink className={s.underTitle} to={PATH.REGISTER}>
+        <NavLink className={s.underTitle} to={PATH.LOGIN}>
           Try logging in
         </NavLink>
       </form>
