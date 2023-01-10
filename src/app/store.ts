@@ -7,10 +7,10 @@ import { NewPassActionType, newPassReducer } from '../features/NewPass/newPass-r
 import { ProfileActionType, profileReducer } from '../features/Profile/profile-reducer'
 import { registerReducer } from '../features/register/register-reducer'
 
-import { loadingReducer } from './appReducer'
+import { AppActionsType, appReducer } from './app-reducer'
 
 const reducers = combineReducers({
-  loading: loadingReducer,
+  app: appReducer,
   login: loginReducer,
   register: registerReducer,
   profile: profileReducer,
@@ -28,13 +28,13 @@ export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelecto
 
 export type AppStoreType = ReturnType<typeof reducers>
 
-type AppActionsType = ProfileActionType | LoginActionsType | NewPassActionType
+type AppRootActionsType = AppActionsType | ProfileActionType | LoginActionsType | NewPassActionType
 
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
   AppStoreType,
   unknown,
-  AppActionsType
+  AppRootActionsType
 >
 // @ts-ignore
 window.store = store // for dev

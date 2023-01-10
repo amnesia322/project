@@ -25,7 +25,7 @@ export const setNewPassTC =
   (data: NewPassDataType): AppThunk =>
   async dispatch => {
     try {
-      const response = await newPassAPI.setNewPass(data)
+      await newPassAPI.setNewPass(data)
 
       dispatch(setNewPass(true))
     } catch (error) {
