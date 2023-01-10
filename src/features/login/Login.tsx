@@ -75,7 +75,7 @@ export const Login = () => {
     },
   })
 
-  if (!isLogged) {
+  if (isLogged) {
     return <Navigate to={PATH.PROFILE} />
   }
 

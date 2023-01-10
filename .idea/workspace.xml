@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b13589aa-edbd-4833-aec1-cf26a83d6ef8" name="Changes" comment="feat(login): added validation form into Login.tsx and redirect">
+    <list default="true" id="b13589aa-edbd-4833-aec1-cf26a83d6ef8" name="Changes" comment="feat(forgotPassword): add new component ForgotPassword.tsx in new branch">
+      <change afterPath="$PROJECT_DIR$/src/features/PassRecovery/ForgotPassword.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/Routes/Pages.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Routes/Pages.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/Header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/Header/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/PassRecovery/PassRecovery.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/PassRecovery/ForgotPassword.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/Profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/Profile/Profile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/PassRecovery/ForgotPassword.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/PassRecovery/ForgotPassword.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/login/Login.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/login/Login.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/login/Login.tsx" afterDir="false" />
     </list>
@@ -136,7 +135,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="features/login" />
+                        <option value="features/forgotPassword" />
                       </list>
                     </value>
                   </entry>
@@ -151,6 +150,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: add Login.tsx with Login.module.css" />
     <MESSAGE value="feat(login): added login-reducer.ts with login-api.ts, change store" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(login): added login-reducer.ts with login-api.ts, change store" />
+    <MESSAGE value="feat(forgotPassword): add new component ForgotPassword.tsx in new branch" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(forgotPassword): add new component ForgotPassword.tsx in new branch" />
   </component>
 </project>

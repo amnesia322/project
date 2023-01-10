@@ -5,7 +5,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import Error404 from '../../features/Error404/Error404'
 import { Login } from '../../features/login/Login'
 import NewPass from '../../features/NewPass/NewPass'
-import ForgotPassword from '../../features/PassRecovery/ForgotPassword'
+import { ForgotPassword } from '../../features/PassRecovery/ForgotPassword'
 import Profile from '../../features/Profile/Profile'
 import { Register } from '../../features/register/Register'
 
@@ -23,7 +23,6 @@ function Pages() {
     <div>
       <Routes>
         <Route path="/" element={<Navigate to={PATH.PROFILE} />} />
-
         <Route path={PATH.PROFILE} element={<Profile />} />
         <Route path={PATH.LOGIN} element={<Login />} />
         <Route path={PATH.REGISTER} element={<Register />} />
