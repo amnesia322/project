@@ -8,7 +8,6 @@ import { Navigate } from 'react-router-dom'
 
 import { PATH } from '../../app/Routes/Pages'
 import { useAppDispatch, useAppSelector } from '../../app/store'
-import avatarImg from '../../assets/img/avatar.png'
 import { EditableSpan } from '../../common/components/EditableSpan/EditableSpan'
 
 import { ProfileDataType } from './profile-api'
@@ -21,17 +20,14 @@ const Profile = () => {
   const isLoggedIn = useAppSelector(state => state.login.isLogged)
 
   useEffect(() => {
-    const thunk = getProfileDataTC()
-
-    dispatch(thunk)
+    if (!isLoggedIn) {
+      return
+    }
+    dispatch(getProfileDataTC())
   }, [])
-
-  const [name, setName] = useState(user.name)
-  const [avatar, setAvatar] = useState<string | undefined>(avatarImg)
 
   const onChangeTextHandler = useCallback(
     (name: string) => {
-      setName(name)
       dispatch(updateProfileDataTC({ name }))
       console.log(name)
     },
@@ -51,13 +47,13 @@ const Profile = () => {
       <div className={s.profileContainer}>
         <h2 className={s.profileTitle}>Personal Information</h2>
         <div className={s.avatarContainer}>
-          <Avatar alt="avatar" src={avatar} sx={{ width: 96, height: 96, left: 17 }} />
+          <Avatar alt="avatar" src={user.avatar} sx={{ width: 96, height: 96, left: 17 }} />
           <Fab size={'small'} sx={{ left: '-17px' }}>
             <PhotoCameraOutlinedIcon fontSize={'small'} />
           </Fab>
         </div>
         <div className={s.name}>
-          <EditableSpan value={name} onChange={onChangeTextHandler} />
+          <EditableSpan value={user.name} onChange={onChangeTextHandler} />
           <DriveFileRenameOutlineOutlinedIcon fontSize={'small'} sx={{ marginTop: '2px' }} />
         </div>
         <div className={s.email}>{user.email}</div>

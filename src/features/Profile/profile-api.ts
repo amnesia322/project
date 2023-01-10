@@ -4,7 +4,7 @@ import { instance } from '../../app/api'
 
 export const profileAPI = {
   getProfileData() {
-    return instance.post<ProfileDataType>('/auth/me', {})
+    return instance.post<ProfileDataType>('auth/me', {})
   },
   updateProfileData(model: UpdateProfileModelType) {
     return instance.put<'', AxiosResponse<ResponseType>, UpdateProfileModelType>('/auth/me', model)
