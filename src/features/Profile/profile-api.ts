@@ -4,13 +4,10 @@ import { instance } from '../../app/api'
 
 export const profileAPI = {
   getProfileData() {
-    return instance.post<ProfileDataType>('/auth/me', {})
+    return instance.post<ProfileDataType>('auth/me', {})
   },
   updateProfileData(model: UpdateProfileModelType) {
     return instance.put<'', AxiosResponse<ResponseType>, UpdateProfileModelType>('/auth/me', model)
-  },
-  login(data: LoginDataType) {
-    return instance.post<ProfileDataType>('auth/login', data)
   },
   logOut() {
     return instance.delete('auth/me')
@@ -35,9 +32,4 @@ export type ResponseType = {
   updatedUser: ProfileDataType
 
   error?: string
-}
-export type LoginDataType = {
-  email: string
-  password: string
-  rememberMe?: boolean
 }

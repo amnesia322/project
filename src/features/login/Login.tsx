@@ -33,12 +33,7 @@ export type LoginParamsType = {
   password: string
   rememberMe?: boolean
 }
-type FormikErrorType = {
-  email?: string
-  password?: string
-  rememberMe?: boolean
-}
-export const Login = () => {
+const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
   const handleClickShowPassword = () => setShowPassword(show => !show)
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -75,7 +70,7 @@ export const Login = () => {
     },
   })
 
-  if (!isLogged) {
+  if (isLogged) {
     return <Navigate to={PATH.PROFILE} />
   }
 
@@ -145,3 +140,5 @@ export const Login = () => {
     </div>
   )
 }
+
+export default Login

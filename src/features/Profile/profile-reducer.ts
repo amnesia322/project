@@ -1,8 +1,10 @@
-import { ThunkAction } from 'redux-thunk'
+import { AxiosError } from 'axios'
 
-import { AppStoreType } from '../../app/store'
+import { AppThunk } from '../../app/store'
+import { errorUtils } from '../../common/utils/error-utils'
+import { setIsLoggedInAC } from '../login/login-reducer'
 
-import { LoginDataType, profileAPI, ProfileDataType, UpdateProfileModelType } from './profileApi'
+import { profileAPI, ProfileDataType, UpdateProfileModelType } from './profile-api'
 
 const initialState = {
   user: {
@@ -14,18 +16,6 @@ const initialState = {
     avatar: '' as string,
   } as ProfileDataType,
 }
-
-type InitialStateType = typeof initialState
-type SetProfileDataType = ReturnType<typeof setProfileData>
-
-export type ProfileActionType = SetProfileDataType
-
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  AppStoreType,
-  unknown,
-  ProfileActionType
->
 
 export const profileReducer = (
   state: InitialStateType = initialState,
@@ -46,7 +36,9 @@ export const getProfileDataTC = (): AppThunk => async dispatch => {
   try {
     const response = await profileAPI.getProfileData()
 
+    dispatch(setIsLoggedInAC(true))
     dispatch(setProfileData(response.data))
+    console.log(response.data)
   } catch (error) {
     console.log('Error')
   }
@@ -59,29 +51,26 @@ export const updateProfileDataTC =
       const response = await profileAPI.updateProfileData(model)
 
       dispatch(setProfileData(response.data.updatedUser))
+      console.log('updateProfileDataTC')
     } catch (error) {
-      console.log('Error')
+      const err = error as Error | AxiosError<{ error: string }>
+
+      errorUtils(err, dispatch)
+      console.log(err)
     }
   }
 
 export const logoutTC = (): AppThunk => async dispatch => {
   try {
-    const response = await profileAPI.logOut()
-
+    await profileAPI.logOut()
     dispatch(setProfileData(initialState.user))
+    dispatch(setIsLoggedInAC(false))
   } catch (error) {
     console.log(error)
   }
 }
 
-export const loginTC =
-  (data: LoginDataType): AppThunk =>
-  async dispatch => {
-    try {
-      const response = await profileAPI.login(data)
+type InitialStateType = typeof initialState
+type SetProfileDataType = ReturnType<typeof setProfileData>
 
-      // dispatch(getProfileEmail(response.data.email))
-    } catch (error) {
-      console.log(error)
-    }
-  }
+export type ProfileActionType = SetProfileDataType

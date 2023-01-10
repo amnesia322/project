@@ -11,9 +11,9 @@ const initialState = {
 type setIsLoggedInACType = ReturnType<typeof setIsLoggedInAC>
 
 type InitialStateType = typeof initialState
-type ActionsType = setIsLoggedInACType
+export type LoginActionsType = setIsLoggedInACType
 
-export const loginReducer = (state: InitialStateType = initialState, action: ActionsType) => {
+export const loginReducer = (state: InitialStateType = initialState, action: LoginActionsType) => {
   switch (action.type) {
     case 'login/SET-IS-LOGGED': {
       return { ...state, isLogged: action.payload.value }
@@ -32,7 +32,7 @@ export const setIsLoggedInAC = (value: boolean) => {
   } as const
 }
 
-export const LoginTC = (data: FormikValueType) => (dispatch: Dispatch<ActionsType>) => {
+export const LoginTC = (data: FormikValueType) => (dispatch: Dispatch<LoginActionsType>) => {
   loginApi
     .login(data)
     .then(() => {
