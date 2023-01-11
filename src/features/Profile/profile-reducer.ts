@@ -1,5 +1,6 @@
 import { AxiosError } from 'axios'
 
+import { setAppInitializedAC, setAppStatusAC } from '../../app/app-reducer'
 import { AppThunk } from '../../app/store'
 import { errorUtils } from '../../common/utils/error-utils'
 import { setIsLoggedInAC } from '../login/login-reducer'
@@ -38,35 +39,45 @@ export const getProfileDataTC = (): AppThunk => async dispatch => {
 
     dispatch(setIsLoggedInAC(true))
     dispatch(setProfileData(response.data))
-    console.log(response.data)
   } catch (error) {
     console.log('Error')
+    dispatch(setIsLoggedInAC(false))
+  } finally {
+    dispatch(setAppInitializedAC(true))
   }
 }
 
 export const updateProfileDataTC =
   (model: UpdateProfileModelType): AppThunk =>
   async dispatch => {
+    dispatch(setAppStatusAC('loading'))
     try {
       const response = await profileAPI.updateProfileData(model)
 
       dispatch(setProfileData(response.data.updatedUser))
-      console.log('updateProfileDataTC')
     } catch (error) {
       const err = error as Error | AxiosError<{ error: string }>
 
       errorUtils(err, dispatch)
       console.log(err)
+    } finally {
+      dispatch(setAppStatusAC('idle'))
     }
   }
 
 export const logoutTC = (): AppThunk => async dispatch => {
+  dispatch(setAppStatusAC('loading'))
   try {
     await profileAPI.logOut()
     dispatch(setProfileData(initialState.user))
     dispatch(setIsLoggedInAC(false))
   } catch (error) {
+    const err = error as Error | AxiosError<{ error: string }>
+
+    errorUtils(err, dispatch)
     console.log(error)
+  } finally {
+    dispatch(setAppStatusAC('idle'))
   }
 }
 

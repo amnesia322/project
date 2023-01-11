@@ -1,3 +1,4 @@
+import { setAppStatusAC } from '../../app/app-reducer'
 import { AppThunk } from '../../app/store'
 
 import { newPassAPI, NewPassDataType } from './newPass-api'
@@ -24,12 +25,16 @@ export const setNewPass = (isNewPassSet: boolean) =>
 export const setNewPassTC =
   (data: NewPassDataType): AppThunk =>
   async dispatch => {
+    dispatch(setAppStatusAC('loading'))
     try {
       await newPassAPI.setNewPass(data)
 
       dispatch(setNewPass(true))
+      dispatch(setAppStatusAC('succeeded'))
     } catch (error) {
       console.log(error)
+    } finally {
+      dispatch(setAppStatusAC('idle'))
     }
   }
 
