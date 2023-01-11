@@ -16,6 +16,7 @@ import { Navigate, useParams } from 'react-router-dom'
 
 import { PATH } from '../../app/Routes/Pages'
 import { useAppDispatch, useAppSelector } from '../../app/store'
+import SuperButton from '../../common/components/SuperButton/SuperButton'
 import s from '../NewPass/NewPass.module.css'
 
 import { setNewPassTC } from './newPass-reducer'
@@ -26,6 +27,7 @@ const NewPass = () => {
   const [showPassword, setShowPassword] = useState(false)
   const { token } = useParams()
 
+  console.log(token)
   const handleClickShowPassword = () => setShowPassword(show => !show)
 
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -68,9 +70,9 @@ const NewPass = () => {
             <FormGroup>
               <h2 className={s.title}>Create new password</h2>
               <FormControl margin="normal" fullWidth={true}>
-                <InputLabel htmlFor="register-password">Password</InputLabel>
+                <InputLabel htmlFor="password">Password</InputLabel>
                 <Input
-                  id="new-password"
+                  id="password"
                   type={showPassword ? 'text' : 'password'}
                   {...formik.getFieldProps('password')}
                   endAdornment={

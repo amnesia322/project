@@ -29,7 +29,9 @@ function Pages() {
         <Route path={PATH.LOGIN} element={<Login />} />
         <Route path={PATH.REGISTER} element={<Register />} />
         <Route path={PATH.PASS_RECOVERY} element={<ForgotPassword />} />
-        <Route path={PATH.NEW_PASS} element={<NewPass />} />
+        <Route path={PATH.NEW_PASS} element={<NewPass />}>
+          <Route path=":token" element={<NewPass />} />
+        </Route>
         <Route path={PATH.CHECK_EMAIL} element={<CheckEmail />} />
         <Route path={'*'} element={<Navigate to={PATH.ERROR} />} />
 
