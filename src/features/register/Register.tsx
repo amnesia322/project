@@ -11,6 +11,7 @@ import {
   Input,
   InputAdornment,
   InputLabel,
+  TextField,
 } from '@mui/material'
 import { useFormik } from 'formik'
 import { Navigate } from 'react-router-dom'
@@ -72,90 +73,99 @@ export const Register = () => {
   }
 
   return (
-    <div className={s.registerPage}>
-      <div className={s.registerContainer}>
-        <form onSubmit={formik.handleSubmit}>
-          <FormControl sx={{ width: '347px' }}>
-            <FormGroup>
-              <h2 className={s.registerTitle}>Sign Up</h2>
-              <FormControl margin="normal" fullWidth={true}>
-                <InputLabel htmlFor="register-email">Email</InputLabel>
-                <Input id="register-email" {...formik.getFieldProps('email')} />
-                {formik.touched.email && formik.errors.email ? (
-                  <div style={{ color: 'red' }}>{formik.errors.email} </div>
-                ) : null}
-              </FormControl>
-              <FormControl margin="normal" fullWidth={true}>
-                <InputLabel htmlFor="register-password">Password</InputLabel>
-                <Input
-                  id="register-password"
-                  type={showPassword ? 'text' : 'password'}
-                  {...formik.getFieldProps('password')}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                />
-                {formik.touched.password && formik.errors.password ? (
-                  <div style={{ color: 'red' }}>{formik.errors.password} </div>
-                ) : null}
-              </FormControl>
-              <FormControl margin="normal" fullWidth={true}>
-                <InputLabel htmlFor="register-password-confirm">Password</InputLabel>
-                <Input
-                  id="register-password-confirm"
-                  type={showPassword ? 'text' : 'password'}
-                  {...formik.getFieldProps('confirmPassword')}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                />
-                {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
-                  <div style={{ color: 'red' }}>{formik.errors.confirmPassword} </div>
-                ) : null}
-              </FormControl>
-              <Button
-                type={'submit'}
-                variant={'contained'}
-                color={'primary'}
-                sx={{
-                  marginTop: '60px',
-                  borderRadius: '30px',
-                  fontFamily: 'Montserrat',
-                  fontStyle: 'normal',
-                  fontWeight: 500,
-                  fontSize: '16px',
-                  lineHeight: '20px',
-                  textTransform: 'none',
-                }}
-              >
-                Sign Up
-              </Button>
-            </FormGroup>
-            <FormLabel>
-              <p className={s.registerDescription}>Already have an account?</p>
-              <a href={PATH.LOGIN} target={'_blank'} rel="noreferrer" className={s.registerLink}>
-                Sign In
-              </a>
-            </FormLabel>
-          </FormControl>
-        </form>
-      </div>
+    <div className={s.registerContainer}>
+      <h2 className={s.registerTitle}>Sign Up</h2>
+      <form onSubmit={formik.handleSubmit}>
+        <FormControl sx={{ width: '347px' }}>
+          <FormGroup>
+            {/*<FormControl margin="normal" fullWidth={true}>
+              <InputLabel htmlFor="register-email">Email</InputLabel>
+              <Input id="register-email" {...formik.getFieldProps('email')} />
+              {formik.touched.email && formik.errors.email ? (
+                <div style={{ color: 'red' }}>{formik.errors.email} </div>
+              ) : null}
+            </FormControl>*/}
+            <TextField
+              type="email"
+              id="standard-basic"
+              label="Email"
+              variant="standard"
+              margin="normal"
+              {...formik.getFieldProps('email')}
+            />
+            {formik.touched.email && formik.errors.email ? (
+              <div style={{ color: 'red' }}>{formik.errors.email} </div>
+            ) : null}
+            <FormControl variant="standard">
+              <InputLabel htmlFor="register-password">Password</InputLabel>
+              <Input
+                id="register-password"
+                type={showPassword ? 'text' : 'password'}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                {...formik.getFieldProps('password')}
+              />
+              {formik.touched.password && formik.errors.password ? (
+                <div style={{ color: 'red' }}>{formik.errors.password} </div>
+              ) : null}
+            </FormControl>
+            <FormControl variant="standard">
+              <InputLabel htmlFor="register-password-confirm">Password</InputLabel>
+              <Input
+                id="register-password-confirm"
+                type={showPassword ? 'text' : 'password'}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                {...formik.getFieldProps('confirmPassword')}
+              />
+              {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
+                <div style={{ color: 'red' }}>{formik.errors.confirmPassword} </div>
+              ) : null}
+            </FormControl>
+            <Button
+              type={'submit'}
+              variant={'contained'}
+              color={'primary'}
+              sx={{
+                marginTop: '60px',
+                borderRadius: '30px',
+                fontFamily: 'Montserrat',
+                fontStyle: 'normal',
+                fontWeight: 500,
+                fontSize: '16px',
+                lineHeight: '20px',
+                textTransform: 'none',
+              }}
+            >
+              Sign Up
+            </Button>
+          </FormGroup>
+          <FormLabel>
+            <p className={s.registerDescription}>Already have an account?</p>
+            <a href={PATH.LOGIN} target={'_blank'} rel="noreferrer" className={s.registerLink}>
+              Sign In
+            </a>
+          </FormLabel>
+        </FormControl>
+      </form>
     </div>
   )
 }

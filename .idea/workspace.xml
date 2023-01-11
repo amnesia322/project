@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b13589aa-edbd-4833-aec1-cf26a83d6ef8" name="Changes" comment="refactoring">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_01_2023_15_46__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_01_2023_15_46__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_01_2023_15_58__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_01_2023_15_58__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/store.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/Header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/Header/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/Profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/Profile/Profile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/login/Login.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/login/Login.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/login/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/register/Register.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/register/Register.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/register/Register.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/register/Register.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/register/register-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/register/register-api.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,6 +152,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: add Login.tsx with Login.module.css" />
     <MESSAGE value="feat(login): added login-reducer.ts with login-api.ts, change store" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(login): added login-reducer.ts with login-api.ts, change store" />
+    <MESSAGE value="feat(register): added loading and error status." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(register): added loading and error status." />
   </component>
 </project>
