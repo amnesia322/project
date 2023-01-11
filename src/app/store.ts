@@ -6,7 +6,7 @@ import { LoginActionsType, loginReducer } from '../features/login/login-reducer'
 import { NewPassActionType, newPassReducer } from '../features/NewPass/newPass-reducer'
 import { forgotPasswordReducer } from '../features/PassRecovery/forgotPassword-reducer'
 import { ProfileActionType, profileReducer } from '../features/Profile/profile-reducer'
-import { registerReducer } from '../features/register/register-reducer'
+import { RegisterActionsType, registerReducer } from '../features/register/register-reducer'
 
 import { AppActionsType, appReducer } from './app-reducer'
 
@@ -30,7 +30,12 @@ export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelecto
 
 export type AppStoreType = ReturnType<typeof reducers>
 
-type AppRootActionsType = AppActionsType | ProfileActionType | LoginActionsType | NewPassActionType
+type AppRootActionsType =
+  | AppActionsType
+  | ProfileActionType
+  | LoginActionsType
+  | NewPassActionType
+  | RegisterActionsType
 
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
