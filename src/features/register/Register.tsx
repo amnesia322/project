@@ -3,7 +3,6 @@ import React from 'react'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import {
-  Button,
   FormControl,
   FormGroup,
   FormLabel,
@@ -14,10 +13,11 @@ import {
   TextField,
 } from '@mui/material'
 import { useFormik } from 'formik'
-import { Navigate } from 'react-router-dom'
+import { Navigate, NavLink } from 'react-router-dom'
 
 import { PATH } from '../../app/Routes/Pages'
 import { useAppDispatch, useAppSelector } from '../../app/store'
+import { ClassicButton } from '../../common/components/ClassicButton/ClassicButton'
 
 import { registerTC } from './register-reducer'
 import s from './Register.module.css'
@@ -33,14 +33,14 @@ export const Register = () => {
     event.preventDefault()
   }
 
-  const formik = useFormik({
+  const formik = useFormik<RegisterParamsType>({
     initialValues: {
       email: '',
       password: '',
       confirmPassword: '',
     },
     validate: values => {
-      const errors: FormikErrorType = {}
+      const errors: FormikErrorsType = {}
 
       if (!values.email) {
         errors.email = 'Required'
@@ -78,13 +78,6 @@ export const Register = () => {
       <form onSubmit={formik.handleSubmit}>
         <FormControl sx={{ width: '347px' }}>
           <FormGroup>
-            {/*<FormControl margin="normal" fullWidth={true}>
-              <InputLabel htmlFor="register-email">Email</InputLabel>
-              <Input id="register-email" {...formik.getFieldProps('email')} />
-              {formik.touched.email && formik.errors.email ? (
-                <div style={{ color: 'red' }}>{formik.errors.email} </div>
-              ) : null}
-            </FormControl>*/}
             <TextField
               type="email"
               id="standard-basic"
@@ -118,7 +111,7 @@ export const Register = () => {
                 <div style={{ color: 'red' }}>{formik.errors.password} </div>
               ) : null}
             </FormControl>
-            <FormControl variant="standard">
+            <FormControl variant="standard" sx={{ marginBottom: '60px' }}>
               <InputLabel htmlFor="register-password-confirm">Password</InputLabel>
               <Input
                 id="register-password-confirm"
@@ -140,29 +133,13 @@ export const Register = () => {
                 <div style={{ color: 'red' }}>{formik.errors.confirmPassword} </div>
               ) : null}
             </FormControl>
-            <Button
-              type={'submit'}
-              variant={'contained'}
-              color={'primary'}
-              sx={{
-                marginTop: '60px',
-                borderRadius: '30px',
-                fontFamily: 'Montserrat',
-                fontStyle: 'normal',
-                fontWeight: 500,
-                fontSize: '16px',
-                lineHeight: '20px',
-                textTransform: 'none',
-              }}
-            >
-              Sign Up
-            </Button>
+            <ClassicButton title="Sign Up" />
           </FormGroup>
           <FormLabel>
             <p className={s.registerDescription}>Already have an account?</p>
-            <a href={PATH.LOGIN} target={'_blank'} rel="noreferrer" className={s.registerLink}>
+            <NavLink to={PATH.LOGIN} rel="noreferrer" className={s.registerLink}>
               Sign In
-            </a>
+            </NavLink>
           </FormLabel>
         </FormControl>
       </form>
@@ -170,7 +147,13 @@ export const Register = () => {
   )
 }
 
-type FormikErrorType = {
+type RegisterParamsType = {
+  email: string
+  password: string
+  confirmPassword: string
+}
+
+type FormikErrorsType = {
   email?: string
   password?: string
   confirmPassword?: string
