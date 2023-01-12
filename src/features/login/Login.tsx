@@ -18,7 +18,7 @@ import { Navigate, NavLink } from 'react-router-dom'
 
 import { PATH } from '../../app/Routes/Pages'
 import { useAppDispatch, useAppSelector } from '../../app/store'
-import SuperButton from '../../common/components/SuperButton/SuperButton'
+import { ClassicButton } from '../../common/components/ClassicButton/ClassicButton'
 
 import { LoginTC } from './login-reducer'
 import s from './Login.module.css'
@@ -31,7 +31,10 @@ export const Login = () => {
   }
   const dispatch = useAppDispatch()
   const isLogged = useAppSelector<boolean>(state => state.login.isLogged)
-
+  const button = {
+    width: '100%',
+    marginTop: '40px',
+  }
   const validate = (values: FormikValueType) => {
     const errors: FormikErrorType = {}
 
@@ -40,8 +43,8 @@ export const Login = () => {
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email))
       errors.email = 'Invalid email address'
 
-    if (values.password && values.password.length < 3) {
-      errors.password = 'Required password more 3 letters'
+    if (values.password && values.password.length < 7) {
+      errors.password = 'Required password more 7 letters'
     }
 
     return errors
@@ -56,7 +59,6 @@ export const Login = () => {
     validate,
     onSubmit: values => {
       dispatch(LoginTC(values))
-      formik.resetForm()
     },
   })
 
@@ -113,13 +115,7 @@ export const Login = () => {
         <NavLink className={s.navLink} to={PATH.PASS_RECOVERY}>
           Forgot Passport?
         </NavLink>
-        <SuperButton
-          className={s.button}
-          type={'submit'}
-          disabled={!!formik.errors.email || !!formik.errors.password}
-        >
-          Sign In
-        </SuperButton>
+        <ClassicButton title={'Sign In'} sx={button} />
         <NavLink className={s.navLinkAccount} to={''}>
           Don’t have an account?
         </NavLink>
@@ -135,11 +131,6 @@ export type FormikValueType = {
   email: string
   password: string
   rememberMe: boolean
-}
-export type LoginParamsType = {
-  email: string
-  password: string
-  rememberMe?: boolean
 }
 type FormikErrorType = {
   email?: string

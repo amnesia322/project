@@ -2,11 +2,11 @@ import { AxiosResponse } from 'axios'
 
 import { instance } from '../../app/api'
 
-import { FormikValueType, LoginParamsType } from './Login'
+import { FormikValueType } from './Login'
 
 export const loginApi = {
   login(data: FormikValueType) {
-    return instance.post<LoginParamsType, AxiosResponse<ResponseType>>('auth/login', data)
+    return instance.post<FormikValueType, AxiosResponse<ResponseType>>('auth/login', data)
   },
 }
 

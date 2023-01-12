@@ -4,6 +4,8 @@ import { Button } from '@mui/material'
 
 type ClassicButtonPropsType = {
   title: string
+  sx?: { [key: string]: string }
+  onClick?: () => void
 }
 
 export const ClassicButton = (props: ClassicButtonPropsType) => {
@@ -20,7 +22,10 @@ export const ClassicButton = (props: ClassicButtonPropsType) => {
         fontSize: '16px',
         lineHeight: '20px',
         textTransform: 'none',
+        // backgroundColor: '#366eff',
+        ...props.sx,
       }}
+      onClick={props.onClick}
     >
       {props.title}
     </Button>
