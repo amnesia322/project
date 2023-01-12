@@ -34,13 +34,14 @@ export const setProfileData = (user: ProfileDataType) =>
   ({ type: 'profile/SET_PROFILE_DATA', user } as const)
 
 export const getProfileDataTC = (): AppThunk => async dispatch => {
+  dispatch(setAppStatusAC('loading'))
   try {
     const response = await profileAPI.getProfileData()
 
     dispatch(setIsLoggedInAC(true))
     dispatch(setProfileData(response.data))
+    dispatch(setAppStatusAC('succeeded'))
   } catch (error) {
-    console.log('Error')
     dispatch(setIsLoggedInAC(false))
   } finally {
     dispatch(setAppInitializedAC(true))
@@ -55,11 +56,11 @@ export const updateProfileDataTC =
       const response = await profileAPI.updateProfileData(model)
 
       dispatch(setProfileData(response.data.updatedUser))
+      dispatch(setAppStatusAC('succeeded'))
     } catch (error) {
       const err = error as Error | AxiosError<{ error: string }>
 
       errorUtils(err, dispatch)
-      console.log(err)
     } finally {
       dispatch(setAppStatusAC('idle'))
     }
@@ -71,11 +72,11 @@ export const logoutTC = (): AppThunk => async dispatch => {
     await profileAPI.logOut()
     dispatch(setProfileData(initialState.user))
     dispatch(setIsLoggedInAC(false))
+    dispatch(setAppStatusAC('succeeded'))
   } catch (error) {
     const err = error as Error | AxiosError<{ error: string }>
 
     errorUtils(err, dispatch)
-    console.log(error)
   } finally {
     dispatch(setAppStatusAC('idle'))
   }

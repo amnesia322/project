@@ -1,5 +1,8 @@
+import { AxiosError } from 'axios'
+
 import { setAppStatusAC } from '../../app/app-reducer'
 import { AppThunk } from '../../app/store'
+import { errorUtils } from '../../common/utils/error-utils'
 
 import { newPassAPI, NewPassDataType } from './newPass-api'
 
@@ -32,7 +35,9 @@ export const setNewPassTC =
       dispatch(setNewPass(true))
       dispatch(setAppStatusAC('succeeded'))
     } catch (error) {
-      console.log(error)
+      const err = error as Error | AxiosError<{ error: string }>
+
+      errorUtils(err, dispatch)
     } finally {
       dispatch(setAppStatusAC('idle'))
     }

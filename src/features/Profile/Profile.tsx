@@ -3,11 +3,12 @@ import React, { memo, useCallback, useEffect } from 'react'
 import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined'
 import LogoutIcon from '@mui/icons-material/Logout'
 import PhotoCameraOutlinedIcon from '@mui/icons-material/PhotoCameraOutlined'
-import { Avatar, Button, Fab } from '@mui/material'
+import { Avatar, Fab } from '@mui/material'
 import { Navigate } from 'react-router-dom'
 
 import { PATH } from '../../app/Routes/Pages'
 import { useAppDispatch, useAppSelector } from '../../app/store'
+import { ClassicButton } from '../../common/components/ClassicButton/ClassicButton'
 import { EditableSpan } from '../../common/components/EditableSpan/EditableSpan'
 
 import { ProfileDataType } from './profile-api'
@@ -56,24 +57,9 @@ const Profile = memo(() => {
           <DriveFileRenameOutlineOutlinedIcon fontSize={'small'} sx={{ marginTop: '2px' }} />
         </div>
         <div className={s.email}>{user.email}</div>
-        <Button
-          color="primary"
-          size="large"
-          variant="outlined"
-          sx={{
-            borderRadius: '30px',
-            fontFamily: 'Montserrat',
-            fontStyle: 'normal',
-            fontWeight: 500,
-            fontSize: '16px',
-            lineHeight: '20px',
-            textTransform: 'none',
-          }}
-          onClick={onclickHandler}
-        >
+        <ClassicButton title={'Log out'} onClick={onclickHandler}>
           <LogoutIcon fontSize={'small'} />
-          Log out
-        </Button>
+        </ClassicButton>
       </div>
     </div>
   )
