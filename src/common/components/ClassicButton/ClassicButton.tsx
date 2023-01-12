@@ -4,6 +4,8 @@ import { Button } from '@mui/material'
 
 type ClassicButtonPropsType = {
   title: string
+  children?: JSX.Element | JSX.Element[]
+  onClick?: () => void
 }
 
 export const ClassicButton = (props: ClassicButtonPropsType) => {
@@ -21,8 +23,10 @@ export const ClassicButton = (props: ClassicButtonPropsType) => {
         lineHeight: '20px',
         textTransform: 'none',
       }}
+      onClick={props.onClick}
     >
       {props.title}
+      {props.children}
     </Button>
   )
 }
