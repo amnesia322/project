@@ -30,6 +30,7 @@ function App() {
   return (
     <div className="App">
       <ErrorSnackbar />
+
       <AppBar position="static">
         <Header />
         {status === 'loading' && <LinearProgress />}

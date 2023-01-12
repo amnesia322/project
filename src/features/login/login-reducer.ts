@@ -2,6 +2,7 @@ import { AxiosError } from 'axios'
 import { Dispatch } from 'redux'
 
 import { setAppStatusAC } from '../../app/app-reducer'
+import { errorUtils } from '../../common/utils/error-utils'
 
 import { FormikValueType } from './Login'
 import { loginApi } from './login-api'
@@ -39,8 +40,9 @@ export const LoginTC = (data: FormikValueType) => (dispatch: Dispatch) => {
       console.log('YO! It is OK')
     })
     .catch((e: AxiosError<{ error: string }>) => {
-      const error = e.response ? e.response.data.error : e.message + ', more details in the console'
+      const error = e as Error | AxiosError<{ error: string }>
 
+      errorUtils(error, dispatch)
       console.log('error', error)
     })
     .finally(() => {

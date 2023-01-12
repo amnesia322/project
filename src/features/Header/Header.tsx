@@ -1,11 +1,12 @@
 import React from 'react'
 
-import { Avatar, Button } from '@mui/material'
+import { Avatar } from '@mui/material'
 import { NavLink } from 'react-router-dom'
 
 import { PATH } from '../../app/Routes/Pages'
 import { useAppSelector } from '../../app/store'
 import logo from '../../assets/svg/logo.svg'
+import { ClassicButton } from '../../common/components/ClassicButton/ClassicButton'
 
 import s from './Header.module.css'
 
@@ -19,22 +20,7 @@ const Header = () => {
       <img src={logo} alt={'logo'} />
       {!isLoggedIn ? (
         <NavLink to={PATH.LOGIN} className={s.link}>
-          <Button
-            type={'submit'}
-            variant={'contained'}
-            color={'primary'}
-            sx={{
-              borderRadius: '30px',
-              fontFamily: 'Montserrat',
-              fontStyle: 'normal',
-              fontWeight: 500,
-              fontSize: '16px',
-              lineHeight: '20px',
-              textTransform: 'none',
-            }}
-          >
-            Sign in
-          </Button>
+          <ClassicButton title="Sign In" />
         </NavLink>
       ) : (
         <NavLink to={PATH.PROFILE} className={s.userInfo}>

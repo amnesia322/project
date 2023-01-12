@@ -16,7 +16,6 @@ import { Navigate, useParams } from 'react-router-dom'
 
 import { PATH } from '../../app/Routes/Pages'
 import { useAppDispatch, useAppSelector } from '../../app/store'
-import SuperButton from '../../common/components/SuperButton/SuperButton'
 import s from '../NewPass/NewPass.module.css'
 
 import { setNewPassTC } from './newPass-reducer'
@@ -43,7 +42,7 @@ const NewPass = () => {
 
       if (!values.password) {
         errors.password = 'Password required'
-      } else if (values.password.length < 3) {
+      } else if (values.password.length < 7) {
         errors.password = 'Password must be more than 7 characters...'
       }
 
