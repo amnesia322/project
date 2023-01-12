@@ -124,7 +124,7 @@ export const Login = () => {
           Don’t have an account?
         </NavLink>
         <NavLink className={s.underTitle} to={PATH.REGISTER}>
-          Sign in
+          Sign Up
         </NavLink>
       </form>
     </div>

@@ -1,5 +1,7 @@
 import { AxiosError } from 'axios'
-import { Dispatch } from 'redux'
+
+import { setAppStatusAC } from '../../app/app-reducer'
+import { AppThunkDispatch } from '../../app/store'
 
 import { FormikValueTypeForgotPassword } from './ForgotPassword'
 import { forgotPasswordApi } from './forgotPassword-api'
@@ -42,34 +44,41 @@ export const setEmailForLinkAC = (value: string) => {
   } as const
 }
 
-export const ForgotPasswordTC = (data: FormikValueTypeForgotPassword) => (dispatch: Dispatch) => {
-  console.log(data.email)
-  const dataForRequest = {
-    email: data.email,
-    from: 'test-front-admin <ai73a@yandex.by>',
-    message: `<div style="background-color: grey; padding: 15px">
+export const ForgotPasswordTC =
+  (data: FormikValueTypeForgotPassword) => (dispatch: AppThunkDispatch) => {
+    console.log(data.email)
+    const dataForRequest = {
+      email: data.email,
+      from: 'test-front-admin <ai73a@yandex.by>',
+      message: `<div style="background-color: grey; padding: 15px">
               password recovery link: 
               <a href='http://localhost:3000/#/new_pass/$token$'>
               link</a>
               </div>`, // хтмп-письмо, вместо $token$ бэк вставит токен
+    }
+
+    dispatch(setAppStatusAC('loading'))
+    forgotPasswordApi
+      .forgot(dataForRequest)
+      .then(() => {
+        dispatch(setIsSendEmailAC(true))
+        dispatch(setEmailForLinkAC(data.email))
+        dispatch(setAppStatusAC('succeeded'))
+        console.log('YO! It is OK')
+      })
+      .catch((e: AxiosError<{ error: string }>) => {
+        const error = e.response
+          ? e.response.data.error
+          : e.message + ', more details in the console'
+
+        console.log('error', error)
+      })
+      .finally(() => {
+        dispatch(setAppStatusAC('idle'))
+      })
   }
-
-  forgotPasswordApi
-    .forgot(dataForRequest)
-    .then(() => {
-      dispatch(setIsSendEmailAC(true))
-      dispatch(setEmailForLinkAC(data.email))
-      console.log('YO! It is OK')
-    })
-    .catch((e: AxiosError<{ error: string }>) => {
-      const error = e.response ? e.response.data.error : e.message + ', more details in the console'
-
-      console.log('error', error)
-    })
-}
 
 type setIsSendEmailACType = ReturnType<typeof setIsSendEmailAC>
 type setEmailForLinkACType = ReturnType<typeof setEmailForLinkAC>
-
 type InitialStateType = typeof initialState
 type ActionsType = setIsSendEmailACType | setEmailForLinkACType
