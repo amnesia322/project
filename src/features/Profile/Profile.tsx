@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { memo, useCallback, useEffect } from 'react'
 
 import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined'
 import LogoutIcon from '@mui/icons-material/Logout'
@@ -14,7 +14,7 @@ import { ProfileDataType } from './profile-api'
 import { getProfileDataTC, logoutTC, updateProfileDataTC } from './profile-reducer'
 import s from './Profile.module.css'
 
-const Profile = () => {
+const Profile = memo(() => {
   const dispatch = useAppDispatch()
   const user = useAppSelector<ProfileDataType>(state => state.profile.user)
   const isLoggedIn = useAppSelector(state => state.login.isLogged)
@@ -77,6 +77,6 @@ const Profile = () => {
       </div>
     </div>
   )
-}
+})
 
 export default Profile
