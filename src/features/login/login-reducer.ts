@@ -1,4 +1,3 @@
-import { AxiosError } from 'axios'
 import { Dispatch } from 'redux'
 
 import { setAppStatusAC } from '../../app/app-reducer'
@@ -37,13 +36,9 @@ export const LoginTC = (data: FormikValueType) => (dispatch: Dispatch) => {
     .then(() => {
       dispatch(setIsLoggedInAC(true))
       dispatch(setAppStatusAC('succeeded'))
-      console.log('YO! It is OK')
     })
-    .catch((e: AxiosError<{ error: string }>) => {
-      const error = e as Error | AxiosError<{ error: string }>
-
+    .catch(error => {
       errorUtils(error, dispatch)
-      console.log('error', error)
     })
     .finally(() => {
       dispatch(setAppStatusAC('idle'))

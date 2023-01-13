@@ -6,7 +6,7 @@ import { Navigate, NavLink } from 'react-router-dom'
 
 import { PATH } from '../../app/Routes/Pages'
 import { useAppDispatch, useAppSelector } from '../../app/store'
-import SuperButton from '../../common/components/SuperButton/SuperButton'
+import { ClassicButton } from '../../common/components/ClassicButton/ClassicButton'
 
 import { ForgotPasswordTC } from './forgotPassword-reducer'
 import s from './ForgotPassword.module.css'
@@ -41,6 +41,10 @@ export const ForgotPassword = () => {
   if (isSendEmail) {
     return <Navigate to={PATH.CHECK_EMAIL} />
   }
+  const button = {
+    width: '100%',
+    marginTop: '40px',
+  }
 
   return (
     <div className={s.wrapperLogin}>
@@ -63,9 +67,7 @@ export const ForgotPassword = () => {
           {' '}
           Enter your email address and we will send you further instructions
         </div>
-        <SuperButton className={s.button} type={'submit'} disabled={!!formik.errors.email}>
-          Send Instructions
-        </SuperButton>
+        <ClassicButton title={'Send Instructions'} sx={button} />
         <NavLink className={s.navLinkAccount} to={''}>
           Did you remember your password?
         </NavLink>

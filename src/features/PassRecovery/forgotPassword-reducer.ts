@@ -1,7 +1,6 @@
-import { AxiosError } from 'axios'
-
 import { setAppStatusAC } from '../../app/app-reducer'
 import { AppThunkDispatch } from '../../app/store'
+import { errorUtils } from '../../common/utils/error-utils'
 
 import { FormikValueTypeForgotPassword } from './ForgotPassword'
 import { forgotPasswordApi } from './forgotPassword-api'
@@ -64,14 +63,9 @@ export const ForgotPasswordTC =
         dispatch(setIsSendEmailAC(true))
         dispatch(setEmailForLinkAC(data.email))
         dispatch(setAppStatusAC('succeeded'))
-        console.log('YO! It is OK')
       })
-      .catch((e: AxiosError<{ error: string }>) => {
-        const error = e.response
-          ? e.response.data.error
-          : e.message + ', more details in the console'
-
-        console.log('error', error)
+      .catch(error => {
+        errorUtils(error, dispatch)
       })
       .finally(() => {
         dispatch(setAppStatusAC('idle'))
