@@ -3,7 +3,7 @@ import { AxiosError } from 'axios'
 import { setAppInitializedAC, setAppStatusAC } from '../../app/app-reducer'
 import { AppThunk } from '../../app/store'
 import { errorUtils } from '../../common/utils/error-utils'
-import { setIsLoggedInAC } from '../login/login-reducer'
+import { setIsLoggedInAC } from '../Login/login-reducer'
 
 import { profileAPI, ProfileDataType, UpdateProfileModelType } from './profile-api'
 

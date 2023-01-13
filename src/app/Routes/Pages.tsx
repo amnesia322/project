@@ -3,16 +3,16 @@ import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 
 import Error404 from '../../features/Error404/Error404'
-import { Login } from '../../features/login/Login'
+import { CheckEmail } from '../../features/ForgotPassword/CheckEmail'
+import { ForgotPassword } from '../../features/ForgotPassword/ForgotPassword'
+import { Login } from '../../features/Login/Login'
 import NewPass from '../../features/NewPass/NewPass'
-import { CheckEmail } from '../../features/PassRecovery/CheckEmail'
-import { ForgotPassword } from '../../features/PassRecovery/ForgotPassword'
 import Profile from '../../features/Profile/Profile'
-import { Register } from '../../features/register/Register'
+import { Register } from '../../features/Register/Register'
 
 export const PATH = {
-  LOGIN: '/login',
-  REGISTER: '/register',
+  LOGIN: '/Login',
+  REGISTER: '/Register',
   PROFILE: '/profile',
   ERROR: '/error404',
   PASS_RECOVERY: '/forgot_password',

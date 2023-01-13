@@ -12,7 +12,7 @@ const initialState = {
 
 export const loginReducer = (state: InitialStateType = initialState, action: LoginActionsType) => {
   switch (action.type) {
-    case 'login/SET-IS-LOGGED': {
+    case 'Login/SET-IS-LOGGED': {
       return { ...state, isLogged: action.payload.value }
     }
     default:
@@ -22,7 +22,7 @@ export const loginReducer = (state: InitialStateType = initialState, action: Log
 
 export const setIsLoggedInAC = (value: boolean) => {
   return {
-    type: 'login/SET-IS-LOGGED',
+    type: 'Login/SET-IS-LOGGED',
     payload: {
       value,
     },

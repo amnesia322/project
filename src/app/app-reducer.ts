@@ -1,4 +1,4 @@
-import { setIsLoggedInAC } from '../features/login/login-reducer'
+import { setIsLoggedInAC } from '../features/Login/login-reducer'
 import { profileAPI } from '../features/Profile/profile-api'
 
 import { AppThunk } from './store'

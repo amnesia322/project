@@ -2,11 +2,11 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { combineReducers, legacy_createStore, applyMiddleware, AnyAction } from 'redux'
 import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk'
 
-import { LoginActionsType, loginReducer } from '../features/login/login-reducer'
+import { forgotPasswordReducer } from '../features/ForgotPassword/forgotPassword-reducer'
+import { LoginActionsType, loginReducer } from '../features/Login/login-reducer'
 import { NewPassActionType, newPassReducer } from '../features/NewPass/newPass-reducer'
-import { forgotPasswordReducer } from '../features/PassRecovery/forgotPassword-reducer'
 import { ProfileActionType, profileReducer } from '../features/Profile/profile-reducer'
-import { RegisterActionsType, registerReducer } from '../features/register/register-reducer'
+import { RegisterActionsType, registerReducer } from '../features/Register/register-reducer'
 
 import { AppActionsType, appReducer } from './app-reducer'
 

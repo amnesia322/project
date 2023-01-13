@@ -26,7 +26,7 @@ export const CheckEmail = () => {
       <img className={s.img} src={imgLetter} alt={'img'} />
       <form className={`${s.form} ${s.formForgotPassword}`}>
         <div className={s.textDescription}>We’ve sent an Email with instructions to {email}</div>
-        <ClassicButton title={'Back to login'} sx={button} onClick={onClickHandler} />
+        <ClassicButton title={'Back to Login'} sx={button} onClick={onClickHandler} />
       </form>
     </div>
   )
