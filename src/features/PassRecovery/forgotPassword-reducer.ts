@@ -1,5 +1,3 @@
-import { AxiosError } from 'axios'
-
 import { setAppStatusAC } from '../../app/app-reducer'
 import { AppThunkDispatch } from '../../app/store'
 import { errorUtils } from '../../common/utils/error-utils'
@@ -66,9 +64,7 @@ export const ForgotPasswordTC =
         dispatch(setEmailForLinkAC(data.email))
         dispatch(setAppStatusAC('succeeded'))
       })
-      .catch((e: AxiosError<{ error: string }>) => {
-        const error = e as Error | AxiosError<{ error: string }>
-
+      .catch(error => {
         errorUtils(error, dispatch)
       })
       .finally(() => {
