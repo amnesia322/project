@@ -112,7 +112,7 @@ export const Register = () => {
               ) : null}
             </FormControl>
             <FormControl variant="standard" sx={{ marginBottom: '60px' }}>
-              <InputLabel htmlFor="register-password-confirm">Password</InputLabel>
+              <InputLabel htmlFor="register-password-confirm">Confirm password</InputLabel>
               <Input
                 id="register-password-confirm"
                 type={showPassword ? 'text' : 'password'}
