@@ -16,11 +16,11 @@ import {
 import { useFormik } from 'formik'
 import { Navigate, NavLink } from 'react-router-dom'
 
-import { PATH } from '../../app/Routes/Pages'
-import { useAppDispatch, useAppSelector } from '../../app/store'
-import { ClassicButton } from '../../common/components/ClassicButton/ClassicButton'
+import { PATH } from '../../../app/Routes/Pages'
+import { useAppDispatch, useAppSelector } from '../../../app/store'
+import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
+import { loginTC } from '../auth-reducer'
 
-import { LoginTC } from './login-reducer'
 import s from './Login.module.css'
 
 export const Login = () => {
@@ -30,7 +30,7 @@ export const Login = () => {
     event.preventDefault()
   }
   const dispatch = useAppDispatch()
-  const isLogged = useAppSelector<boolean>(state => state.login.isLogged)
+  const isLogged = useAppSelector<boolean>(state => state.auth.isLogged)
   const button = {
     width: '100%',
     marginTop: '40px',
@@ -58,7 +58,7 @@ export const Login = () => {
     },
     validate,
     onSubmit: values => {
-      dispatch(LoginTC(values))
+      dispatch(loginTC(values))
     },
   })
 

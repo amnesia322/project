@@ -9,9 +9,6 @@ export const profileAPI = {
   updateProfileData(model: UpdateProfileModelType) {
     return instance.put<'', AxiosResponse<ResponseType>, UpdateProfileModelType>('/auth/me', model)
   },
-  logOut() {
-    return instance.delete('auth/me')
-  },
 }
 
 export type ProfileDataType = {

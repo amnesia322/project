@@ -14,14 +14,14 @@ import {
 import { useFormik } from 'formik'
 import { Navigate, useParams } from 'react-router-dom'
 
-import { PATH } from '../../app/Routes/Pages'
-import { useAppDispatch, useAppSelector } from '../../app/store'
-import s from '../NewPass/NewPass.module.css'
+import { PATH } from '../../../../app/Routes/Pages'
+import { useAppDispatch, useAppSelector } from '../../../../app/store'
+import { setNewPassTC } from '../../auth-reducer'
 
-import { setNewPassTC } from './newPass-reducer'
+import s from './NewPass.module.css'
 
 const NewPass = () => {
-  const isNewPassSet = useAppSelector(state => state.newPass.isNewPassSet)
+  const isNewPassSet = useAppSelector(state => state.auth.forgotPassword.isNewPassSet)
   const dispatch = useAppDispatch()
   const [showPassword, setShowPassword] = useState(false)
   const { token } = useParams()

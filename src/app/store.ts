@@ -1,22 +1,16 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
-import { combineReducers, legacy_createStore, applyMiddleware, AnyAction } from 'redux'
+import { AnyAction, applyMiddleware, combineReducers, legacy_createStore } from 'redux'
 import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk'
 
-import { forgotPasswordReducer } from '../features/ForgotPassword/forgotPassword-reducer'
-import { LoginActionsType, loginReducer } from '../features/Login/login-reducer'
-import { NewPassActionType, newPassReducer } from '../features/NewPass/newPass-reducer'
+import { AuthActionsType, authReducer } from '../features/auth/auth-reducer'
 import { ProfileActionType, profileReducer } from '../features/Profile/profile-reducer'
-import { RegisterActionsType, registerReducer } from '../features/Register/register-reducer'
 
 import { AppActionsType, appReducer } from './app-reducer'
 
 const reducers = combineReducers({
   app: appReducer,
-  login: loginReducer,
-  register: registerReducer,
+  auth: authReducer,
   profile: profileReducer,
-  forgotPassword: forgotPasswordReducer,
-  newPass: newPassReducer,
 })
 
 export const store = legacy_createStore(reducers, applyMiddleware(thunkMiddleware))
@@ -30,12 +24,7 @@ export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelecto
 
 export type AppStoreType = ReturnType<typeof reducers>
 
-type AppRootActionsType =
-  | AppActionsType
-  | ProfileActionType
-  | LoginActionsType
-  | NewPassActionType
-  | RegisterActionsType
+type AppRootActionsType = AppActionsType | ProfileActionType | AuthActionsType
 
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,

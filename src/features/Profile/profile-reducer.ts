@@ -3,7 +3,8 @@ import { AxiosError } from 'axios'
 import { setAppInitializedAC, setAppStatusAC } from '../../app/app-reducer'
 import { AppThunk } from '../../app/store'
 import { errorUtils } from '../../common/utils/error-utils'
-import { setIsLoggedInAC } from '../Login/login-reducer'
+import { authAPI } from '../auth/auth-api'
+import { setIsLoggedInAC } from '../auth/auth-reducer'
 
 import { profileAPI, ProfileDataType, UpdateProfileModelType } from './profile-api'
 
@@ -69,7 +70,7 @@ export const updateProfileDataTC =
 export const logoutTC = (): AppThunk => async dispatch => {
   dispatch(setAppStatusAC('loading'))
   try {
-    await profileAPI.logOut()
+    await authAPI.logOut()
     dispatch(setProfileData(initialState.user))
     dispatch(setIsLoggedInAC(false))
     dispatch(setAppStatusAC('succeeded'))
