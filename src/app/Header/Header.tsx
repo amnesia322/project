@@ -11,7 +11,7 @@ import { useAppSelector } from '../store'
 import s from './Header.module.css'
 
 const Header = () => {
-  const isLoggedIn = useAppSelector(state => state.login.isLogged)
+  const isLoggedIn = useAppSelector(state => state.auth.isLogged)
   const userName = useAppSelector(state => state.profile.user.name)
   const userAvatar = useAppSelector(state => state.profile.user.avatar)
 
