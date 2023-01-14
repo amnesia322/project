@@ -4,9 +4,9 @@ import './App.css'
 import { AppBar, CircularProgress, LinearProgress } from '@mui/material'
 
 import { ErrorSnackbar } from '../common/components/ErrorSnackbar/ErrorSnackbar'
-import Header from '../features/Header/Header'
 
 import { initializeAppTC, RequestStatusType } from './app-reducer'
+import Header from './Header/Header'
 import Pages from './Routes/Pages'
 import { useAppDispatch, useAppSelector } from './store'
 

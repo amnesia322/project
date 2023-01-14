@@ -4,18 +4,18 @@ import { TextField, FormGroup } from '@mui/material'
 import { useFormik } from 'formik'
 import { Navigate, NavLink } from 'react-router-dom'
 
-import { PATH } from '../../app/Routes/Pages'
-import { useAppDispatch, useAppSelector } from '../../app/store'
-import { ClassicButton } from '../../common/components/ClassicButton/ClassicButton'
+import { PATH } from '../../../app/Routes/Pages'
+import { useAppDispatch, useAppSelector } from '../../../app/store'
+import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
+import { forgotPasswordTC } from '../auth-reducer'
 
-import { ForgotPasswordTC } from './forgotPassword-reducer'
 import s from './ForgotPassword.module.css'
 
 // before use this component you have to registered in 'https://neko-back.herokuapp.com/2.0'
 
 export const ForgotPassword = () => {
   const dispatch = useAppDispatch()
-  const isSendEmail = useAppSelector(state => state.forgotPassword.isSendEmail)
+  const isSendEmail = useAppSelector<boolean>(state => state.auth.forgotPassword.isSendEmail)
   const validate = (values: FormikValueTypeForgotPassword) => {
     const errors: FormikErrorType = {}
 
@@ -33,7 +33,7 @@ export const ForgotPassword = () => {
     },
     validate,
     onSubmit: values => {
-      dispatch(ForgotPasswordTC(values))
+      dispatch(forgotPasswordTC(values))
       formik.resetForm()
     },
   })
@@ -83,4 +83,6 @@ export type FormikValueTypeForgotPassword = {
   email: string
 }
 
-type FormikErrorType = Partial<FormikValueTypeForgotPassword>
+type FormikErrorType = {
+  email?: string
+}

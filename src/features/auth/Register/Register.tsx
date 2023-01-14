@@ -15,15 +15,15 @@ import {
 import { useFormik } from 'formik'
 import { Navigate, NavLink } from 'react-router-dom'
 
-import { PATH } from '../../app/Routes/Pages'
-import { useAppDispatch, useAppSelector } from '../../app/store'
-import { ClassicButton } from '../../common/components/ClassicButton/ClassicButton'
+import { PATH } from '../../../app/Routes/Pages'
+import { useAppDispatch, useAppSelector } from '../../../app/store'
+import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
+import { registerTC } from '../auth-reducer'
 
-import { registerTC } from './register-reducer'
 import s from './Register.module.css'
 
 export const Register = () => {
-  const isReg = useAppSelector(state => state.register.isRegister)
+  const isReg = useAppSelector(state => state.auth.isRegister)
   const dispatch = useAppDispatch()
   const [showPassword, setShowPassword] = React.useState(false)
 

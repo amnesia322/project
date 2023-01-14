@@ -3,15 +3,15 @@ import React from 'react'
 import { Avatar } from '@mui/material'
 import { NavLink } from 'react-router-dom'
 
-import { PATH } from '../../app/Routes/Pages'
-import { useAppSelector } from '../../app/store'
 import logo from '../../assets/svg/logo.svg'
 import { ClassicButton } from '../../common/components/ClassicButton/ClassicButton'
+import { PATH } from '../Routes/Pages'
+import { useAppSelector } from '../store'
 
 import s from './Header.module.css'
 
 const Header = () => {
-  const isLoggedIn = useAppSelector(state => state.login.isLogged)
+  const isLoggedIn = useAppSelector(state => state.auth.isLogged)
   const userName = useAppSelector(state => state.profile.user.name)
   const userAvatar = useAppSelector(state => state.profile.user.avatar)
 

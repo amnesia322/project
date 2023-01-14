@@ -2,16 +2,16 @@ import React from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
-import { PATH } from '../../app/Routes/Pages'
-import { useAppSelector } from '../../app/store'
-import imgLetter from '../../assets/svg/Group 281.svg'
-import { ClassicButton } from '../../common/components/ClassicButton/ClassicButton'
+import { PATH } from '../../../app/Routes/Pages'
+import { useAppSelector } from '../../../app/store'
+import imgLetter from '../../../assets/svg/Group 281.svg'
+import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
 
 import s from './ForgotPassword.module.css'
 
 export const CheckEmail = () => {
   const navigate = useNavigate()
-  const email = useAppSelector(state => state.forgotPassword.emailForLink)
+  const email = useAppSelector<string>(state => state.auth.forgotPassword.emailForLink)
   const onClickHandler = () => {
     navigate(PATH.LOGIN)
   }

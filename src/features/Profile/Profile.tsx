@@ -18,7 +18,7 @@ import s from './Profile.module.css'
 const Profile = memo(() => {
   const dispatch = useAppDispatch()
   const user = useAppSelector<ProfileDataType>(state => state.profile.user)
-  const isLoggedIn = useAppSelector(state => state.login.isLogged)
+  const isLoggedIn = useAppSelector(state => state.auth.isLogged)
 
   useEffect(() => {
     if (!isLoggedIn) {
