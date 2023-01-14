@@ -13,7 +13,7 @@ const initialState = {
 export const forgotPasswordReducer = (
   state: InitialStateType = initialState,
   action: ActionsType
-) => {
+): InitialStateType => {
   switch (action.type) {
     case 'forgotPassword/SET-IS-SEND-EMAIL': {
       return { ...state, isSendEmail: action.payload.value }

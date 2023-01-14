@@ -7,7 +7,10 @@ const instance = axios.create({
 
 export const forgotPasswordApi = {
   forgot(data: ForgotPasswordParamsType) {
-    return instance.post<ForgotPasswordParamsType, AxiosResponse<ResponseType>>('auth/forgot', data)
+    return instance.post<'', AxiosResponse<ResponseType>, ForgotPasswordParamsType>(
+      'auth/forgot',
+      data
+    )
   },
 }
 

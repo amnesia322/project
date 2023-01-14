@@ -15,7 +15,7 @@ import s from './ForgotPassword.module.css'
 
 export const ForgotPassword = () => {
   const dispatch = useAppDispatch()
-  const isSendEmail = useAppSelector<boolean>(state => state.forgotPassword.isSendEmail)
+  const isSendEmail = useAppSelector(state => state.forgotPassword.isSendEmail)
   const validate = (values: FormikValueTypeForgotPassword) => {
     const errors: FormikErrorType = {}
 
@@ -83,6 +83,4 @@ export type FormikValueTypeForgotPassword = {
   email: string
 }
 
-type FormikErrorType = {
-  email?: string
-}
+type FormikErrorType = Partial<FormikValueTypeForgotPassword>

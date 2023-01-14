@@ -1,6 +1,5 @@
-import { Dispatch } from 'redux'
-
 import { setAppStatusAC } from '../../app/app-reducer'
+import { AppThunkDispatch } from '../../app/store'
 import { errorUtils } from '../../common/utils/error-utils'
 
 import { FormikValueType } from './Login'
@@ -10,7 +9,10 @@ const initialState = {
   isLogged: false,
 }
 
-export const loginReducer = (state: InitialStateType = initialState, action: LoginActionsType) => {
+export const loginReducer = (
+  state: InitialStateType = initialState,
+  action: LoginActionsType
+): InitialStateType => {
   switch (action.type) {
     case 'Login/SET-IS-LOGGED': {
       return { ...state, isLogged: action.payload.value }
@@ -29,7 +31,7 @@ export const setIsLoggedInAC = (value: boolean) => {
   } as const
 }
 
-export const LoginTC = (data: FormikValueType) => (dispatch: Dispatch) => {
+export const LoginTC = (data: FormikValueType) => (dispatch: AppThunkDispatch) => {
   dispatch(setAppStatusAC('loading'))
   loginApi
     .login(data)

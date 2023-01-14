@@ -30,7 +30,7 @@ export const Login = () => {
     event.preventDefault()
   }
   const dispatch = useAppDispatch()
-  const isLogged = useAppSelector<boolean>(state => state.login.isLogged)
+  const isLogged = useAppSelector(state => state.login.isLogged)
   const button = {
     width: '100%',
     marginTop: '40px',
@@ -132,8 +132,4 @@ export type FormikValueType = {
   password: string
   rememberMe: boolean
 }
-type FormikErrorType = {
-  email?: string
-  password?: string
-  rememberMe?: boolean
-}
+type FormikErrorType = Partial<FormikValueType>

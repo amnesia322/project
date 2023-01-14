@@ -11,7 +11,7 @@ import s from './ForgotPassword.module.css'
 
 export const CheckEmail = () => {
   const navigate = useNavigate()
-  const email = useAppSelector<string>(state => state.forgotPassword.emailForLink)
+  const email = useAppSelector(state => state.forgotPassword.emailForLink)
   const onClickHandler = () => {
     navigate(PATH.LOGIN)
   }
