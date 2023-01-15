@@ -7,6 +7,7 @@ import { ForgotPassword } from '../../features/auth/ForgotPassword/ForgotPasswor
 import NewPass from '../../features/auth/ForgotPassword/NewPass/NewPass'
 import { Login } from '../../features/auth/Login/Login'
 import { Register } from '../../features/auth/Register/Register'
+import { PacksList } from '../../features/packsList/PacksList'
 import Profile from '../../features/Profile/Profile'
 
 import Error404 from './Error404/Error404'
@@ -20,6 +21,7 @@ export const PATH = {
   PASS_RECOVERY: '/forgot_password',
   NEW_PASS: '/new_pass/*',
   CHECK_EMAIL: '/check_email',
+  PACK_LIST: '/packs_list',
 }
 
 function Pages() {
@@ -29,6 +31,7 @@ function Pages() {
         <Route element={<PrivateRoutes />}>
           <Route path="/" element={<Navigate to={PATH.PROFILE} />} />
           <Route path={PATH.PROFILE} element={<Profile />} />
+          <Route path={PATH.PACK_LIST} element={<PacksList />} />
         </Route>
         <Route path={PATH.LOGIN} element={<Login />} />
         <Route path={PATH.REGISTER} element={<Register />} />

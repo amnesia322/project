@@ -3,14 +3,15 @@ import { AnyAction, applyMiddleware, combineReducers, legacy_createStore } from 
 import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk'
 
 import { AuthActionsType, authReducer } from '../features/auth/auth-reducer'
+import { PacksActionType, packsReducer } from '../features/packsList/packs-reducer'
 import { ProfileActionType, profileReducer } from '../features/Profile/profile-reducer'
 
 import { AppActionsType, appReducer } from './app-reducer'
-
 const reducers = combineReducers({
   app: appReducer,
   auth: authReducer,
   profile: profileReducer,
+  allCardPacks: packsReducer,
 })
 
 export const store = legacy_createStore(reducers, applyMiddleware(thunkMiddleware))
@@ -24,7 +25,7 @@ export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelecto
 
 export type AppStoreType = ReturnType<typeof reducers>
 
-type AppRootActionsType = AppActionsType | ProfileActionType | AuthActionsType
+type AppRootActionsType = AppActionsType | ProfileActionType | AuthActionsType | PacksActionType
 
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
