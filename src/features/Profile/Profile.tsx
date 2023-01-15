@@ -4,9 +4,7 @@ import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRen
 import LogoutIcon from '@mui/icons-material/Logout'
 import PhotoCameraOutlinedIcon from '@mui/icons-material/PhotoCameraOutlined'
 import { Avatar, Fab } from '@mui/material'
-import { Navigate } from 'react-router-dom'
 
-import { PATH } from '../../app/Routes/Pages'
 import { useAppDispatch, useAppSelector } from '../../app/store'
 import { ClassicButton } from '../../common/components/ClassicButton/ClassicButton'
 import { EditableSpan } from '../../common/components/EditableSpan/EditableSpan'
@@ -37,10 +35,6 @@ const Profile = memo(() => {
   const onclickHandler = useCallback(() => {
     dispatch(logoutTC())
   }, [dispatch])
-
-  if (!isLoggedIn) {
-    return <Navigate to={PATH.LOGIN} />
-  }
 
   return (
     <div className={s.profilePage}>

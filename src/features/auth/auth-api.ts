@@ -1,12 +1,12 @@
 import { AxiosResponse } from 'axios'
 
-import { instance } from '../../app/api'
+import { instance, instanceForForgot } from '../../app/api'
 
 import { FormikValueType } from './Login/Login'
 
 export const authAPI = {
   login(data: FormikValueType) {
-    return instance.post<FormikValueType, AxiosResponse<LoginResponseType>>('auth/login', data)
+    return instance.post<'', AxiosResponse<LoginResponseType>, FormikValueType>('auth/login', data)
   },
   logOut() {
     return instance.delete('auth/me')
@@ -15,10 +15,11 @@ export const authAPI = {
     return instance.post<ResponseRegisterType>('auth/register', payload)
   },
   forgot(data: ForgotPasswordParamsType) {
-    return instance.post<ForgotPasswordParamsType, AxiosResponse<ForgotPassResponseType>>(
-      'auth/forgot',
-      data
-    )
+    return instanceForForgot.post<
+      '',
+      AxiosResponse<ForgotPassResponseType>,
+      ForgotPasswordParamsType
+    >('auth/forgot', data)
   },
   setNewPass(data: NewPassDataType) {
     return instance.post('auth/set-new-password/', data)

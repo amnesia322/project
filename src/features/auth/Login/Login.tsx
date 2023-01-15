@@ -3,15 +3,15 @@ import React, { useState } from 'react'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import {
+  Checkbox,
   FormControl,
+  FormControlLabel,
+  FormGroup,
+  IconButton,
   Input,
+  InputAdornment,
   InputLabel,
   TextField,
-  InputAdornment,
-  IconButton,
-  FormControlLabel,
-  Checkbox,
-  FormGroup,
 } from '@mui/material'
 import { useFormik } from 'formik'
 import { Navigate, NavLink } from 'react-router-dom'
@@ -132,8 +132,4 @@ export type FormikValueType = {
   password: string
   rememberMe: boolean
 }
-type FormikErrorType = {
-  email?: string
-  password?: string
-  rememberMe?: boolean
-}
+type FormikErrorType = Partial<FormikValueType>
