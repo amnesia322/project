@@ -3,6 +3,12 @@
   margin: 0 auto;
 }
 
+.wrapperButton {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
 .titleTable {
   margin-top: 40px;
 
