@@ -1,7 +1,7 @@
 import { instance } from '../../app/api'
 
+import { InitialStateTypeForPackQuestion } from './cards/cards-reducer'
 import { InitialStateTypeForPacks } from './packs-reducer'
-import { InitialStateTypeForPackQuestion } from './packsQuestion/packQuestion-reducer'
 
 export const packsAPI = {
   getPacks() {

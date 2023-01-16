@@ -25,7 +25,7 @@ export const profileReducer = (
 ): InitialStateType => {
   switch (action.type) {
     case 'profile/SET_PROFILE_DATA':
-      return { ...state, user: action.user }
+      return { ...state, user: { ...action.user } }
     default:
       return state
   }
