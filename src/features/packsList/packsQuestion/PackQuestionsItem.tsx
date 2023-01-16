@@ -59,7 +59,7 @@ export const PackQuestionsItem = () => {
             <TableHead>
               <TableRow>
                 <StyledTableCell>Question</StyledTableCell>
-                <StyledTableCell align="right">Answer</StyledTableCell>
+                <StyledTableCell align="left">Answer</StyledTableCell>
                 <StyledTableCell align="right">Last Update</StyledTableCell>
                 <StyledTableCell align="right">Grade</StyledTableCell>
               </TableRow>
@@ -79,7 +79,7 @@ export const PackQuestionsItem = () => {
                 <StyledTableCell component="th" scope="row">
                   {row.questions}
                 </StyledTableCell>
-                <StyledTableCell align="right">{row.answer}</StyledTableCell>
+                <StyledTableCell align="left">{row.answer}</StyledTableCell>
                 <StyledTableCell align="right">{row.lastUpdate}</StyledTableCell>
                 <StyledTableCell align="right">{row.grade}</StyledTableCell>
               </StyledTableRow>

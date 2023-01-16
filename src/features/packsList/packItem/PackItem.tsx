@@ -64,6 +64,10 @@ export const PackItem = () => {
     )
   )
 
+  const getQuestions = (id: string) => {
+    dispatch(getQuestionTC(id))
+  }
+
   return (
     <div>
       <TableContainer component={Paper}>
@@ -90,11 +94,7 @@ export const PackItem = () => {
           <TableBody>
             {rows.map((row, index) => (
               <StyledTableRow key={index}>
-                <StyledTableCell
-                  component="th"
-                  scope="row"
-                  onClick={() => dispatch(getQuestionTC(row.id))}
-                >
+                <StyledTableCell component="th" scope="row" onClick={() => getQuestions(row.id)}>
                   <Link to={PATH.QUESTION_LIST}> {row.name} </Link>
                 </StyledTableCell>
                 <StyledTableCell align="right">{row.cardsCount}</StyledTableCell>
@@ -102,8 +102,8 @@ export const PackItem = () => {
                 <StyledTableCell align="right">{row.createBy}</StyledTableCell>
                 <StyledTableCell align="right">
                   {myId !== row.id && (
-                    <Link to={PATH.PACK_LIST}>
-                      <img src={teacher} alt={'img'} />
+                    <Link to={PATH.QUESTION_LIST}>
+                      <img src={teacher} alt={'img'} onClick={() => getQuestions(row.id)} />
                     </Link>
                   )}
                 </StyledTableCell>

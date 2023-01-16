@@ -1,0 +1,30 @@
+.wrapper {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.titleTable {
+  margin-top: 40px;
+
+  font-family: 'Montserrat', serif;
+  font-size: 22px;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 27px;
+  color: #000000;
+}
+
+.wrapperTable {
+  margin-top: 25px;
+}
+
+.titleLink {
+  margin-top: 25px;
+
+  font-family: 'Montserrat', serif;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 24px;
+  color: #000000;
+}
