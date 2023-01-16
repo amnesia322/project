@@ -3,9 +3,15 @@
   margin: 0 auto;
 }
 
-.titleTable {
-  margin-top: 40px;
+.titleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
+  margin-top: 25px;
+}
+
+.titleTable {
   font-family: 'Montserrat', serif;
   font-size: 22px;
   font-weight: 600;

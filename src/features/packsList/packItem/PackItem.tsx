@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom'
 import { PATH } from '../../../app/Routes/Pages'
 import { useAppDispatch, useAppSelector } from '../../../app/store'
 import teacher from '../../../assets/svg/teacher.svg'
-import { getQuestionTC } from '../cards/cards-reducer'
+import { setCardsTC } from '../cards/cards-reducer'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -40,7 +40,7 @@ const findSubstr = (str: string) => {
 }
 
 export const PackItem = () => {
-  const users = useAppSelector(state => state.allCardPacks.cardPacks)
+  const users = useAppSelector(state => state.packs.cardPacks)
   const myId = useAppSelector(state => state.profile.user._id)
   const dispatch = useAppDispatch()
   const createData = (
@@ -65,7 +65,7 @@ export const PackItem = () => {
   )
 
   const getQuestions = (id: string) => {
-    dispatch(getQuestionTC(id))
+    dispatch(setCardsTC(id))
   }
 
   return (
@@ -95,14 +95,14 @@ export const PackItem = () => {
             {rows.map((row, index) => (
               <StyledTableRow key={index}>
                 <StyledTableCell component="th" scope="row" onClick={() => getQuestions(row.id)}>
-                  <Link to={PATH.QUESTION_LIST}> {row.name} </Link>
+                  <Link to={PATH.CARDS_LIST}> {row.name} </Link>
                 </StyledTableCell>
                 <StyledTableCell align="right">{row.cardsCount}</StyledTableCell>
                 <StyledTableCell align="right">{row.lastUpdate}</StyledTableCell>
                 <StyledTableCell align="right">{row.createBy}</StyledTableCell>
                 <StyledTableCell align="right">
                   {myId !== row.id && (
-                    <Link to={PATH.QUESTION_LIST}>
+                    <Link to={PATH.CARDS_LIST}>
                       <img src={teacher} alt={'img'} onClick={() => getQuestions(row.id)} />
                     </Link>
                   )}

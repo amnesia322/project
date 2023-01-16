@@ -3,7 +3,7 @@ import { AnyAction, applyMiddleware, combineReducers, legacy_createStore } from 
 import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk'
 
 import { AuthActionsType, authReducer } from '../features/auth/auth-reducer'
-import { cardsReducer, QuestionActionType } from '../features/packsList/cards/cards-reducer'
+import { CardsActionType, cardsReducer } from '../features/packsList/cards/cards-reducer'
 import { PacksActionType, packsReducer } from '../features/packsList/packs-reducer'
 import { ProfileActionType, profileReducer } from '../features/Profile/profile-reducer'
 
@@ -13,8 +13,10 @@ const reducers = combineReducers({
   app: appReducer,
   auth: authReducer,
   profile: profileReducer,
-  allCardPacks: packsReducer,
-  allCardQuestions: cardsReducer,
+  // allCardPacks: packsReducer,
+  // allCardQuestions: cardsReducer,
+  packs: packsReducer,
+  cards: cardsReducer,
 })
 
 export const store = legacy_createStore(reducers, applyMiddleware(thunkMiddleware))
@@ -33,7 +35,7 @@ type AppRootActionsType =
   | ProfileActionType
   | AuthActionsType
   | PacksActionType
-  | QuestionActionType
+  | CardsActionType
 
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,

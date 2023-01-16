@@ -35,8 +35,8 @@ const findSubstr = (str: string) => {
   return str.slice(0, index)
 }
 
-export const CardQuestion = () => {
-  const questions = useAppSelector(state => state.allCardQuestions.cards)
+export const CardItem = () => {
+  const cards = useAppSelector(state => state.cards.cards)
   const createData = (
     questions: string,
     answer: string,
@@ -47,7 +47,7 @@ export const CardQuestion = () => {
     return { questions, answer, lastUpdate, grade, id }
   }
 
-  const rows = questions.map(item =>
+  const rows = cards.map(item =>
     createData(item.question, item.answer, findSubstr(item.updated), item.grade, item._id)
   )
 
@@ -55,7 +55,7 @@ export const CardQuestion = () => {
     <div>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
-          {questions.length > 0 ? (
+          {cards.length > 0 ? (
             <TableHead>
               <TableRow>
                 <StyledTableCell>Question</StyledTableCell>

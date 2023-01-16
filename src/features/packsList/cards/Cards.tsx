@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { PATH } from '../../../app/Routes/Pages'
 import s from '../PacksList.module.css'
 
-import { CardQuestion } from './CardQuestion'
+import { CardItem } from './CardItem'
 
 export const Cards = () => {
   return (
@@ -15,7 +15,7 @@ export const Cards = () => {
       </div>
       <div className={s.titleTable}>Friend’s Pack</div>
       <div className={s.wrapperTable}>
-        <CardQuestion />
+        <CardItem />
       </div>
     </div>
   )
