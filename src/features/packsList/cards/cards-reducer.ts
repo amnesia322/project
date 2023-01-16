@@ -22,7 +22,7 @@ const initialState = {
   tokenDeathTime: 0,
 }
 
-export const packQuestionReducer = (
+export const cardsReducer = (
   state: InitialStateTypeForPackQuestion = initialState,
   action: QuestionActionType
 ): InitialStateTypeForPackQuestion => {

@@ -35,7 +35,7 @@ const findSubstr = (str: string) => {
   return str.slice(0, index)
 }
 
-export const PackQuestionsItem = () => {
+export const CardQuestion = () => {
   const questions = useAppSelector(state => state.allCardQuestions.cards)
   const createData = (
     questions: string,

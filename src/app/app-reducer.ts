@@ -47,7 +47,6 @@ export const initializeAppTC = (): AppThunk => async dispatch => {
 
     if (response.data._id) {
       dispatch(setIsLoggedInAC(true))
-      dispatch(setAppInitializedAC(true))
     }
   } catch (error) {
     dispatch(setIsLoggedInAC(false))
