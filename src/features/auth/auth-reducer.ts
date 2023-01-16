@@ -129,7 +129,7 @@ export const forgotPasswordTC =
       from: 'test-front-admin <ai73a@yandex.by>',
       message: `<div style="background-color: grey; padding: 15px">
               password recovery link: 
-              <a href='http://localhost:3000/#/new_pass/$token$'>
+              <a href='https://amnesia322.github.io/project/#/new_pass/$token$'>
               link</a>
               </div>`, // хтмп-письмо, вместо $token$ бэк вставит токен
     }

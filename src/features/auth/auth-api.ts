@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios'
 
-import { instance } from '../../app/api'
+import { instance, instanceHeroku } from '../../app/api'
 
 import { FormikValueType } from './Login/Login'
 
@@ -15,7 +15,7 @@ export const authAPI = {
     return instance.post<ResponseRegisterType>('auth/register', payload)
   },
   forgot(data: ForgotPasswordParamsType) {
-    return instance.post<ForgotPasswordParamsType, AxiosResponse<ForgotPassResponseType>>(
+    return instanceHeroku.post<ForgotPasswordParamsType, AxiosResponse<ForgotPassResponseType>>(
       'auth/forgot',
       data
     )
