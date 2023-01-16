@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
 
 import { PATH } from '../../../app/Routes/Pages'
 import { useAppDispatch, useAppSelector } from '../../../app/store'
-import { getQuestionTC } from '../packsQuestion/packQuestion-reducer'
+import { getQuestionTC } from '../cards/cards-reducer'
 
 import { PackItemActions } from './packItremActions/PackItemActions'
 
