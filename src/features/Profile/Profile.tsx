@@ -3,9 +3,8 @@ import React, { memo, useCallback, useEffect } from 'react'
 import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined'
 import LogoutIcon from '@mui/icons-material/Logout'
 import PhotoCameraOutlinedIcon from '@mui/icons-material/PhotoCameraOutlined'
-import Avatar from '@mui/material/Avatar/Avatar'
-import Fab from '@mui/material/Fab/Fab'
-import { Navigate } from 'react-router-dom'
+import { Avatar, Fab } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 import { PATH } from '../../app/Routes/Pages'
 import { useAppDispatch, useAppSelector } from '../../app/store'
@@ -16,7 +15,7 @@ import { ProfileDataType } from './profile-api'
 import { getProfileDataTC, logoutTC, updateProfileDataTC } from './profile-reducer'
 import s from './Profile.module.css'
 
-export const Profile = memo(() => {
+const Profile = memo(() => {
   const dispatch = useAppDispatch()
   const user = useAppSelector<ProfileDataType>(state => state.profile.user)
   const isLoggedIn = useAppSelector(state => state.auth.isLogged)
@@ -39,29 +38,32 @@ export const Profile = memo(() => {
     dispatch(logoutTC())
   }, [dispatch])
 
-  if (!isLoggedIn) {
-    return <Navigate to={PATH.LOGIN} />
-  }
-
   return (
-    <div className={s.profilePage}>
-      <div className={s.profileContainer}>
-        <h2 className={s.profileTitle}>Personal Information</h2>
-        <div className={s.avatarContainer}>
-          <Avatar alt="avatar" src={user.avatar} sx={{ width: 96, height: 96, left: 17 }} />
-          <Fab size={'small'} sx={{ left: '-17px' }}>
-            <PhotoCameraOutlinedIcon fontSize={'small'} />
-          </Fab>
-        </div>
-        <div className={s.name}>
-          <EditableSpan value={user.name} onChange={onChangeTextHandler} />
-          <DriveFileRenameOutlineOutlinedIcon fontSize={'small'} sx={{ marginTop: '2px' }} />
-        </div>
-        <div className={s.email}>{user.email}</div>
-        <ClassicButton title={'Log out'} onClick={onclickHandler}>
-          <LogoutIcon fontSize={'small'} />
-        </ClassicButton>
+    <>
+      <div className={s.titleLink}>
+        <Link to={PATH.PACK_LIST}>Back to Packs List</Link>
       </div>
-    </div>
+      <div className={s.profilePage}>
+        <div className={s.profileContainer}>
+          <h2 className={s.profileTitle}>Personal Information</h2>
+          <div className={s.avatarContainer}>
+            <Avatar alt="avatar" src={user.avatar} sx={{ width: 96, height: 96, left: 17 }} />
+            <Fab size={'small'} sx={{ left: '-17px' }}>
+              <PhotoCameraOutlinedIcon fontSize={'small'} />
+            </Fab>
+          </div>
+          <div className={s.name}>
+            <EditableSpan value={user.name} onChange={onChangeTextHandler} />
+            <DriveFileRenameOutlineOutlinedIcon fontSize={'small'} sx={{ marginTop: '2px' }} />
+          </div>
+          <div className={s.email}>{user.email}</div>
+          <ClassicButton title={'Log out'} onClick={onclickHandler}>
+            <LogoutIcon fontSize={'small'} />
+          </ClassicButton>
+        </div>
+      </div>
+    </>
   )
 })
+
+export default Profile

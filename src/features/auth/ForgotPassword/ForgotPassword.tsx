@@ -83,6 +83,4 @@ export type FormikValueTypeForgotPassword = {
   email: string
 }
 
-type FormikErrorType = {
-  email?: string
-}
+type FormikErrorType = Partial<FormikValueTypeForgotPassword>

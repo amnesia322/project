@@ -7,9 +7,12 @@ import { ForgotPassword } from '../../features/auth/ForgotPassword/ForgotPasswor
 import NewPass from '../../features/auth/ForgotPassword/NewPass/NewPass'
 import { Login } from '../../features/auth/Login/Login'
 import { Register } from '../../features/auth/Register/Register'
+import { PacksList } from '../../features/packsList/PacksList'
+import { PacksQuestion } from '../../features/packsList/packsQuestion/PacksQuestion'
 import Profile from '../../features/Profile/Profile'
 
 import Error404 from './Error404/Error404'
+import { PrivateRoutes } from './PrivateRoutes'
 
 export const PATH = {
   LOGIN: '/Login',
@@ -19,14 +22,20 @@ export const PATH = {
   PASS_RECOVERY: '/forgot_password',
   NEW_PASS: '/new_pass/*',
   CHECK_EMAIL: '/check_email',
+  PACK_LIST: '/packs_list',
+  QUESTION_LIST: '/questions_list',
 }
 
 function Pages() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Navigate to={PATH.PROFILE} />} />
-        <Route path={PATH.PROFILE} element={<Profile />} />
+        <Route element={<PrivateRoutes />}>
+          <Route path="/" element={<Navigate to={PATH.PROFILE} />} />
+          <Route path={PATH.PROFILE} element={<Profile />} />
+          <Route path={PATH.PACK_LIST} element={<PacksList />} />
+          <Route path={PATH.QUESTION_LIST} element={<PacksQuestion />} />
+        </Route>
         <Route path={PATH.LOGIN} element={<Login />} />
         <Route path={PATH.REGISTER} element={<Register />} />
         <Route path={PATH.PASS_RECOVERY} element={<ForgotPassword />} />
@@ -35,7 +44,6 @@ function Pages() {
         </Route>
         <Route path={PATH.CHECK_EMAIL} element={<CheckEmail />} />
         <Route path={'*'} element={<Navigate to={PATH.ERROR} />} />
-
         <Route path={PATH.ERROR} element={<Error404 />} />
       </Routes>
     </div>

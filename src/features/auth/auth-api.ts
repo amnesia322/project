@@ -6,7 +6,7 @@ import { FormikValueType } from './Login/Login'
 
 export const authAPI = {
   login(data: FormikValueType) {
-    return instance.post<FormikValueType, AxiosResponse<LoginResponseType>>('auth/login', data)
+    return instance.post<'', AxiosResponse<LoginResponseType>, FormikValueType>('auth/login', data)
   },
   logOut() {
     return instance.delete('auth/me')

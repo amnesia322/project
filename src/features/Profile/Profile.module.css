@@ -3,6 +3,18 @@
   justify-content: center;
 }
 
+.titleLink {
+  margin-top: 25px;
+  padding-left: 105px;
+
+  font-family: 'Montserrat', serif;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 24px;
+  color: #000000;
+}
+
 .profileContainer {
   display: flex;
   flex-direction: column;
@@ -11,7 +23,7 @@
 
   width: 413px;
   height: 360px;
-  margin-top: 60px;
+  margin-top: 45px;
   padding: 35px;
 
   font-size: 13px;
@@ -40,7 +52,7 @@
   font-weight: 400;
   line-height: 24px;
   color: #000000;
-  letter-spacing: 0em;
+  letter-spacing: 0;
 
   opacity: 0.5;
 }

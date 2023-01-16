@@ -1,43 +1,43 @@
 .registerContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    max-width: 413px;
-    margin: 60px auto 0;
-    padding: 35px;
+  max-width: 413px;
+  margin: 60px auto 0;
+  padding: 35px;
 
-    text-align: center;
+  text-align: center;
 
-    border-radius: 2px;
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .registerTitle {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 
-    font-size: 26px;
-    font-weight: 600;
-    line-height: 32px;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 32px;
 }
 
 .registerConfirmPass {
-    margin-bottom: 60px;
+  margin-bottom: 60px;
 }
 
 .registerDescription {
-    margin-top: 60px;
-    margin-bottom: 20px;
+  margin-top: 60px;
+  margin-bottom: 20px;
 
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
 
-    opacity: 0.5;
+  opacity: 0.5;
 }
 
 .registerLink {
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 24px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
 }
