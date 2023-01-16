@@ -6,12 +6,8 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
-import { Link } from 'react-router-dom'
 
-import { PATH } from '../../../app/Routes/Pages'
-import { useAppDispatch, useAppSelector } from '../../../app/store'
-import teacher from '../../../assets/svg/teacher.svg'
-import { getQuestionTC } from '../packsQuestion/packQuestion-reducer'
+import { useAppSelector } from '../../../app/store'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -39,43 +35,33 @@ const findSubstr = (str: string) => {
   return str.slice(0, index)
 }
 
-export const PackItem = () => {
-  const users = useAppSelector(state => state.allCardPacks.cardPacks)
-  const myId = useAppSelector(state => state.profile.user._id)
-  const dispatch = useAppDispatch()
+export const PackQuestionsItem = () => {
+  const questions = useAppSelector(state => state.allCardQuestions.cards)
   const createData = (
-    name: string,
-    cardsCount: number,
+    questions: string,
+    answer: string,
     lastUpdate: string,
-    createBy: string,
-    // actions: number
+    grade: number,
     id: string
   ) => {
-    return { name, cardsCount, lastUpdate, createBy, id }
+    return { questions, answer, lastUpdate, grade, id }
   }
 
-  const rows = users.map(item =>
-    createData(
-      item.name,
-      item.cardsCount,
-      findSubstr(item.updated),
-      findSubstr(item.created),
-      item._id
-    )
+  const rows = questions.map(item =>
+    createData(item.question, item.answer, findSubstr(item.updated), item.grade, item._id)
   )
 
   return (
     <div>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
-          {users.length > 0 ? (
+          {questions.length > 0 ? (
             <TableHead>
               <TableRow>
-                <StyledTableCell>Name</StyledTableCell>
-                <StyledTableCell align="right">Cards</StyledTableCell>
+                <StyledTableCell>Question</StyledTableCell>
+                <StyledTableCell align="right">Answer</StyledTableCell>
                 <StyledTableCell align="right">Last Update</StyledTableCell>
-                <StyledTableCell align="right">Create by</StyledTableCell>
-                <StyledTableCell align="right">Actions</StyledTableCell>
+                <StyledTableCell align="right">Grade</StyledTableCell>
               </TableRow>
             </TableHead>
           ) : (
@@ -90,23 +76,12 @@ export const PackItem = () => {
           <TableBody>
             {rows.map((row, index) => (
               <StyledTableRow key={index}>
-                <StyledTableCell
-                  component="th"
-                  scope="row"
-                  onClick={() => dispatch(getQuestionTC(row.id))}
-                >
-                  <Link to={PATH.QUESTION_LIST}> {row.name} </Link>
+                <StyledTableCell component="th" scope="row">
+                  {row.questions}
                 </StyledTableCell>
-                <StyledTableCell align="right">{row.cardsCount}</StyledTableCell>
+                <StyledTableCell align="right">{row.answer}</StyledTableCell>
                 <StyledTableCell align="right">{row.lastUpdate}</StyledTableCell>
-                <StyledTableCell align="right">{row.createBy}</StyledTableCell>
-                <StyledTableCell align="right">
-                  {myId !== row.id && (
-                    <Link to={PATH.PACK_LIST}>
-                      <img src={teacher} alt={'img'} />
-                    </Link>
-                  )}
-                </StyledTableCell>
+                <StyledTableCell align="right">{row.grade}</StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>
