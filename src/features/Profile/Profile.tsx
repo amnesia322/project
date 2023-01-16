@@ -3,7 +3,8 @@ import React, { memo, useCallback, useEffect } from 'react'
 import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined'
 import LogoutIcon from '@mui/icons-material/Logout'
 import PhotoCameraOutlinedIcon from '@mui/icons-material/PhotoCameraOutlined'
-import { Avatar, Fab } from '@mui/material'
+import Avatar from '@mui/material/Avatar/Avatar'
+import Fab from '@mui/material/Fab/Fab'
 import { Navigate } from 'react-router-dom'
 
 import { PATH } from '../../app/Routes/Pages'
@@ -15,7 +16,7 @@ import { ProfileDataType } from './profile-api'
 import { getProfileDataTC, logoutTC, updateProfileDataTC } from './profile-reducer'
 import s from './Profile.module.css'
 
-const Profile = memo(() => {
+export const Profile = memo(() => {
   const dispatch = useAppDispatch()
   const user = useAppSelector<ProfileDataType>(state => state.profile.user)
   const isLoggedIn = useAppSelector(state => state.auth.isLogged)
@@ -64,5 +65,3 @@ const Profile = memo(() => {
     </div>
   )
 })
-
-export default Profile
