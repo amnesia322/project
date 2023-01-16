@@ -10,8 +10,9 @@ import { Link } from 'react-router-dom'
 
 import { PATH } from '../../../app/Routes/Pages'
 import { useAppDispatch, useAppSelector } from '../../../app/store'
-import teacher from '../../../assets/svg/teacher.svg'
 import { setCardsTC } from '../cards/cards-reducer'
+
+import { PackItemActions } from './packItremActions/PackItemActions'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -101,11 +102,7 @@ export const PackItem = () => {
                 <StyledTableCell align="right">{row.lastUpdate}</StyledTableCell>
                 <StyledTableCell align="right">{row.createBy}</StyledTableCell>
                 <StyledTableCell align="right">
-                  {myId !== row.id && (
-                    <Link to={PATH.CARDS_LIST}>
-                      <img src={teacher} alt={'img'} onClick={() => getQuestions(row.id)} />
-                    </Link>
-                  )}
+                  <PackItemActions id={row.id} />
                 </StyledTableCell>
               </StyledTableRow>
             ))}

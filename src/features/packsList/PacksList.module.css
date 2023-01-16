@@ -11,6 +11,12 @@
   margin-top: 25px;
 }
 
+.wrapperButton {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
 .titleTable {
   font-family: 'Montserrat', serif;
   font-size: 22px;
