@@ -9,18 +9,15 @@ import teacher from '../../../../assets/svg/teacher.svg'
 
 import s from './PackItemAction.module.css'
 
-export const PackItemActions = ({ id }: PropsType) => {
-  // const myId = useAppSelector(state => state.profile.user._id)
-  const myId = useAppSelector(state => state.packs.cardPacks[0].user_id)
-
-  console.log(myId)
+export const PackItemActions = ({ userId }: { userId: string }) => {
+  const myId = useAppSelector(state => state.profile.user._id)
 
   return (
     <div className={s.wrapper}>
       <Link to={'#'} className={s.link}>
         <img src={teacher} alt={'img'} onClick={() => alert('Hello')} />
       </Link>
-      {myId == id && (
+      {myId == userId && (
         <>
           <Link to={'#'} className={s.link}>
             <img src={edit} alt={'img'} onClick={() => alert('Hello. Put there your changes')} />
@@ -32,8 +29,4 @@ export const PackItemActions = ({ id }: PropsType) => {
       )}
     </div>
   )
-}
-
-type PropsType = {
-  id: string
 }

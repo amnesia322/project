@@ -8,6 +8,10 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 
 import { useAppSelector } from '../../../app/store'
+import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
+import s from '../packItem/PackItem.module.css'
+
+import { CardItemActions } from './cardItemActions/PackItemActions'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -35,7 +39,7 @@ const findSubstr = (str: string) => {
   return str.slice(0, index)
 }
 
-export const CardItem = () => {
+export const CardItem = ({ comparedId }: { comparedId: boolean }) => {
   const cards = useAppSelector(state => state.cards.cards)
   const createData = (
     questions: string,
@@ -53,40 +57,45 @@ export const CardItem = () => {
 
   return (
     <div>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
-          {cards.length > 0 ? (
+      {!cards.length && comparedId ? (
+        <div className={s.wrapperForTitle}>
+          <div className={s.titleForEmptyPack}>
+            This pack is empty. Click add new card to fill this pack
+          </div>
+          <ClassicButton title={'Add new card'} />
+        </div>
+      ) : (
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
                 <StyledTableCell>Question</StyledTableCell>
                 <StyledTableCell align="left">Answer</StyledTableCell>
                 <StyledTableCell align="right">Last Update</StyledTableCell>
                 <StyledTableCell align="right">Grade</StyledTableCell>
+                {comparedId && <StyledTableCell align="right">Actions</StyledTableCell>}
               </TableRow>
             </TableHead>
-          ) : (
             <TableBody>
-              <TableRow>
-                <StyledTableCell>
-                  This pack is empty. Click add new card to fill this pack{' '}
-                </StyledTableCell>
-              </TableRow>
+              {rows.map((row, index) => (
+                <StyledTableRow key={index}>
+                  <StyledTableCell component="th" scope="row">
+                    {row.questions}
+                  </StyledTableCell>
+                  <StyledTableCell align="left">{row.answer}</StyledTableCell>
+                  <StyledTableCell align="right">{row.lastUpdate}</StyledTableCell>
+                  <StyledTableCell align="right">{row.grade}</StyledTableCell>
+                  {comparedId && (
+                    <StyledTableCell align="right">
+                      <CardItemActions />
+                    </StyledTableCell>
+                  )}
+                </StyledTableRow>
+              ))}
             </TableBody>
-          )}
-          <TableBody>
-            {rows.map((row, index) => (
-              <StyledTableRow key={index}>
-                <StyledTableCell component="th" scope="row">
-                  {row.questions}
-                </StyledTableCell>
-                <StyledTableCell align="left">{row.answer}</StyledTableCell>
-                <StyledTableCell align="right">{row.lastUpdate}</StyledTableCell>
-                <StyledTableCell align="right">{row.grade}</StyledTableCell>
-              </StyledTableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+          </Table>
+        </TableContainer>
+      )}
     </div>
   )
 }

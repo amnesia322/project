@@ -1,7 +1,7 @@
-.link{
-    padding-left: 15px;
+.link {
+  padding-left: 15px;
 }
 
-.link:first-child{
-    padding-left: 0;
+.link:first-child {
+  padding-left: 0;
 }
