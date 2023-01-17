@@ -15,6 +15,7 @@ const initialState = {
   maxCardsCount: 0,
   toke: '',
   tokenDeathTime: 0,
+  packIdForWork: '',
 }
 
 export const packsReducer = (
@@ -24,6 +25,8 @@ export const packsReducer = (
   switch (action.type) {
     case 'packs/SET_PACKS':
       return { ...state, ...action.payload.packs }
+    case 'packs/SET_PACKS_ID':
+      return { ...state, packIdForWork: action.payload.packId }
     default:
       return state
   }
@@ -31,6 +34,9 @@ export const packsReducer = (
 
 export const setPacksData = (packs: InitialStateTypeForPacks) =>
   ({ type: 'packs/SET_PACKS', payload: { packs } } as const)
+
+export const setPacksId = (packId: string) =>
+  ({ type: 'packs/SET_PACKS_ID', payload: { packId } } as const)
 
 export const getPacksTC = (): AppThunk => async dispatch => {
   dispatch(setAppStatusAC('loading'))
@@ -57,6 +63,7 @@ export type InitialStateTypeForPacks = {
   maxCardsCount: number
   toke: string
   tokenDeathTime: number
+  packIdForWork?: string
 }
 
 export type PacksType = {
@@ -78,4 +85,5 @@ export type PacksType = {
 }
 
 type SetPacksDataType = ReturnType<typeof setPacksData>
-export type PacksActionType = SetPacksDataType
+type SetPacksIdType = ReturnType<typeof setPacksId>
+export type PacksActionType = SetPacksDataType | SetPacksIdType

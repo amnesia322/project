@@ -12,7 +12,6 @@ export const PacksList = () => {
   const packs = useAppSelector(state => state.allCardPacks.cardPacks)
 
   useEffect(() => {
-    debugger
     dispatch(getPacksTC())
   }, [])
 

@@ -4,6 +4,7 @@ import { setAppStatusAC } from '../../../app/app-reducer'
 import { AppThunk } from '../../../app/store'
 import { errorUtils } from '../../../common/utils/error-utils'
 import { packsAPI } from '../packs-api'
+import { setPacksId } from '../packs-reducer'
 
 const initialState = {
   cards: [] as Array<QuestionType>,
@@ -39,15 +40,15 @@ export const setPackQuestionData = (packQuestion: InitialStateTypeForPackQuestio
 
 export const getQuestionTC =
   (packId: string): AppThunk =>
-  async (dispatch, getState) => {
+  async dispatch => {
     dispatch(setAppStatusAC('loading'))
-    const id = getState().allCardPacks.cardPacks.find(item => item._id === packId)!._id
 
     try {
-      const response = await packsAPI.getPackQuestion(id)
+      const response = await packsAPI.getPackQuestion(packId)
 
       dispatch(setPackQuestionData(response.data))
       dispatch(setAppStatusAC('succeeded'))
+      dispatch(setPacksId(packId))
     } catch (error) {
       const err = error as Error | AxiosError<{ error: string }>
 
