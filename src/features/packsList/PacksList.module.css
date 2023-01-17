@@ -34,3 +34,28 @@
   line-height: 24px;
   color: #000000;
 }
+
+.input {
+  margin: 10px 0 15px;
+}
+
+.titleButton{
+  margin: 5px 0 10px;
+
+  font-family: Montserrat, serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  text-align: left;
+  letter-spacing: 0;
+}
+
+.wrapperForHeaderTable{
+  display: flex;
+  justify-content: space-around;
+}
+
+.wrapperFilterButton{
+  display: flex;
+  flex-direction: column;
+}

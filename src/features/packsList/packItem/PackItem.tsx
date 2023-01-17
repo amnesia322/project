@@ -13,11 +13,11 @@ import { Link } from 'react-router-dom'
 import { PATH } from '../../../app/Routes/Pages'
 import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
+import { findSubstr } from '../../../common/utils/findSubscr'
 import { getQuestionTC } from '../cards/cards-reducer'
 
 import s from './PackItem.module.css'
 import { PackItemActions } from './packItremActions/PackItemActions'
-
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -37,12 +37,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }))
-
-const findSubstr = (str: string) => {
-  const index = str.indexOf('T')
-
-  return str.slice(0, index)
-}
 
 export const PackItem = () => {
   const packs = useAppSelector(state => state.allCardPacks.cardPacks)
