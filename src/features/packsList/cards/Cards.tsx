@@ -40,7 +40,7 @@ export const Cards = () => {
         </div>
       )}
       <div className={s.wrapperTable}>
-        <CardQuestion />
+        <CardQuestion comparedId={comparedId} />
       </div>
     </div>
   )

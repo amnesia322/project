@@ -25,7 +25,7 @@ export const PacksList = () => {
           </>
         ) : (
           <div>
-            <div className={s.titleTable}>Name Pask</div>
+            <div className={s.titleTable}>Is not Packs here</div>
           </div>
         )}
       </div>

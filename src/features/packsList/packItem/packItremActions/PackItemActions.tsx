@@ -9,7 +9,7 @@ import teacher from '../../../../assets/svg/teacher.svg'
 
 import s from './PackItemAction.module.css'
 
-export const PackItemActions = ({ id }: PropsType) => {
+export const PackItemActions = ({ userId }: { userId: string }) => {
   const myId = useAppSelector(state => state.profile.user._id)
 
   return (
@@ -17,7 +17,7 @@ export const PackItemActions = ({ id }: PropsType) => {
       <Link to={'#'} className={s.link}>
         <img src={teacher} alt={'img'} onClick={() => alert('Hello')} />
       </Link>
-      {myId == id && (
+      {myId == userId && (
         <>
           <Link to={'#'} className={s.link}>
             <img src={edit} alt={'img'} onClick={() => alert('Hello. Put there your changes')} />
@@ -29,8 +29,4 @@ export const PackItemActions = ({ id }: PropsType) => {
       )}
     </div>
   )
-}
-
-type PropsType = {
-  id: string
 }

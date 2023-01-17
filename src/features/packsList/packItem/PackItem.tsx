@@ -52,9 +52,10 @@ export const PackItem = () => {
     cardsCount: number,
     lastUpdate: string,
     createBy: string,
-    id: string
+    id: string,
+    userId: string
   ) => {
-    return { name, cardsCount, lastUpdate, createBy, id }
+    return { name, cardsCount, lastUpdate, createBy, id, userId }
   }
 
   const rows = packs.map(item =>
@@ -63,7 +64,8 @@ export const PackItem = () => {
       item.cardsCount,
       findSubstr(item.updated),
       findSubstr(item.created),
-      item._id
+      item._id,
+      item.user_id
     )
   )
 
@@ -95,7 +97,7 @@ export const PackItem = () => {
                   <StyledTableCell align="right">{row.lastUpdate}</StyledTableCell>
                   <StyledTableCell align="right">{row.createBy}</StyledTableCell>
                   <StyledTableCell align="right">
-                    <PackItemActions id={row.id} />
+                    <PackItemActions userId={row.userId} />
                   </StyledTableCell>
                 </StyledTableRow>
               ))}
