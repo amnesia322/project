@@ -1,3 +1,5 @@
+import React from 'react'
+
 import Paper from '@mui/material/Paper'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
@@ -10,8 +12,10 @@ import { Link } from 'react-router-dom'
 
 import { PATH } from '../../../app/Routes/Pages'
 import { useAppDispatch, useAppSelector } from '../../../app/store'
+import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
 import { getQuestionTC } from '../cards/cards-reducer'
 
+import s from './PackItem.module.css'
 import { PackItemActions } from './packItremActions/PackItemActions'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -41,20 +45,19 @@ const findSubstr = (str: string) => {
 }
 
 export const PackItem = () => {
-  const users = useAppSelector(state => state.allCardPacks.cardPacks)
+  const packs = useAppSelector(state => state.allCardPacks.cardPacks)
   const dispatch = useAppDispatch()
   const createData = (
     name: string,
     cardsCount: number,
     lastUpdate: string,
     createBy: string,
-    // actions: number
     id: string
   ) => {
     return { name, cardsCount, lastUpdate, createBy, id }
   }
 
-  const rows = users.map(item =>
+  const rows = packs.map(item =>
     createData(
       item.name,
       item.cardsCount,
@@ -70,9 +73,9 @@ export const PackItem = () => {
 
   return (
     <div>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
-          {users.length > 0 ? (
+      {packs.length > 0 ? (
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
                 <StyledTableCell>Name</StyledTableCell>
@@ -82,32 +85,29 @@ export const PackItem = () => {
                 <StyledTableCell align="right">Actions</StyledTableCell>
               </TableRow>
             </TableHead>
-          ) : (
             <TableBody>
-              <TableRow>
-                <StyledTableCell>
-                  This pack is empty. Click add new card to fill this pack{' '}
-                </StyledTableCell>
-              </TableRow>
+              {rows.map((row, index) => (
+                <StyledTableRow key={index}>
+                  <StyledTableCell component="th" scope="row" onClick={() => getQuestions(row.id)}>
+                    <Link to={PATH.QUESTION_LIST}> {row.name} </Link>
+                  </StyledTableCell>
+                  <StyledTableCell align="right">{row.cardsCount}</StyledTableCell>
+                  <StyledTableCell align="right">{row.lastUpdate}</StyledTableCell>
+                  <StyledTableCell align="right">{row.createBy}</StyledTableCell>
+                  <StyledTableCell align="right">
+                    <PackItemActions id={row.id} />
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
             </TableBody>
-          )}
-          <TableBody>
-            {rows.map((row, index) => (
-              <StyledTableRow key={index}>
-                <StyledTableCell component="th" scope="row" onClick={() => getQuestions(row.id)}>
-                  <Link to={PATH.QUESTION_LIST}> {row.name} </Link>
-                </StyledTableCell>
-                <StyledTableCell align="right">{row.cardsCount}</StyledTableCell>
-                <StyledTableCell align="right">{row.lastUpdate}</StyledTableCell>
-                <StyledTableCell align="right">{row.createBy}</StyledTableCell>
-                <StyledTableCell align="right">
-                  <PackItemActions id={row.id} />
-                </StyledTableCell>
-              </StyledTableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+          </Table>
+        </TableContainer>
+      ) : (
+        <div className={s.wrapperForTitle}>
+          <div className={s.titleForEmptyPack}>This pack is empty. Click add new pack</div>
+          <ClassicButton title={'Add new pack'} />
+        </div>
+      )}
     </div>
   )
 }

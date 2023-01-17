@@ -68,7 +68,7 @@ export const CardQuestion = () => {
             <TableBody>
               <TableRow>
                 <StyledTableCell>
-                  This pack is empty. Click add new card to fill this pack{' '}
+                  This pack is empty. Click add new card to fill this pack
                 </StyledTableCell>
               </TableRow>
             </TableBody>

@@ -6,7 +6,7 @@ import { InitialStateTypeForPacks } from './packs-reducer'
 export const packsAPI = {
   getPacks() {
     return instance.get<InitialStateTypeForPacks>('cards/pack', {
-      params: { pageCount: 108, sortPacks: '1created' },
+      params: { pageCount: 55, sortPacks: '0created' },
     })
   },
   getPackQuestion(id: string) {
