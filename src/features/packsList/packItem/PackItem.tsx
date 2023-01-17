@@ -42,7 +42,6 @@ const findSubstr = (str: string) => {
 
 export const PackItem = () => {
   const users = useAppSelector(state => state.packs.cardPacks)
-  const myId = useAppSelector(state => state.profile.user._id)
   const dispatch = useAppDispatch()
   const createData = (
     name: string,
@@ -61,7 +60,7 @@ export const PackItem = () => {
       item.cardsCount,
       findSubstr(item.updated),
       findSubstr(item.created),
-      item._id
+      item.user_id
     )
   )
 

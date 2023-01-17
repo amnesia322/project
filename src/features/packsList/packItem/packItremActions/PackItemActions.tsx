@@ -10,7 +10,10 @@ import teacher from '../../../../assets/svg/teacher.svg'
 import s from './PackItemAction.module.css'
 
 export const PackItemActions = ({ id }: PropsType) => {
-  const myId = useAppSelector(state => state.profile.user._id)
+  // const myId = useAppSelector(state => state.profile.user._id)
+  const myId = useAppSelector(state => state.packs.cardPacks[0].user_id)
+
+  console.log(myId)
 
   return (
     <div className={s.wrapper}>
