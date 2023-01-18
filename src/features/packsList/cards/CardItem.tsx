@@ -24,6 +24,8 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
+    fontFamily: 'Montserrat',
+    color: '#000000',
   },
 }))
 
@@ -72,10 +74,10 @@ export const CardItem = ({ isMyId }: { isMyId: boolean }) => {
             <TableHead>
               <TableRow>
                 <StyledTableCell>Question</StyledTableCell>
-                <StyledTableCell align="left">Answer</StyledTableCell>
-                <StyledTableCell align="right">Last Update</StyledTableCell>
-                <StyledTableCell align="right">Grade</StyledTableCell>
-                {isMyId && <StyledTableCell align="right">Actions</StyledTableCell>}
+                <StyledTableCell align="center">Answer</StyledTableCell>
+                <StyledTableCell align="center">Last Update</StyledTableCell>
+                <StyledTableCell align="center">Grade</StyledTableCell>
+                {isMyId && <StyledTableCell align="center">Actions</StyledTableCell>}
               </TableRow>
             </TableHead>
             <TableBody>
@@ -84,11 +86,11 @@ export const CardItem = ({ isMyId }: { isMyId: boolean }) => {
                   <StyledTableCell component="th" scope="row">
                     {row.questions}
                   </StyledTableCell>
-                  <StyledTableCell align="left">{row.answer}</StyledTableCell>
-                  <StyledTableCell align="right">{row.lastUpdate}</StyledTableCell>
-                  <StyledTableCell align="right">{row.grade}</StyledTableCell>
+                  <StyledTableCell align="center">{row.answer}</StyledTableCell>
+                  <StyledTableCell align="center">{row.lastUpdate}</StyledTableCell>
+                  <StyledTableCell align="center">{row.grade}</StyledTableCell>
                   {isMyId && (
-                    <StyledTableCell align="right">
+                    <StyledTableCell align="center">
                       <CardItemActions />
                     </StyledTableCell>
                   )}

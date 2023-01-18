@@ -41,6 +41,7 @@ export type PackType = {
   cardsCount: number
   created: string
   updated: string
+  user_name: string
 }
 
 export type CreatePackRequestType = {

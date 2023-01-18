@@ -25,6 +25,8 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
+    fontFamily: 'Montserrat',
+    color: '#000000',
   },
 }))
 
@@ -58,7 +60,7 @@ export const PackItem = () => {
       item.name,
       item.cardsCount,
       findSubstr(item.updated),
-      findSubstr(item.created),
+      item.user_name,
       item._id,
       item.user_id
     )
@@ -68,30 +70,34 @@ export const PackItem = () => {
     dispatch(setCardsTC(id))
   }
 
+  const styleForRow = {}
+
   return (
     <div>
       {packs.length > 0 ? (
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
-              <TableRow>
+              <TableRow sx={styleForRow}>
                 <StyledTableCell>Name</StyledTableCell>
-                <StyledTableCell align="right">Cards</StyledTableCell>
-                <StyledTableCell align="right">Last Update</StyledTableCell>
-                <StyledTableCell align="right">Create by</StyledTableCell>
-                <StyledTableCell align="right">Actions</StyledTableCell>
+                <StyledTableCell align="center">Cards</StyledTableCell>
+                <StyledTableCell align="center">Last Update</StyledTableCell>
+                <StyledTableCell align="center">Create by</StyledTableCell>
+                <StyledTableCell align="center">Actions</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {rows.map((row, index) => (
                 <StyledTableRow key={index}>
                   <StyledTableCell component="th" scope="row" onClick={() => getQuestions(row.id)}>
-                    <Link to={PATH.CARDS_LIST}> {row.name} </Link>
+                    <Link className={s.link} to={PATH.CARDS_LIST}>
+                      {row.name}
+                    </Link>
                   </StyledTableCell>
-                  <StyledTableCell align="right">{row.cardsCount}</StyledTableCell>
-                  <StyledTableCell align="right">{row.lastUpdate}</StyledTableCell>
-                  <StyledTableCell align="right">{row.createBy}</StyledTableCell>
-                  <StyledTableCell align="right">
+                  <StyledTableCell align="center">{row.cardsCount}</StyledTableCell>
+                  <StyledTableCell align="center">{row.lastUpdate}</StyledTableCell>
+                  <StyledTableCell align="center">{row.createBy}</StyledTableCell>
+                  <StyledTableCell align="center">
                     <PackItemActions userId={row.userId} packId={row.id} />
                   </StyledTableCell>
                 </StyledTableRow>

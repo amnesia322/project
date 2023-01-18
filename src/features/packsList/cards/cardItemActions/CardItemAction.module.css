@@ -1,5 +1,5 @@
 .link {
-  padding-left: 15px;
+  padding-left: 25px;
 }
 
 .link:first-child {
@@ -8,5 +8,5 @@
 
 .wrapper {
   display: flex;
-  justify-content: end;
+  justify-content: center;
 }

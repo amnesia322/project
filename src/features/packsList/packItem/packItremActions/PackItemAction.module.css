@@ -1,6 +1,7 @@
-.link:first-child {
-  padding-left: 0;
-}
+/*.link {*/
+/*  position: relative;*/
+/*  left: -10px;*/
+/*}*/
 
 .wrapper {
   display: flex;
