@@ -93,7 +93,6 @@ const initialState = {
   maxCardsCount: 0,
   minCardsCount: 0,
   page: 1, // выбранная страница,
-  packsPerPage: 5,
   queryParams: {
     min: 0,
     max: 200,
@@ -133,12 +132,11 @@ export const packsReducer = (
 
 export const setPacks = (packs: any) => ({ type: 'packs/SET_PACKS', packs } as const)
 export const setPacksCurrentPage = (page: number) => ({ type: 'packs/SET_PAGE', page } as const)
-export const setPacksPerPage = (pageCount: number) => {
-  return {
+export const setPacksPerPage = (pageCount: number) =>
+  ({
     type: 'PACKS/SET-PACKS-PER-PAGE',
     packsPerPage: pageCount,
-  } as const
-}
+  } as const)
 export const setMin = (min: number) => ({ type: 'packs/SET_MIN_CARDS_COUNT', min } as const)
 export const setMax = (max: number) => ({ type: 'packs/SET_MAX_CARDS_COUNT', max } as const)
 export const setSortPacks = (sortPacks: string) =>
