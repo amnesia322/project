@@ -1,12 +1,12 @@
 import React from 'react'
 
-import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { PATH } from '../../../app/Routes/Pages'
 import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
 import s from '../PacksList.module.css'
+import { SearchInput } from '../SearchInput/SearchInput'
 
 import { CardItem } from './CardItem'
 import { addCardTC } from './cards-reducer'
@@ -48,6 +48,7 @@ export const Cards = () => {
         </div>
       )}
       <div className={s.wrapperTable}>
+        <SearchInput />
         <CardItem isMyId={isMyId} />
       </div>
     </div>

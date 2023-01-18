@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import SuperButton from '../../../common/components/SuperButton/SuperButton'
+import SuperButton from '../../../../common/components/SuperButton/SuperButton'
 
 export const PacsCardsButton = () => {
   const [onOff, setOnOff] = useState(false)

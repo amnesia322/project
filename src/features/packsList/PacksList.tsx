@@ -2,13 +2,13 @@ import React, { useEffect } from 'react'
 
 import { useAppDispatch, useAppSelector } from '../../app/store'
 import { ClassicButton } from '../../common/components/ClassicButton/ClassicButton'
-import SuperInputText from '../../common/components/SuperInputText/SuperInputText'
 
-import { PacsCardsButton } from './packCardsButtons/PackCardsButton'
 import { PackCardsDoubleRange } from './packCardsDoubleRange/PackCardsDubleRange'
 import { PackItem } from './packItem/PackItem'
 import { addPackTC, setPacksTC } from './packs-reducer'
 import s from './PacksList.module.css'
+import { SearchButton } from './searchButton/SearchButton'
+import { SearchInput } from './SearchInput/SearchInput'
 
 // import search from '../../assets/svg/IconSearch.svg'
 export const PacksList = () => {
@@ -40,18 +40,11 @@ export const PacksList = () => {
       </div>
       <div className={s.wrapperTable}></div>
       <div className={s.wrapperForHeaderTable}>
-        <div>
-          <span className={s.titleButton}> Search</span>
-          <SuperInputText className={s.input} placeholder={'Provide your text'} />
-        </div>
+        <SearchInput />
         <div className={s.wrapperFilterButton}>
-          <span className={s.titleButton}> Show packs cards</span>
-          <div>
-            <PacsCardsButton />
-          </div>
+          <SearchButton />
         </div>
         <div className={s.wrapperForRange}>
-          <span className={s.titleButton}> Number of Cards</span>
           <PackCardsDoubleRange />
         </div>
       </div>

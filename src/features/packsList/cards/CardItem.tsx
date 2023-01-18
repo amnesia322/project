@@ -16,6 +16,7 @@ import s from '../packItem/PackItem.module.css'
 
 import { CardItemActions } from './cardItemActions/CardItemActions'
 import { addCardTC } from './cards-reducer'
+import { BasicRating } from './cardsRating/CardsRating'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -88,7 +89,9 @@ export const CardItem = ({ isMyId }: { isMyId: boolean }) => {
                   </StyledTableCell>
                   <StyledTableCell align="center">{row.answer}</StyledTableCell>
                   <StyledTableCell align="center">{row.lastUpdate}</StyledTableCell>
-                  <StyledTableCell align="center">{row.grade}</StyledTableCell>
+                  <StyledTableCell align="center">
+                    <BasicRating grade={row.grade} />
+                  </StyledTableCell>
                   {isMyId && (
                     <StyledTableCell align="center">
                       <CardItemActions />

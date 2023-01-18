@@ -9,6 +9,7 @@ export const PackCardsDoubleRange = () => {
 
   return (
     <div>
+      <span className={s.titleButton}> Number of Cards</span>
       <div className={s.range}>
         <SuperDoubleRange
           value={[value1, value2]}
