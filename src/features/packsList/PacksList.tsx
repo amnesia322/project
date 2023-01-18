@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../app/store'
 import { ClassicButton } from '../../common/components/ClassicButton/ClassicButton'
 import SuperInputText from '../../common/components/SuperInputText/SuperInputText'
 
+import { PacsCardsButton } from './packCardsButtons/PackCardsButton'
 import { PackItem } from './packItem/PackItem'
 import { getPacksTC } from './packs-reducer'
 import s from './PacksList.module.css'
@@ -40,7 +41,7 @@ export const PacksList = () => {
         <div className={s.wrapperFilterButton}>
           <span className={s.titleButton}> Show packs cards</span>
           <div>
-            <ClassicButton title={'My'} sx={{}} /> <ClassicButton title={'All'} />
+            <PacsCardsButton />
           </div>
         </div>
       </div>

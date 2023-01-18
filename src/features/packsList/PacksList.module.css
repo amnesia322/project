@@ -39,7 +39,7 @@
   margin: 10px 0 15px;
 }
 
-.titleButton{
+.titleButton {
   margin: 5px 0 10px;
 
   font-family: Montserrat, serif;
@@ -50,12 +50,12 @@
   letter-spacing: 0;
 }
 
-.wrapperForHeaderTable{
+.wrapperForHeaderTable {
   display: flex;
   justify-content: space-around;
 }
 
-.wrapperFilterButton{
+.wrapperFilterButton {
   display: flex;
   flex-direction: column;
 }
