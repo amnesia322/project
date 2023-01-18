@@ -23,25 +23,25 @@ export const authReducer = (
   action: AuthActionsType
 ): InitialStateType => {
   switch (action.type) {
-    case 'AUTH/SET-IS-LOGGED': {
+    case 'auth/SET-IS-LOGGED': {
       return { ...state, isLogged: action.payload.value }
     }
-    case 'AUTH/REGISTER': {
+    case 'auth/REGISTER': {
       return { ...state, isRegister: action.isRegister }
     }
-    case 'AUTH/FORGOT-PASSWORD/SET-IS-SEND-EMAIL': {
+    case 'auth/FORGOT-PASSWORD/SET-IS-SEND-EMAIL': {
       return {
         ...state,
         forgotPassword: { ...state.forgotPassword, isSendEmail: action.payload.value },
       }
     }
-    case 'AUTH/FORGOT-PASSWORD/SET-EMAIL': {
+    case 'auth/FORGOT-PASSWORD/SET-EMAIL': {
       return {
         ...state,
         forgotPassword: { ...state.forgotPassword, emailForLink: action.payload.value },
       }
     }
-    case 'AUTH/FORGOT-PASSWORD/SET_NEW_PASS':
+    case 'auth/FORGOT-PASSWORD/SET_NEW_PASS':
       return {
         ...state,
         forgotPassword: { ...state.forgotPassword, isNewPassSet: action.isNewPassSet },
@@ -53,7 +53,7 @@ export const authReducer = (
 
 export const setIsLoggedInAC = (value: boolean) => {
   return {
-    type: 'AUTH/SET-IS-LOGGED',
+    type: 'auth/SET-IS-LOGGED',
     payload: {
       value,
     },
@@ -62,13 +62,13 @@ export const setIsLoggedInAC = (value: boolean) => {
 
 export const registerAC = (isRegister: boolean) =>
   ({
-    type: 'AUTH/REGISTER',
+    type: 'auth/REGISTER',
     isRegister,
   } as const)
 
 export const setIsSendEmailAC = (value: boolean) => {
   return {
-    type: 'AUTH/FORGOT-PASSWORD/SET-IS-SEND-EMAIL',
+    type: 'auth/FORGOT-PASSWORD/SET-IS-SEND-EMAIL',
     payload: {
       value,
     },
@@ -76,7 +76,7 @@ export const setIsSendEmailAC = (value: boolean) => {
 }
 export const setEmailForLinkAC = (value: string) => {
   return {
-    type: 'AUTH/FORGOT-PASSWORD/SET-EMAIL',
+    type: 'auth/FORGOT-PASSWORD/SET-EMAIL',
     payload: {
       value,
     },
@@ -84,7 +84,7 @@ export const setEmailForLinkAC = (value: string) => {
 }
 
 export const setNewPassAC = (isNewPassSet: boolean) =>
-  ({ type: 'AUTH/FORGOT-PASSWORD/SET_NEW_PASS', isNewPassSet } as const)
+  ({ type: 'auth/FORGOT-PASSWORD/SET_NEW_PASS', isNewPassSet } as const)
 
 export const loginTC =
   (data: FormikValueType): AppThunk =>

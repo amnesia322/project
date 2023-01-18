@@ -2,8 +2,8 @@ import React from 'react'
 
 import { Link } from 'react-router-dom'
 
-import deleted from '../../../../assets/svg/Delete.svg'
-import edit from '../../../../assets/svg/edit-2.svg'
+import deleted from '../../../../assets/svg/delete.svg'
+import edit from '../../../../assets/svg/edit.svg'
 
 import s from './CardItemAction.module.css'
 export const CardItemActions = () => {

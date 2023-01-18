@@ -3,9 +3,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../../app/store'
-import deleted from '../../../../assets/svg/Delete.svg'
-import edit from '../../../../assets/svg/edit-2.svg'
-import teacher from '../../../../assets/svg/teacher.svg'
+import deleted from '../../../../assets/svg/delete.svg'
+import edit from '../../../../assets/svg/edit.svg'
+import teacher from '../../../../assets/svg/leran.svg'
 import { deletePackTC } from '../../packs-reducer'
 
 import s from './PackItemAction.module.css'

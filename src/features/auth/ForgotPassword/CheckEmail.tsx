@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { PATH } from '../../../app/Routes/Pages'
 import { useAppSelector } from '../../../app/store'
-import imgLetter from '../../../assets/svg/Group 281.svg'
+import imgLetter from '../../../assets/svg/eamail.svg'
 import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
 
 import s from './ForgotPassword.module.css'
