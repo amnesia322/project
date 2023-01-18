@@ -51,15 +51,17 @@ export type GetCardsResponseType = {
 }
 
 export type CreateCardRequestType = {
-  cardsPack_id: string
-  question?: string
-  answer?: string
-  grade?: number
-  shots?: number
-  answerImg?: string
-  questionImg?: string
-  questionVideo?: string
-  answerVideo?: string
+  card: {
+    cardsPack_id: string
+    question?: string
+    answer?: string
+    grade?: number
+    shots?: number
+    answerImg?: string
+    questionImg?: string
+    questionVideo?: string
+    answerVideo?: string
+  }
 }
 
 export type UpdateCardRequestType = {

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { PATH } from '../../../app/Routes/Pages'
-import { useAppSelector } from '../../../app/store'
+import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
 import s from '../PacksList.module.css'
 
@@ -15,7 +15,7 @@ export const Cards = () => {
   const myId = useAppSelector(state => state.profile.user._id)
   const cardsPack_id = useAppSelector(state => state.cards.queryParams.cardsPack_id)
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const userPack_id = useAppSelector(state => {
     const chosenPack = state.packs.cardPacks.find(item => item._id === cardsPack_id)
@@ -28,7 +28,7 @@ export const Cards = () => {
   const isMyId = myId === userPack_id
 
   const addCardHandler = () => {
-    // dispatch(addCardTC({ cardsPack_id: '63c7ff3d4f1df4292cf0c1cd' }))
+    dispatch(addCardTC({ card: { cardsPack_id } }))
   }
 
   return (
@@ -48,7 +48,7 @@ export const Cards = () => {
         </div>
       )}
       <div className={s.wrapperTable}>
-        <CardItem comparedId={isMyId} />
+        <CardItem isMyId={isMyId} />
       </div>
     </div>
   )

@@ -9,12 +9,13 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 
-import { useAppSelector } from '../../../app/store'
+import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
 import { findSubstr } from '../../../common/utils/findSubscr'
 import s from '../packItem/PackItem.module.css'
 
 import { CardItemActions } from './cardItemActions/CardItemActions'
+import { addCardTC } from './cards-reducer'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -36,8 +37,10 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }))
 
-export const CardItem = ({ comparedId }: { comparedId: boolean }) => {
+export const CardItem = ({ isMyId }: { isMyId: boolean }) => {
   const cards = useAppSelector(state => state.cards.cards)
+  const cardsPack_id = useAppSelector(state => state.cards.queryParams.cardsPack_id)
+  const dispatch = useAppDispatch()
   const createData = (
     questions: string,
     answer: string,
@@ -52,12 +55,16 @@ export const CardItem = ({ comparedId }: { comparedId: boolean }) => {
     createData(item.question, item.answer, findSubstr(item.updated), item.grade, item._id)
   )
 
+  const addCardHandler = () => {
+    dispatch(addCardTC({ card: { cardsPack_id } }))
+  }
+
   return (
     <div>
       {!cards.length ? (
         <div className={s.wrapperForTitle}>
           <div className={s.titleForEmptyPack}>This pack is empty.</div>
-          {!!comparedId && <ClassicButton title={'Add new card'} />}
+          {!!isMyId && <ClassicButton title={'Add new card'} onClick={addCardHandler} />}
         </div>
       ) : (
         <TableContainer component={Paper}>
@@ -68,7 +75,7 @@ export const CardItem = ({ comparedId }: { comparedId: boolean }) => {
                 <StyledTableCell align="left">Answer</StyledTableCell>
                 <StyledTableCell align="right">Last Update</StyledTableCell>
                 <StyledTableCell align="right">Grade</StyledTableCell>
-                {comparedId && <StyledTableCell align="right">Actions</StyledTableCell>}
+                {isMyId && <StyledTableCell align="right">Actions</StyledTableCell>}
               </TableRow>
             </TableHead>
             <TableBody>
@@ -80,7 +87,7 @@ export const CardItem = ({ comparedId }: { comparedId: boolean }) => {
                   <StyledTableCell align="left">{row.answer}</StyledTableCell>
                   <StyledTableCell align="right">{row.lastUpdate}</StyledTableCell>
                   <StyledTableCell align="right">{row.grade}</StyledTableCell>
-                  {comparedId && (
+                  {isMyId && (
                     <StyledTableCell align="right">
                       <CardItemActions />
                     </StyledTableCell>
