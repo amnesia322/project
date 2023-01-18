@@ -48,7 +48,7 @@ export const Cards = () => {
         </div>
       )}
       <div className={s.wrapperTable}>
-        <SearchInput />
+        {!!cards.length && <SearchInput />}
         <CardItem isMyId={isMyId} />
       </div>
     </div>
