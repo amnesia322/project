@@ -18,14 +18,11 @@ export const Cards = () => {
     const choosedPack = state.packs.cardPacks.find(item => item._id === idChosedPack)
 
     if (choosedPack) {
-      console.log('choosedPack: ' + choosedPack._id)
-
       return choosedPack.user_id
     }
   })
+  const cards = useAppSelector(state => state.cards.cards)
   const comparedId = myId === userIdFromPack
-
-  console.log('MY_ID:' + myId, userIdFromPack, comparedId)
 
   return (
     <div className={s.wrapper}>
@@ -35,12 +32,12 @@ export const Cards = () => {
       {comparedId ? (
         <div className={s.wrapperButton}>
           <div className={s.titleTable}>My Pack</div>
-          <ClassicButton title={'Add new card'} />
+          {!!cards.length && <ClassicButton title={'Add new card'} />}
         </div>
       ) : (
         <div className={s.wrapperButton}>
           <div className={s.titleTable}>Friend’s Pack</div>
-          <ClassicButton title={'Learn to pack'} />
+          {!!cards.length && <ClassicButton title={'Learn to pack'} />}
         </div>
       )}
       <div className={s.wrapperTable}>

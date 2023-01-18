@@ -11,9 +11,10 @@ import TableRow from '@mui/material/TableRow'
 
 import { useAppSelector } from '../../../app/store'
 import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
+import { findSubstr } from '../../../common/utils/findSubscr'
 import s from '../packItem/PackItem.module.css'
 
-import { CardItemActions } from './cardItemActions/PackItemActions'
+import { CardItemActions } from './cardItemActions/CardItemActions'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -35,12 +36,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }))
 
-const findSubstr = (str: string) => {
-  const index = str.indexOf('T')
-
-  return str.slice(0, index)
-}
-
 export const CardItem = ({ comparedId }: { comparedId: boolean }) => {
   const cards = useAppSelector(state => state.cards.cards)
   const createData = (
@@ -59,12 +54,10 @@ export const CardItem = ({ comparedId }: { comparedId: boolean }) => {
 
   return (
     <div>
-      {!cards.length && comparedId ? (
+      {!cards.length ? (
         <div className={s.wrapperForTitle}>
-          <div className={s.titleForEmptyPack}>
-            This pack is empty. Click add new card to fill this pack
-          </div>
-          <ClassicButton title={'Add new card'} />
+          <div className={s.titleForEmptyPack}>This pack is empty.</div>
+          {!!comparedId && <ClassicButton title={'Add new card'} />}
         </div>
       ) : (
         <TableContainer component={Paper}>
