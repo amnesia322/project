@@ -112,12 +112,10 @@ export const packsReducer = (
       return { ...state, ...action.packs }
     case 'packs/SET_PAGE':
       return { ...state, page: action.page }
-    case 'PACKS/SET-PACKS-PER-PAGE':
+    case 'packs/SET-PACKS-PER-PAGE':
       return { ...state, queryParams: { ...state.queryParams, pageCount: action.packsPerPage } }
-    case 'packs/SET_MIN_CARDS_COUNT':
-      return { ...state, queryParams: { ...state.queryParams, min: action.min } }
-    case 'packs/SET_MAX_CARDS_COUNT':
-      return { ...state, queryParams: { ...state.queryParams, max: action.max } }
+    case 'packs/SET-SLIDER-VALUE':
+      return { ...state, queryParams: { ...state.queryParams, min: action.min, max: action.max } }
     case 'packs/SET_SORT_PACKS':
       return { ...state, queryParams: { ...state.queryParams, sortPacks: action.sortPacks } }
     case 'packs/SORT_PACKS_NAME':
@@ -134,11 +132,16 @@ export const setPacks = (packs: any) => ({ type: 'packs/SET_PACKS', packs } as c
 export const setPacksCurrentPage = (page: number) => ({ type: 'packs/SET_PAGE', page } as const)
 export const setPacksPerPage = (pageCount: number) =>
   ({
-    type: 'PACKS/SET-PACKS-PER-PAGE',
+    type: 'packs/SET-PACKS-PER-PAGE',
     packsPerPage: pageCount,
   } as const)
-export const setMin = (min: number) => ({ type: 'packs/SET_MIN_CARDS_COUNT', min } as const)
-export const setMax = (max: number) => ({ type: 'packs/SET_MAX_CARDS_COUNT', max } as const)
+export const setSliderValue = (sliderValue: number[]) =>
+  ({
+    type: 'packs/SET-SLIDER-VALUE',
+    min: sliderValue[0],
+    max: sliderValue[1],
+  } as const)
+
 export const setSortPacks = (sortPacks: string) =>
   ({ type: 'packs/SET_SORT_PACKS', sortPacks } as const)
 export const setSortPacksName = (packName: string) =>
@@ -226,8 +229,7 @@ export type PacksActionType =
   | ReturnType<typeof setPacks>
   | ReturnType<typeof setPacksCurrentPage>
   | ReturnType<typeof setPacksPerPage>
-  | ReturnType<typeof setMin>
-  | ReturnType<typeof setMax>
+  | ReturnType<typeof setSliderValue>
   | ReturnType<typeof setSortPacks>
   | ReturnType<typeof setSortPacksName>
   | ReturnType<typeof setUserPacks>

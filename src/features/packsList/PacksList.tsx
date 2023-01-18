@@ -24,7 +24,7 @@ export const PacksList = () => {
 
   useEffect(() => {
     dispatch(setPacksTC())
-  }, [page, query, pageCount, query.user_id])
+  }, [page, query, pageCount, query.user_id, query.max])
 
   return (
     <div className={s.wrapper}>

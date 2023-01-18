@@ -1,22 +1,48 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-import { SuperDoubleRange } from '../../../common/components/SuperDoubleRange/SuperDoubleRange'
+import { Slider } from '@mui/material'
+
+import { useAppDispatch, useAppSelector } from '../../../app/store'
+import { setSliderValue } from '../packs-reducer'
 import s from '../PacksList.module.css'
 
 export const PackCardsDoubleRange = () => {
-  const [value1, setValue1] = useState(0)
-  const [value2, setValue2] = useState(100)
+  const appStatus = useAppSelector(state => state.app.status)
+  const minSliderValue = useAppSelector(state => state.packs.minCardsCount)
+  const maxSliderValue = useAppSelector(state => state.packs.maxCardsCount)
+  const min = useAppSelector(state => state.packs.queryParams.min)
+  const max = useAppSelector(state => state.packs.queryParams.max)
+  const [sliderLocalValue, setSliderLocalValue] = useState<number[]>([min, max])
+
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    setSliderLocalValue([minSliderValue, maxSliderValue])
+  }, [minSliderValue, maxSliderValue])
+
+  const changeValue = (event: Event, newValue: number | number[]) => {
+    setSliderLocalValue(newValue as number[])
+  }
+
+  const changeCommitted = () => {
+    dispatch(setSliderValue(sliderLocalValue))
+  }
 
   return (
-    <div>
-      <div className={s.range}>
-        <SuperDoubleRange
-          value={[value1, value2]}
-          onChangeRange={([value1, value2]) => {
-            setValue1(value1)
-            setValue2(value2)
-          }}
-        />
+    <div className={s.main}>
+      <div className={s.sliderBlock}>
+        <div className={s.value}>{sliderLocalValue[0]}</div>
+        <div className={s.slider}>
+          <Slider
+            min={minSliderValue}
+            max={maxSliderValue}
+            value={sliderLocalValue}
+            onChange={changeValue}
+            onChangeCommitted={changeCommitted}
+            disabled={appStatus === 'loading'}
+          />
+        </div>
+        <div className={s.value}>{sliderLocalValue[1]}</div>
       </div>
     </div>
   )
