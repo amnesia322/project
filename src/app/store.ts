@@ -13,8 +13,6 @@ const reducers = combineReducers({
   app: appReducer,
   auth: authReducer,
   profile: profileReducer,
-  // allCardPacks: packsReducer,
-  // allCardQuestions: cardsReducer,
   packs: packsReducer,
   cards: cardsReducer,
 })
