@@ -96,7 +96,7 @@ const initialState = {
   queryParams: {
     min: 0,
     max: 200,
-    pageCount: 8, // количество элементов на странице
+    pageCount: 50, // количество элементов на странице
     sortPacks: '0updated',
     packName: '',
     user_id: '',

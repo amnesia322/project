@@ -9,8 +9,9 @@ import s from './PacksList.module.css'
 
 export const PacksList = () => {
   const dispatch = useAppDispatch()
-  const packs = useAppSelector(state => state.allCardPacks.cardPacks)
+  const packs = useAppSelector(state => state.packs.cardPacks)
 
+  // console.log(packs.map(el => el._id))
   const onClickHandler = () => {
     dispatch(addPackTC({ cardsPack: { name: '!The Best team pack!' } }))
   }
@@ -25,7 +26,7 @@ export const PacksList = () => {
         {packs.length ? (
           <>
             <div className={s.titleTable}>Packs list</div>
-            <ClassicButton title={'Add new pack'} />
+            <ClassicButton title={'Add new pack'} onClick={onClickHandler} />
           </>
         ) : (
           <div>

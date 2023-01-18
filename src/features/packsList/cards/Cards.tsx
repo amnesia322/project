@@ -11,17 +11,21 @@ import { CardItem } from './CardItem'
 
 export const Cards = () => {
   const myId = useAppSelector(state => state.profile.user._id)
-  const idChosedPack = useAppSelector(state => state.packs.packIdForWork)
+  const idChosedPack = useAppSelector(state => state.cards.queryParams.cardsPack_id)
+
+  console.log('idChosedPack:' + idChosedPack)
   const userIdFromPack = useAppSelector(state => {
     const choosedPack = state.packs.cardPacks.find(item => item._id === idChosedPack)
 
     if (choosedPack) {
+      console.log('choosedPack: ' + choosedPack._id)
+
       return choosedPack.user_id
     }
   })
   const comparedId = myId === userIdFromPack
 
-  console.log(myId, userIdFromPack, comparedId)
+  console.log('MY_ID:' + myId, userIdFromPack, comparedId)
 
   return (
     <div className={s.wrapper}>

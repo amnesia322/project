@@ -1,5 +1,6 @@
 import { setIsLoggedInAC } from '../features/auth/auth-reducer'
 import { profileAPI } from '../features/Profile/profile-api'
+import { setProfileData } from '../features/Profile/profile-reducer'
 
 import { AppThunk } from './store'
 
@@ -45,6 +46,7 @@ export const initializeAppTC = (): AppThunk => async dispatch => {
   try {
     const response = await profileAPI.getProfileData()
 
+    dispatch(setProfileData(response.data))
     if (response.data._id) {
       dispatch(setIsLoggedInAC(true))
     }

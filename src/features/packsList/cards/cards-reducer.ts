@@ -11,8 +11,8 @@ const initialState = {
     cardAnswer: '',
     cardQuestion: '',
     cardsPack_id: '',
-    min: 1,
-    max: 4,
+    min: 0,
+    max: 5,
     sortCards: '0grade',
     page: 1,
     pageCount: 7,
@@ -62,9 +62,10 @@ export const setCardsTC =
   (cardsPack_id: string): AppThunk =>
   async (dispatch, getState) => {
     dispatch(setAppStatusAC('loading'))
+    let queryParams = { ...getState().cards.queryParams }
+
     try {
-      const id = getState().packs.cardPacks.find(item => item._id === cardsPack_id)!._id
-      const payload = { ...getState().cards.queryParams, cardsPack_id: id }
+      const payload = { ...queryParams, cardsPack_id }
       const response = await cardsApi.getCards(payload)
 
       dispatch(setCards(response.data))

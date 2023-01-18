@@ -15,6 +15,8 @@ const Header = () => {
   const userName = useAppSelector(state => state.profile.user.name)
   const userAvatar = useAppSelector(state => state.profile.user.avatar)
 
+  console.log(userName)
+
   return (
     <div className={s.header}>
       <img src={logo} alt={'logo'} />

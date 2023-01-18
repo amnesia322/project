@@ -12,8 +12,8 @@ import { Link } from 'react-router-dom'
 
 import { PATH } from '../../../app/Routes/Pages'
 import { useAppDispatch, useAppSelector } from '../../../app/store'
-import { setCardsTC } from '../cards/cards-reducer'
 import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
+import { setCardsTC } from '../cards/cards-reducer'
 
 import s from './PackItem.module.css'
 import { PackItemActions } from './packItremActions/PackItemActions'
@@ -46,7 +46,9 @@ const findSubstr = (str: string) => {
 
 export const PackItem = () => {
   const packs = useAppSelector(state => state.packs.cardPacks)
+  const cards = useAppSelector(state => state.cards.cards)
   const dispatch = useAppDispatch()
+
   const createData = (
     name: string,
     cardsCount: number,
@@ -97,7 +99,7 @@ export const PackItem = () => {
                   <StyledTableCell align="right">{row.lastUpdate}</StyledTableCell>
                   <StyledTableCell align="right">{row.createBy}</StyledTableCell>
                   <StyledTableCell align="right">
-                    <PackItemActions userId={row.userId} />
+                    <PackItemActions userId={row.userId} packId={row.id} />
                   </StyledTableCell>
                 </StyledTableRow>
               ))}
@@ -106,7 +108,7 @@ export const PackItem = () => {
         </TableContainer>
       ) : (
         <div className={s.wrapperForTitle}>
-          <div className={s.titleForEmptyPack}>This pack is empty. Click add new pack</div>
+          <div className={s.titleForEmptyPack}>This pack is empty. Click add new card</div>
           <ClassicButton title={'Add new pack'} />
         </div>
       )}
