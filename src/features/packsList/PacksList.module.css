@@ -50,6 +50,14 @@
   letter-spacing: 0;
 }
 
+.wrapperForRange{
+  margin-top: 3px;
+}
+
+.range{
+  margin-top: 20px;
+}
+
 .wrapperForHeaderTable {
   display: flex;
   justify-content: space-around;

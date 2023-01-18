@@ -5,6 +5,7 @@ import { ClassicButton } from '../../common/components/ClassicButton/ClassicButt
 import SuperInputText from '../../common/components/SuperInputText/SuperInputText'
 
 import { PacsCardsButton } from './packCardsButtons/PackCardsButton'
+import { PackCardsDoubleRange } from './packCardsDoubleRange/PackCardsDubleRange'
 import { PackItem } from './packItem/PackItem'
 import { getPacksTC } from './packs-reducer'
 import s from './PacksList.module.css'
@@ -43,6 +44,10 @@ export const PacksList = () => {
           <div>
             <PacsCardsButton />
           </div>
+        </div>
+        <div className={s.wrapperForRange}>
+          <span className={s.titleButton}> Number of Cards</span>
+          <PackCardsDoubleRange />
         </div>
       </div>
       <PackItem />
