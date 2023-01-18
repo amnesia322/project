@@ -92,11 +92,12 @@ const initialState = {
   cardPacksTotalCount: 100, // количество колод
   maxCardsCount: 0,
   minCardsCount: 0,
-  page: 1, // выбранная страница
+  page: 1, // выбранная страница,
+  packsPerPage: 5,
   queryParams: {
     min: 0,
     max: 200,
-    pageCount: 50, // количество элементов на странице
+    pageCount: 5, // количество элементов на странице
     sortPacks: '0updated',
     packName: '',
     user_id: '',
@@ -112,12 +113,12 @@ export const packsReducer = (
       return { ...state, ...action.packs }
     case 'packs/SET_PAGE':
       return { ...state, page: action.page }
+    case 'PACKS/SET-PACKS-PER-PAGE':
+      return { ...state, queryParams: { ...state.queryParams, pageCount: action.packsPerPage } }
     case 'packs/SET_MIN_CARDS_COUNT':
       return { ...state, queryParams: { ...state.queryParams, min: action.min } }
     case 'packs/SET_MAX_CARDS_COUNT':
       return { ...state, queryParams: { ...state.queryParams, max: action.max } }
-    case 'packs/SET_PAGE_COUNT':
-      return { ...state, queryParams: { ...state.queryParams, pageCount: action.pageCount } }
     case 'packs/SET_SORT_PACKS':
       return { ...state, queryParams: { ...state.queryParams, sortPacks: action.sortPacks } }
     case 'packs/SORT_PACKS_NAME':
@@ -131,11 +132,15 @@ export const packsReducer = (
 }
 
 export const setPacks = (packs: any) => ({ type: 'packs/SET_PACKS', packs } as const)
-export const setPage = (page: number) => ({ type: 'packs/SET_PAGE', page } as const)
+export const setPacksCurrentPage = (page: number) => ({ type: 'packs/SET_PAGE', page } as const)
+export const setPacksPerPage = (pageCount: number) => {
+  return {
+    type: 'PACKS/SET-PACKS-PER-PAGE',
+    packsPerPage: pageCount,
+  } as const
+}
 export const setMin = (min: number) => ({ type: 'packs/SET_MIN_CARDS_COUNT', min } as const)
 export const setMax = (max: number) => ({ type: 'packs/SET_MAX_CARDS_COUNT', max } as const)
-export const setPageCount = (pageCount: number) =>
-  ({ type: 'packs/SET_PAGE_COUNT', pageCount } as const)
 export const setSortPacks = (sortPacks: string) =>
   ({ type: 'packs/SET_SORT_PACKS', sortPacks } as const)
 export const setSortPacksName = (packName: string) =>
@@ -221,10 +226,10 @@ type InitialStateType = typeof initialState
 
 export type PacksActionType =
   | ReturnType<typeof setPacks>
-  | ReturnType<typeof setPage>
+  | ReturnType<typeof setPacksCurrentPage>
+  | ReturnType<typeof setPacksPerPage>
   | ReturnType<typeof setMin>
   | ReturnType<typeof setMax>
-  | ReturnType<typeof setPageCount>
   | ReturnType<typeof setSortPacks>
   | ReturnType<typeof setSortPacksName>
   | ReturnType<typeof setUserPacks>
