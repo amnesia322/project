@@ -7,12 +7,12 @@ import { ClassicButton } from '../../common/components/ClassicButton/ClassicButt
 import { PaginationComponent } from '../../common/components/Pagination/PaginationComponent'
 import { SearchComponent } from '../../common/components/SearchComponent/SearchComponent'
 
-import { PacsCardsButton } from './packCardsButtons/PackCardsButton'
 import { PackCardsDoubleRange } from './packCardsDoubleRange/PackCardsDubleRange'
 import { PackItem } from './packItem/PackItem'
 import { addPackTC, setPacksTC } from './packs-reducer'
 import s from './PacksList.module.css'
 import { RefreshFilter } from './refreshFilter/RefreshFilter'
+import { PacsCardsButton } from './searchButton/packCardsButtons/PackCardsButton'
 
 export const PacksList = () => {
   const dispatch = useAppDispatch()
