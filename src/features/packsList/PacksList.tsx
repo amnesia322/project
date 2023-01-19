@@ -17,7 +17,7 @@ export const PacksList = () => {
   const totalCount = useAppSelector(state => state.packs.cardPacksTotalCount)
   const page = useAppSelector(state => state.packs.page)
   const pageCount = useAppSelector(state => state.packs.queryParams.pageCount)
-
+  const packs = useAppSelector(state => state.packs.cardPacks)
   const onClickHandler = () => {
     dispatch(addPackTC({ cardsPack: { name: '!The Best team pack!' } }))
   }
@@ -28,35 +28,39 @@ export const PacksList = () => {
 
   return (
     <div className={s.wrapper}>
-      <div className={s.wrapperButton}>
-        {totalCount ? (
-          <>
+      {packs.length ? (
+        <>
+          <div className={s.wrapperButton}>
             <div className={s.titleTable}>Packs list</div>
             <ClassicButton title={'Add new pack'} onClick={onClickHandler} />
-          </>
-        ) : (
-          <div>
-            <div className={s.titleTable}>Is not Packs here</div>
           </div>
-        )}
-      </div>
-      <div className={s.wrapperTable}></div>
-      <div className={s.wrapperForHeaderTable}>
-        <SearchInput />
-        <div className={s.wrapperFilterButton}>
-          <SearchButton />
+          <div className={s.wrapperTable}></div>
+          <div className={s.wrapperForHeaderTable}>
+            <SearchInput />
+            <div className={s.wrapperFilterButton}>
+              <SearchButton />
+            </div>
+            <div className={s.wrapperForRange}>
+              <PackCardsDoubleRange />
+            </div>
+          </div>
+          <PackItem />
+          <PaginationComponent
+            pageCount={pageCount}
+            totalCount={totalCount}
+            currentPage={page}
+            isThisPlaceCards={false}
+          />
+        </>
+      ) : (
+        <div>
+          <div className={s.titleTable}>Is not Packs here</div>
+          <div className={s.wrapperForTitle}>
+            <div className={s.titleForEmptyPack}>This packs list is empty</div>
+            <ClassicButton title={'Add new pack'} />
+          </div>
         </div>
-        <div className={s.wrapperForRange}>
-          <PackCardsDoubleRange />
-        </div>
-      </div>
-      <PackItem />
-      <PaginationComponent
-        pageCount={pageCount}
-        totalCount={totalCount}
-        currentPage={page}
-        isThisPlaceCards={false}
-      />
+      )}
     </div>
   )
 }

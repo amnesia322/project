@@ -12,7 +12,6 @@ import { Link } from 'react-router-dom'
 
 import { PATH } from '../../../app/Routes/Pages'
 import { useAppDispatch, useAppSelector } from '../../../app/store'
-import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
 import { findSubstr } from '../../../common/utils/findSubscr'
 import { setPackCards } from '../cards/cards-reducer'
 
@@ -70,49 +69,41 @@ export const PackItem = () => {
   const getQuestions = (id: string) => {
     dispatch(setPackCards(id))
   }
-  /*onClick={() => getQuestions(row.id)}*/
 
   const styleForRow = {}
 
   return (
     <div>
-      {packs.length > 0 ? (
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 700 }} aria-label="customized table">
-            <TableHead>
-              <TableRow sx={styleForRow}>
-                <StyledTableCell>Name</StyledTableCell>
-                <StyledTableCell align="center">Cards</StyledTableCell>
-                <StyledTableCell align="center">Last Update</StyledTableCell>
-                <StyledTableCell align="center">Create by</StyledTableCell>
-                <StyledTableCell align="center">Actions</StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row, index) => (
-                <StyledTableRow key={index}>
-                  <StyledTableCell component="th" scope="row" onClick={() => getQuestions(row.id)}>
-                    <Link className={s.link} to={PATH.CARDS_LIST}>
-                      {row.name}
-                    </Link>
-                  </StyledTableCell>
-                  <StyledTableCell align="center">{row.cardsCount}</StyledTableCell>
-                  <StyledTableCell align="center">{row.lastUpdate}</StyledTableCell>
-                  <StyledTableCell align="center">{row.createBy}</StyledTableCell>
-                  <StyledTableCell align="center">
-                    <PackItemActions userId={row.userId} packId={row.id} />
-                  </StyledTableCell>
-                </StyledTableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      ) : (
-        <div className={s.wrapperForTitle}>
-          <div className={s.titleForEmptyPack}>This pack is empty. Click add new card</div>
-          <ClassicButton title={'Add new pack'} />
-        </div>
-      )}
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+          <TableHead>
+            <TableRow sx={styleForRow}>
+              <StyledTableCell>Name</StyledTableCell>
+              <StyledTableCell align="center">Cards</StyledTableCell>
+              <StyledTableCell align="center">Last Update</StyledTableCell>
+              <StyledTableCell align="center">Create by</StyledTableCell>
+              <StyledTableCell align="center">Actions</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row, index) => (
+              <StyledTableRow key={index}>
+                <StyledTableCell component="th" scope="row" onClick={() => getQuestions(row.id)}>
+                  <Link className={s.link} to={PATH.CARDS_LIST}>
+                    {row.name}
+                  </Link>
+                </StyledTableCell>
+                <StyledTableCell align="center">{row.cardsCount}</StyledTableCell>
+                <StyledTableCell align="center">{row.lastUpdate}</StyledTableCell>
+                <StyledTableCell align="center">{row.createBy}</StyledTableCell>
+                <StyledTableCell align="center">
+                  <PackItemActions userId={row.userId} packId={row.id} />
+                </StyledTableCell>
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   )
 }
