@@ -1,0 +1,21 @@
+.wrapperLink {
+    margin-top: 25px;
+}
+.wrapperLink.marginLeft {
+    margin-left: 135px;
+}
+
+.linkButton{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+
+    font-family: 'Montserrat', serif;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: normal;
+    line-height: 24px;
+    color: #000000;
+    text-align: center;
+    text-decoration: none;
+}

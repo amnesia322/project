@@ -4,12 +4,11 @@ import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRen
 import LogoutIcon from '@mui/icons-material/Logout'
 import PhotoCameraOutlinedIcon from '@mui/icons-material/PhotoCameraOutlined'
 import { Avatar, Fab } from '@mui/material'
-import { Link } from 'react-router-dom'
 
-import { PATH } from '../../app/Routes/Pages'
 import { useAppDispatch, useAppSelector } from '../../app/store'
 import { ClassicButton } from '../../common/components/ClassicButton/ClassicButton'
 import { EditableSpan } from '../../common/components/EditableSpan/EditableSpan'
+import { BackToPackList } from '../packsList/backToPackListButton/BackToPackList'
 
 import { ProfileDataType } from './profile-api'
 import { getProfileDataTC, logoutTC, updateProfileDataTC } from './profile-reducer'
@@ -40,9 +39,7 @@ const Profile = memo(() => {
 
   return (
     <>
-      <div className={s.titleLink}>
-        <Link to={PATH.PACK_LIST}>Back to Packs List</Link>
-      </div>
+      <BackToPackList className={'marginLeft'} />
       <div className={s.profilePage}>
         <div className={s.profileContainer}>
           <h2 className={s.profileTitle}>Personal Information</h2>

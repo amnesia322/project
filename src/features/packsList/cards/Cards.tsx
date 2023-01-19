@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react'
 
-import { Link } from 'react-router-dom'
-
-import { PATH } from '../../../app/Routes/Pages'
 import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
 import { PaginationComponent } from '../../../common/components/Pagination/PaginationComponent'
+import { BackToPackList } from '../backToPackListButton/BackToPackList'
 import s from '../PacksList.module.css'
 import { SearchInput } from '../SearchInput/SearchInput'
 
@@ -43,9 +41,7 @@ export const Cards = () => {
 
   return (
     <div className={s.wrapper}>
-      <div className={s.titleLink}>
-        <Link to={PATH.PACK_LIST}>Back to Packs List</Link>
-      </div>
+      <BackToPackList />
       {isMyId ? (
         <div className={s.wrapperButton}>
           <div className={s.titleTable}>My Pack</div>

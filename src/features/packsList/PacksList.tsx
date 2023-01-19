@@ -58,7 +58,7 @@ export const PacksList = () => {
           <div className={s.titleTable}>Is not Packs here</div>
           <div className={s.wrapperForTitle}>
             <div className={s.titleForEmptyPack}>This packs list is empty</div>
-            <ClassicButton title={'Add new pack'} />
+            <ClassicButton title={'Add new pack'} onClick={onClickHandler} />
           </div>
         </div>
       )}
