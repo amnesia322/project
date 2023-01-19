@@ -93,6 +93,7 @@ const initialState = {
   maxCardsCount: 0,
   minCardsCount: 0,
   page: 1, // выбранная страница,
+  isPacksFetched: false,
   queryParams: {
     min: 0,
     max: 200,
@@ -101,6 +102,15 @@ const initialState = {
     packName: '',
     user_id: '',
   },
+}
+
+export const emptyQueryParams: InitialStateType['queryParams'] = {
+  pageCount: 5,
+  sortPacks: '0updated',
+  user_id: '',
+  packName: '',
+  min: 0,
+  max: 110,
 }
 
 export const packsReducer = (
@@ -122,7 +132,15 @@ export const packsReducer = (
       return { ...state, queryParams: { ...state.queryParams, packName: action.packName } }
     case 'packs/SET_USER_PACKS':
       return { ...state, queryParams: { ...state.queryParams, user_id: action.user_id } }
-
+    case 'packs/SET_IS_FETCHED':
+      return { ...state, isPacksFetched: action.value }
+    case 'packs/REFRESH-FILTERS':
+      return {
+        ...state,
+        minCardsCount: 0,
+        maxCardsCount: 110,
+        queryParams: { ...state.queryParams, ...action.queryParams },
+      }
     default:
       return state
   }
@@ -148,6 +166,10 @@ export const setSortPacksName = (packName: string) =>
   ({ type: 'packs/SORT_PACKS_NAME', packName } as const)
 export const setUserPacks = (user_id: string) =>
   ({ type: 'packs/SET_USER_PACKS', user_id } as const)
+export const setIsPacksFetched = (value: boolean) =>
+  ({ type: 'packs/SET_IS_FETCHED', value } as const)
+export const refreshFilters = (queryParams: InitialStateType['queryParams']) =>
+  ({ type: 'packs/REFRESH-FILTERS', queryParams } as const)
 
 export const setPacksTC = (): AppThunk => async (dispatch, getState) => {
   dispatch(setAppStatusAC('loading'))
@@ -160,6 +182,7 @@ export const setPacksTC = (): AppThunk => async (dispatch, getState) => {
 
     dispatch(setPacks(response.data))
     dispatch(setAppStatusAC('succeeded'))
+    dispatch(setIsPacksFetched(true))
   } catch (error) {
     const err = error as Error | AxiosError<{ error: string }>
 
@@ -233,3 +256,5 @@ export type PacksActionType =
   | ReturnType<typeof setSortPacks>
   | ReturnType<typeof setSortPacksName>
   | ReturnType<typeof setUserPacks>
+  | ReturnType<typeof setIsPacksFetched>
+  | ReturnType<typeof refreshFilters>
