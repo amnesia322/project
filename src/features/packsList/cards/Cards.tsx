@@ -61,7 +61,7 @@ export const Cards = () => {
         {!!cards.length && <SearchInput />}
         <CardItem isMyId={isMyId} />
       </div>
-      {totalCount > 5 && (
+      {totalCount > 5 && !!cards.length && (
         <PaginationComponent
           pageCount={pageCount}
           totalCount={totalCount}

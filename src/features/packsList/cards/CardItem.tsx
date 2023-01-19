@@ -82,8 +82,8 @@ export const CardItem = ({ isMyId }: { isMyId: boolean }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row, index) => (
-                <StyledTableRow key={index}>
+              {rows.map(row => (
+                <StyledTableRow key={row.id}>
                   <StyledTableCell component="th" scope="row">
                     {row.questions}
                   </StyledTableCell>

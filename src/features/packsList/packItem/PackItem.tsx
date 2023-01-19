@@ -86,8 +86,8 @@ export const PackItem = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row, index) => (
-              <StyledTableRow key={index}>
+            {rows.map(row => (
+              <StyledTableRow key={row.id}>
                 <StyledTableCell component="th" scope="row" onClick={() => getQuestions(row.id)}>
                   <Link className={s.link} to={PATH.CARDS_LIST}>
                     {row.name}
