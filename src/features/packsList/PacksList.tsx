@@ -3,9 +3,7 @@ import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../app/store'
 import { ClassicButton } from '../../common/components/ClassicButton/ClassicButton'
 import { PaginationComponent } from '../../common/components/Pagination/PaginationComponent'
-import SuperInputText from '../../common/components/SuperInputText/SuperInputText'
 
-import { PacsCardsButton } from './packCardsButtons/PackCardsButton'
 import { PackCardsDoubleRange } from './packCardsDoubleRange/PackCardsDubleRange'
 import { PackItem } from './packItem/PackItem'
 import { addPackTC, setPacksTC } from './packs-reducer'
@@ -13,7 +11,6 @@ import s from './PacksList.module.css'
 import { SearchButton } from './searchButton/SearchButton'
 import { SearchInput } from './SearchInput/SearchInput'
 
-// import search from '../../assets/svg/IconSearch.svg'
 export const PacksList = () => {
   const dispatch = useAppDispatch()
   const query = useAppSelector(state => state.packs.queryParams)
@@ -21,7 +18,6 @@ export const PacksList = () => {
   const page = useAppSelector(state => state.packs.page)
   const pageCount = useAppSelector(state => state.packs.queryParams.pageCount)
 
-  // console.log(packs.map(el => el._id))
   const onClickHandler = () => {
     dispatch(addPackTC({ cardsPack: { name: '!The Best team pack!' } }))
   }

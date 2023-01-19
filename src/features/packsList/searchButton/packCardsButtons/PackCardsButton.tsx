@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
-import { useAppDispatch, useAppSelector } from '../../../app/store'
-import SuperButton from '../../../common/components/SuperButton/SuperButton'
-import { setUserPacks } from '../packs-reducer'
+import { useAppDispatch, useAppSelector } from '../../../../app/store'
+import SuperButton from '../../../../common/components/SuperButton/SuperButton'
+import { setUserPacks } from '../../packs-reducer'
 
 export const PacsCardsButton = () => {
   const [onOff, setOnOff] = useState(false)
