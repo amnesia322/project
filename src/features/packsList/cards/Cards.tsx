@@ -6,6 +6,7 @@ import { PATH } from '../../../app/Routes/Pages'
 import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
 import { PaginationComponent } from '../../../common/components/Pagination/PaginationComponent'
+import { SearchComponent } from '../../../common/components/SearchComponent/SearchComponent'
 import s from '../PacksList.module.css'
 
 import { CardItem } from './CardItem'
@@ -41,7 +42,7 @@ export const Cards = () => {
   }
 
   return (
-    <div className={s.wrapper}>
+    <div className={s.wrapper} style={{ width: '100%' }}>
       <div className={s.titleLink}>
         <Link to={PATH.PACK_LIST}>Back to Packs List</Link>
       </div>
@@ -56,6 +57,7 @@ export const Cards = () => {
           {!!cards.length && <ClassicButton title={'Learn to pack'} />}
         </div>
       )}
+      <SearchComponent isThisPlaceCards={true} />
       <div className={s.wrapperTable}>
         <CardItem isMyId={isMyId} />
       </div>
