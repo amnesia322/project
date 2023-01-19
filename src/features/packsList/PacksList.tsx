@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 
 import { useAppDispatch, useAppSelector } from '../../app/store'
+import img from '../../assets/svg/cleanFilter.svg'
 import { ClassicButton } from '../../common/components/ClassicButton/ClassicButton'
 import { PaginationComponent } from '../../common/components/Pagination/PaginationComponent'
 
@@ -10,7 +11,6 @@ import { addPackTC, setPacksTC } from './packs-reducer'
 import s from './PacksList.module.css'
 import { SearchButton } from './searchButton/SearchButton'
 import { SearchInput } from './SearchInput/SearchInput'
-
 export const PacksList = () => {
   const dispatch = useAppDispatch()
   const query = useAppSelector(state => state.packs.queryParams)
@@ -43,6 +43,7 @@ export const PacksList = () => {
             <div className={s.wrapperForRange}>
               <PackCardsDoubleRange />
             </div>
+            <img className={s.cleanFilter} src={img} alt={'img'} />
           </div>
           <PackItem />
           <PaginationComponent
