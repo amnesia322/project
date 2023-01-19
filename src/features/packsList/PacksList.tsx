@@ -2,7 +2,10 @@ import React, { useEffect } from 'react'
 
 import { useAppDispatch, useAppSelector } from '../../app/store'
 import { ClassicButton } from '../../common/components/ClassicButton/ClassicButton'
+import { PaginationComponent } from '../../common/components/Pagination/PaginationComponent'
+import SuperInputText from '../../common/components/SuperInputText/SuperInputText'
 
+import { PacsCardsButton } from './packCardsButtons/PackCardsButton'
 import { PackCardsDoubleRange } from './packCardsDoubleRange/PackCardsDubleRange'
 import { PackItem } from './packItem/PackItem'
 import { addPackTC, setPacksTC } from './packs-reducer'
@@ -13,7 +16,10 @@ import { SearchInput } from './SearchInput/SearchInput'
 // import search from '../../assets/svg/IconSearch.svg'
 export const PacksList = () => {
   const dispatch = useAppDispatch()
-  const packs = useAppSelector(state => state.packs.cardPacks)
+  const query = useAppSelector(state => state.packs.queryParams)
+  const totalCount = useAppSelector(state => state.packs.cardPacksTotalCount)
+  const page = useAppSelector(state => state.packs.page)
+  const pageCount = useAppSelector(state => state.packs.queryParams.pageCount)
 
   // console.log(packs.map(el => el._id))
   const onClickHandler = () => {
@@ -22,12 +28,12 @@ export const PacksList = () => {
 
   useEffect(() => {
     dispatch(setPacksTC())
-  }, [])
+  }, [page, query, pageCount, query.user_id, query.max])
 
   return (
     <div className={s.wrapper}>
       <div className={s.wrapperButton}>
-        {packs.length ? (
+        {totalCount ? (
           <>
             <div className={s.titleTable}>Packs list</div>
             <ClassicButton title={'Add new pack'} onClick={onClickHandler} />
@@ -49,6 +55,12 @@ export const PacksList = () => {
         </div>
       </div>
       <PackItem />
+      <PaginationComponent
+        pageCount={pageCount}
+        totalCount={totalCount}
+        currentPage={page}
+        isThisPlaceCards={false}
+      />
     </div>
   )
 }

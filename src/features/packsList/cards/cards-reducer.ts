@@ -15,7 +15,7 @@ const initialState = {
     max: 5,
     sortCards: '0grade',
     page: 1,
-    pageCount: 7,
+    pageCount: 5,
   },
   cards: [] as CardType[],
   cardsTotalCount: 100,
@@ -48,11 +48,11 @@ export const cardsReducer = (
 }
 
 export const setCards = (cards: any) => ({ type: 'cards/SET_CARDS', cards } as const)
-export const setCardsPage = (page: number) => ({ type: 'cards/SET_PAGE', page } as const)
+export const setCardsCurrentPage = (page: number) => ({ type: 'cards/SET_PAGE', page } as const)
+export const setCardsPerPage = (pageCount: number) =>
+  ({ type: 'cards/SET_PAGE_COUNT', pageCount } as const)
 export const setCardsQuestion = (cardQuestion: string) =>
   ({ type: 'cards/SET_CARDS_QUESTION', cardQuestion } as const)
-export const setCardsPageCount = (pageCount: number) =>
-  ({ type: 'cards/SET_PAGE_COUNT', pageCount } as const)
 export const setSortCards = (sortCards: string) =>
   ({ type: 'cards/SET_SORT_CARDS', sortCards } as const)
 export const setPackCards = (cardsPack_id: string) =>
@@ -65,11 +65,11 @@ export const setCardsTC =
     let queryParams = { ...getState().cards.queryParams }
 
     try {
-      const payload = { ...queryParams, cardsPack_id }
+      const payload = { ...queryParams, cardsPack_id, page: getState().cards.page }
       const response = await cardsApi.getCards(payload)
 
       dispatch(setCards(response.data))
-      dispatch(setPackCards(cardsPack_id))
+      // dispatch(setPackCards(cardsPack_id))
       dispatch(setAppStatusAC('succeeded'))
     } catch (error) {
       const err = error as Error | AxiosError<{ error: string }>
@@ -138,8 +138,8 @@ type InitialStateType = typeof initialState
 
 export type CardsActionType =
   | ReturnType<typeof setCards>
-  | ReturnType<typeof setCardsPage>
+  | ReturnType<typeof setCardsCurrentPage>
+  | ReturnType<typeof setCardsPerPage>
   | ReturnType<typeof setCardsQuestion>
-  | ReturnType<typeof setCardsPageCount>
   | ReturnType<typeof setSortCards>
   | ReturnType<typeof setPackCards>

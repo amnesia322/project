@@ -14,10 +14,11 @@ import { PATH } from '../../../app/Routes/Pages'
 import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
 import { findSubstr } from '../../../common/utils/findSubscr'
-import { setCardsTC } from '../cards/cards-reducer'
+import { setPackCards } from '../cards/cards-reducer'
 
 import s from './PackItem.module.css'
 import { PackItemActions } from './packItremActions/PackItemActions'
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -67,8 +68,9 @@ export const PackItem = () => {
   )
 
   const getQuestions = (id: string) => {
-    dispatch(setCardsTC(id))
+    dispatch(setPackCards(id))
   }
+  /*onClick={() => getQuestions(row.id)}*/
 
   const styleForRow = {}
 
