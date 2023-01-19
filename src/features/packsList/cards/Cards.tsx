@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
 import { PaginationComponent } from '../../../common/components/Pagination/PaginationComponent'
 import { BackToPackList } from '../backToPackListButton/BackToPackList'
+import { SearchComponent } from '../../../common/components/SearchComponent/SearchComponent'
 import s from '../PacksList.module.css'
 import { SearchInput } from '../SearchInput/SearchInput'
 
@@ -53,6 +54,7 @@ export const Cards = () => {
           {!!cards.length && <ClassicButton title={'Learn to pack'} />}
         </div>
       )}
+      <SearchComponent isThisPlaceCards={true} />
       <div className={s.wrapperTable}>
         {!!cards.length && <SearchInput />}
         <CardItem isMyId={isMyId} />
