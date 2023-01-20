@@ -39,27 +39,27 @@ export const PacksPage = () => {
 
   return (
     <div className={s.wrapper}>
+      <div className={s.wrapperButton}>
+        <div className={s.titleTable}>Packs list</div>
+        <ClassicButton title={'Add new pack'} onClick={onClickHandler} />
+      </div>
+      <div className={s.wrapperTable}></div>
+      <div className={s.wrapperForHeaderTable}>
+        <div className={s.wrapperForSearchComponent}>
+          <SearchComponent isThisPlaceCards={false} />
+        </div>
+        <div className={s.wrapperFilterButton}>
+          <SearchButton />
+        </div>
+        <div className={s.wrapperForRange}>
+          <PackCardsDoubleRange />
+        </div>
+        <div className={s.wrapperForRefreshFilter}>
+          <RefreshFilter />
+        </div>
+      </div>
       {totalCount ? (
         <>
-          <div className={s.wrapperButton}>
-            <div className={s.titleTable}>Packs list</div>
-            <ClassicButton title={'Add new pack'} onClick={onClickHandler} />
-          </div>
-          <div className={s.wrapperTable}></div>
-          <div className={s.wrapperForHeaderTable}>
-            <div className={s.wrapperForSearchComponent}>
-              <SearchComponent isThisPlaceCards={false} />
-            </div>
-            <div className={s.wrapperFilterButton}>
-              <SearchButton />
-            </div>
-            <div className={s.wrapperForRange}>
-              <PackCardsDoubleRange />
-            </div>
-            <div className={s.wrapperForRefreshFilter}>
-              <RefreshFilter />
-            </div>
-          </div>
           <PacksList />
           <PaginationComponent
             pageCount={pageCount}
@@ -70,10 +70,10 @@ export const PacksPage = () => {
         </>
       ) : (
         <div>
-          <div className={s.titleTable}>Is not Packs here</div>
+          {/*<div className={s.titleTable}>Is not Packs here</div>*/}
           <div className={s.wrapperForTitle}>
-            <div className={s.titleForEmptyPack}>This packs list is empty</div>
-            <ClassicButton title={'Add new pack'} />
+            <div className={s.titleForEmptyPack}>Packs list is empty. Сhange search parameters</div>
+            {/*<ClassicButton title={'Add new pack'} />*/}
           </div>
         </div>
       )}

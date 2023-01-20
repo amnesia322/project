@@ -1,7 +1,7 @@
 import React from 'react'
 
 // eslint-disable-next-line import/order
-import ReactDOM, { createRoot } from 'react-dom/client'
+import { createRoot } from 'react-dom/client'
 
 import './index.css'
 import { Provider } from 'react-redux'

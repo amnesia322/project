@@ -73,16 +73,16 @@ export const Cards = () => {
       ) : (
         <div className={s.wrapperButton}>
           <div className={s.titleTable}>{chosenPack?.name}</div>
-          {!!cards.length && <ClassicButton title={'Learn to pack'} />}
+          {totalCount && <ClassicButton title={'Learn to pack'} />}
         </div>
       )}
       <div className={s.wrapperTable}>
         <div className={s.wrapperForSearchComponent}>
-          {!!cards.length && <SearchComponent isThisPlaceCards={true} />}
+          {totalCount && <SearchComponent isThisPlaceCards={true} />}
         </div>
         <CardItem isMyId={isMyId} />
       </div>
-      {totalCount > 5 && !!cards.length && (
+      {totalCount > 5 && (
         <PaginationComponent
           pageCount={pageCount}
           totalCount={totalCount}
