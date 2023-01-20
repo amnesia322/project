@@ -7,7 +7,6 @@ import { ClassicButton } from '../../common/components/ClassicButton/ClassicButt
 import { PaginationComponent } from '../../common/components/Pagination/PaginationComponent'
 import { SearchComponent } from '../../common/components/SearchComponent/SearchComponent'
 
-import { PacsCardsButton } from './packCardsButtons/PackCardsButton'
 import { PackCardsDoubleRange } from './packCardsDoubleRange/PackCardsDubleRange'
 import { PackItem } from './packItem/PackItem'
 import { addPackTC, setPacksTC } from './packs-reducer'
@@ -28,7 +27,7 @@ export const PacksList = () => {
 
   useEffect(() => {
     dispatch(setPacksTC())
-  }, [page, query, pageCount, query.user_id, query.max])
+  }, [page, pageCount, query.max, query.min, query.packName, query.user_id])
 
   if (!isFetched) {
     return (
@@ -40,45 +39,44 @@ export const PacksList = () => {
 
   return (
     <div className={s.wrapper}>
-      <div className={s.wrapperButton}>
-        {!!totalCount ? (
-            <>
-                <div className={s.wrapperButton}>
-                    <div className={s.titleTable}>Packs list</div>
-                    <ClassicButton title={'Add new pack'} onClick={onClickHandler} />
-                </div>
-                <div className={s.wrapperTable}></div>
-                <div className={s.wrapperForHeaderTable}>
-                    <div className={s.wrapperForSearchComponent}>
-                        <SearchComponent isThisPlaceCards={false} />
-                    </div>
-                    <div className={s.wrapperFilterButton}>
-                        <SearchButton />
-                    </div>
-                    <div className={s.wrapperForRange}>
-                        <PackCardsDoubleRange />
-                    </div>
-                    <div className={s.wrapperForRefrechFilter}>
-                        <RefreshFilter />
-                    </div>
-                </div>
-                <PackItem />
-                <PaginationComponent
-                    pageCount={pageCount}
-                    totalCount={totalCount}
-                    currentPage={page}
-                    isThisPlaceCards={false}
-                />
-            </>
-        ) : (
-            <div>
-                <div className={s.titleTable}>Is not Packs here</div>
-                <div className={s.wrapperForTitle}>
-                    <div className={s.titleForEmptyPack}>This packs list is empty</div>
-                    <ClassicButton title={'Add new pack'} />
-                </div>
+      {totalCount ? (
+        <>
+          <div className={s.wrapperButton}>
+            <div className={s.titleTable}>Packs list</div>
+            <ClassicButton title={'Add new pack'} onClick={onClickHandler} />
+          </div>
+          <div className={s.wrapperTable}></div>
+          <div className={s.wrapperForHeaderTable}>
+            <div className={s.wrapperForSearchComponent}>
+              <SearchComponent isThisPlaceCards={false} />
             </div>
-        )}
-      </div>
-        )
+            <div className={s.wrapperFilterButton}>
+              <SearchButton />
+            </div>
+            <div className={s.wrapperForRange}>
+              <PackCardsDoubleRange />
+            </div>
+            <div className={s.wrapperForRefreshFilter}>
+              <RefreshFilter />
+            </div>
+          </div>
+          <PackItem />
+          <PaginationComponent
+            pageCount={pageCount}
+            totalCount={totalCount}
+            currentPage={page}
+            isThisPlaceCards={false}
+          />
+        </>
+      ) : (
+        <div>
+          <div className={s.titleTable}>Is not Packs here</div>
+          <div className={s.wrapperForTitle}>
+            <div className={s.titleForEmptyPack}>This packs list is empty</div>
+            <ClassicButton title={'Add new pack'} />
+          </div>
+        </div>
+      )}
+    </div>
+  )
 }
