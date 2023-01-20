@@ -32,10 +32,10 @@ export const SearchComponent = (props: SearchComponentPropsType) => {
 
   return (
     <div>
-      <span className={s.titleButton}> Search</span>
+      <span className={s.titleSearchButton}> Search</span>
       <Paper
         component="form"
-        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
+        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '100%' }}
       >
         <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
           <SearchIcon />

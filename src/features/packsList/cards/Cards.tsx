@@ -7,12 +7,14 @@ import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
 import { PaginationComponent } from '../../../common/components/Pagination/PaginationComponent'
 import { SearchComponent } from '../../../common/components/SearchComponent/SearchComponent'
+import { BackToPackList } from '../backToPackListButton/BackToPackList'
 import { deletePackTC, editPackTitleTC } from '../packs-reducer'
 import s from '../PacksList.module.css'
 import { SearchInput } from '../SearchInput/SearchInput'
 
 import { CardItem } from './CardItem'
 import { addCardTC, setCardsTC } from './cards-reducer'
+import s from './Cards.module.css'
 import { MyPackMenu } from './myPackMenu/MyPackMenu'
 
 export const Cards = () => {
@@ -56,10 +58,8 @@ export const Cards = () => {
   }
 
   return (
-    <div className={s.wrapper} style={{ width: '100%' }}>
-      <div className={s.titleLink}>
-        <Link to={PATH.PACK_LIST}>Back to Packs List</Link>
-      </div>
+    <div className={s.wrapper}>
+      <BackToPackList />
       {isMyId ? (
         <div className={s.wrapperButton}>
           <div className={s.titleTable}>
@@ -78,9 +78,10 @@ export const Cards = () => {
           {!!cards.length && <ClassicButton title={'Learn to pack'} />}
         </div>
       )}
-      <SearchComponent isThisPlaceCards={true} />
       <div className={s.wrapperTable}>
-        {!!cards.length && <SearchInput />}
+        <div className={s.wrapperForSearchComponent}>
+          {!!cards.length && <SearchComponent isThisPlaceCards={true} />}
+        </div>
         <CardItem isMyId={isMyId} />
       </div>
       {totalCount > 5 && !!cards.length && (

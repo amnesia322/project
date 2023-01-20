@@ -30,6 +30,7 @@ export const PackCardsDoubleRange = () => {
 
   return (
     <div className={s.main}>
+      <span className={s.titleButton}>Number of Cards</span>
       <div className={s.sliderBlock}>
         <div className={s.value}>{sliderLocalValue[0]}</div>
         <div className={s.slider}>
