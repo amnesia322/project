@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 
+import { useParams } from 'react-router-dom'
+
 import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
 import { PaginationComponent } from '../../../common/components/Pagination/PaginationComponent'
@@ -20,6 +22,7 @@ export const Cards = () => {
   const page = useAppSelector(state => state.cards.page)
   const pageCount = useAppSelector(state => state.cards.queryParams.pageCount)
   const cards = useAppSelector(state => state.cards.cards)
+  const { id } = useParams()
 
   const dispatch = useAppDispatch()
 
@@ -32,8 +35,8 @@ export const Cards = () => {
   })
 
   useEffect(() => {
-    dispatch(setCardsTC(cardsPack_id))
-  }, [page, cardsPack_id, pageCount, query.cardQuestion, query.min, query.max, query.sortCards])
+    dispatch(setCardsTC(id || cardsPack_id))
+  }, [page, id, pageCount, query.cardQuestion, query.min, query.max, query.sortCards])
 
   const isMyId = myId === chosenPack?.user_id
 

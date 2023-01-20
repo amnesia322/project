@@ -8,6 +8,7 @@ export const PacksCardsButton = () => {
   const myPacks = useAppSelector(state => state.packs.queryParams.user_id)
   const userId = useAppSelector(state => state.profile.user._id)
   const dispatch = useAppDispatch()
+
   const userPackHandler = () => {
     dispatch(setUserPacks(userId))
   }
