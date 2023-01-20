@@ -3,15 +3,15 @@ import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/store'
+import { BackToPackList } from '../../../common/components/BackToPackListButton/BackToPackList'
 import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
 import { PaginationComponent } from '../../../common/components/Pagination/PaginationComponent'
 import { SearchComponent } from '../../../common/components/SearchComponent/SearchComponent'
-import { BackToPackList } from '../backToPackListButton/BackToPackList'
 import { deletePackTC, editPackTitleTC } from '../packs-reducer'
 
-import { CardItem } from './CardItem'
 import { addCardTC, setCardsTC } from './cards-reducer'
 import s from './Cards.module.css'
+import { CardsList } from './CardsList/CardsList'
 import { MyPackMenu } from './myPackMenu/MyPackMenu'
 
 export const Cards = () => {
@@ -33,9 +33,7 @@ export const Cards = () => {
       return chosenPack
     }
   })
-  const cardsCount = chosenPack?.cardsCount
 
-  console.log('CC', cardsCount)
   useEffect(() => {
     dispatch(setCardsTC(id || cardsPack_id))
   }, [page, id, pageCount, query.cardQuestion, query.min, query.max, query.sortCards])
@@ -75,14 +73,14 @@ export const Cards = () => {
       ) : (
         <div className={s.wrapperButton}>
           <div className={s.titleTable}>{chosenPack?.name}</div>
-          {cardsPack_id && <ClassicButton title={'Learn to pack'} />}
+          {totalCount && <ClassicButton title={'Learn to pack'} />}
         </div>
       )}
       <div className={s.wrapperTable}>
         <div className={s.wrapperForSearchComponent}>
-          {!!(cardsCount || cards.length) && <SearchComponent isThisPlaceCards={true} />}
+          {totalCount && <SearchComponent isThisPlaceCards={true} />}
         </div>
-        <CardItem isMyId={isMyId} cardsCount={cardsCount} />
+        <CardsList isMyId={isMyId} />
       </div>
       {totalCount > 5 && (
         <PaginationComponent

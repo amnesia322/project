@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { Slider } from '@mui/material'
 
 import { useAppDispatch, useAppSelector } from '../../../app/store'
-import { setSliderValue } from '../packs-reducer'
-import s from '../PacksPage.module.css'
+import { setSliderValue } from '../../../features/packsPage/packs-reducer'
+import s from '../../../features/packsPage/PacksPage.module.css'
 
 export const PackCardsDoubleRange = () => {
   const appStatus = useAppSelector(state => state.app.status)

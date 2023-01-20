@@ -5,9 +5,9 @@ import PhotoCameraOutlinedIcon from '@mui/icons-material/PhotoCameraOutlined'
 import { Avatar, Fab } from '@mui/material'
 
 import { useAppDispatch, useAppSelector } from '../../app/store'
+import { BackToPackList } from '../../common/components/BackToPackListButton/BackToPackList'
 import { ClassicButton } from '../../common/components/ClassicButton/ClassicButton'
 import { EditableSpan } from '../../common/components/EditableSpan/EditableSpan'
-import { BackToPackList } from '../packsPage/backToPackListButton/BackToPackList'
 
 import { ProfileDataType } from './profile-api'
 import { getProfileDataTC, logoutTC, updateProfileDataTC } from './profile-reducer'

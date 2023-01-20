@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 
 import { FormControl, MenuItem, Pagination, Select, SelectChangeEvent } from '@mui/material'
 
-import { useAppDispatch } from '../../../app/store'
+import { useAppDispatch, useAppSelector } from '../../../app/store'
 import {
   setCardsCurrentPage,
   setCardsPerPage,
@@ -13,7 +13,7 @@ import s from './PaginationComponent.module.css'
 
 export const PaginationComponent = (props: PaginationPropsType) => {
   const { currentPage, pageCount, totalCount, isThisPlaceCards } = props
-
+  const appStatus = useAppSelector(state => state.app.status)
   const limit = Math.ceil(totalCount / pageCount)
   const dispatch = useAppDispatch()
   const perPageValue = pageCount.toString()
@@ -39,7 +39,12 @@ export const PaginationComponent = (props: PaginationPropsType) => {
 
   return (
     <div className={s.container}>
-      <Pagination onChange={handler} page={currentPage} count={limit} />
+      <Pagination
+        onChange={handler}
+        page={currentPage}
+        count={limit}
+        disabled={appStatus === 'loading'}
+      />
       <div className={s.perPage}>
         <div>Show</div>
         <FormControl sx={{ margin: '0 1rem' }} size="small">

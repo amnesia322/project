@@ -65,14 +65,16 @@ export type CreateCardRequestType = {
 }
 
 export type UpdateCardRequestType = {
-  _id: string
-  answer?: string
-  question?: string
-  cardsPack_id?: string
-  grade?: number
-  shots?: number
-  user_id?: string
-  created?: string
-  updated?: string
-  questionImg?: string
+  card: {
+    _id: string
+    answer?: string
+    question?: string
+    cardsPack_id?: string
+    grade?: number
+    shots?: number
+    user_id?: string
+    created?: string
+    updated?: string
+    questionImg?: string
+  }
 }

@@ -7,6 +7,8 @@ type ClassicButtonPropsType = {
   children?: JSX.Element | JSX.Element[]
   onClick?: () => void
   sx?: { [key: string]: string }
+
+  disabled?: boolean
 }
 
 export const ClassicButton = (props: ClassicButtonPropsType) => {
@@ -27,6 +29,7 @@ export const ClassicButton = (props: ClassicButtonPropsType) => {
         ...props.sx,
       }}
       onClick={props.onClick}
+      disabled={props.disabled}
     >
       {props.title}
       {props.children}

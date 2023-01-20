@@ -1,6 +1,6 @@
 import { setIsLoggedInAC } from '../features/auth/auth-reducer'
-import { profileAPI } from '../features/Profile/profile-api'
-import { setProfileData } from '../features/Profile/profile-reducer'
+import { profileAPI } from '../features/profile/profile-api'
+import { setProfileData } from '../features/profile/profile-reducer'
 
 import { AppThunk } from './store'
 

@@ -9,14 +9,14 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 
-import { useAppDispatch, useAppSelector } from '../../../app/store'
-import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
-import { findSubstr } from '../../../common/utils/findSubscr'
-import s from '../packsList/PacksList.module.css'
+import { useAppDispatch, useAppSelector } from '../../../../app/store'
+import { ClassicButton } from '../../../../common/components/ClassicButton/ClassicButton'
+import { findSubstr } from '../../../../common/utils/findSubscr'
+import s from '../../packsList/PacksList.module.css'
+import { addCardTC } from '../cards-reducer'
 
 import { CardItemActions } from './cardItemActions/CardItemActions'
-import { addCardTC } from './cards-reducer'
-import { BasicRating } from './cardsRating/CardsRating'
+import { CardsRating } from './cardsRating/CardsRating'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -40,7 +40,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }))
 
-export const CardItem = ({ isMyId }: CardItemPropsType) => {
+export const CardsList = ({ isMyId }: CardItemPropsType) => {
   const cards = useAppSelector(state => state.cards.cards)
   const cardsPack_id = useAppSelector(state => state.cards.queryParams.cardsPack_id)
   const dispatch = useAppDispatch()
@@ -90,11 +90,11 @@ export const CardItem = ({ isMyId }: CardItemPropsType) => {
                   <StyledTableCell align="center">{row.answer}</StyledTableCell>
                   <StyledTableCell align="center">{row.lastUpdate}</StyledTableCell>
                   <StyledTableCell align="center">
-                    <BasicRating grade={row.grade} />
+                    <CardsRating grade={row.grade} />
                   </StyledTableCell>
                   {isMyId && (
                     <StyledTableCell align="center">
-                      <CardItemActions />
+                      <CardItemActions cardId={row.id} />
                     </StyledTableCell>
                   )}
                 </StyledTableRow>
