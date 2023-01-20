@@ -4,7 +4,7 @@ import { Slider } from '@mui/material'
 
 import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { setSliderValue } from '../packs-reducer'
-import s from '../PacksList.module.css'
+import s from '../PacksPage.module.css'
 
 export const PackCardsDoubleRange = () => {
   const appStatus = useAppSelector(state => state.app.status)

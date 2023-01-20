@@ -8,12 +8,12 @@ import { PaginationComponent } from '../../common/components/Pagination/Paginati
 import { SearchComponent } from '../../common/components/SearchComponent/SearchComponent'
 
 import { PackCardsDoubleRange } from './packCardsDoubleRange/PackCardsDubleRange'
-import { PackItem } from './packItem/PackItem'
 import { addPackTC, setPacksTC } from './packs-reducer'
-import s from './PacksList.module.css'
+import { PacksList } from './packsList/PacksList'
+import s from './PacksPage.module.css'
 import { RefreshFilter } from './refreshFilter/RefreshFilter'
 import { SearchButton } from './searchButton/SearchButton'
-export const PacksList = () => {
+export const PacksPage = () => {
   const dispatch = useAppDispatch()
   const query = useAppSelector(state => state.packs.queryParams)
   const totalCount = useAppSelector(state => state.packs.cardPacksTotalCount)
@@ -60,7 +60,7 @@ export const PacksList = () => {
               <RefreshFilter />
             </div>
           </div>
-          <PackItem />
+          <PacksList />
           <PaginationComponent
             pageCount={pageCount}
             totalCount={totalCount}

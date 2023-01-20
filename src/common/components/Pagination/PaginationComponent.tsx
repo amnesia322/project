@@ -6,8 +6,8 @@ import { useAppDispatch } from '../../../app/store'
 import {
   setCardsCurrentPage,
   setCardsPerPage,
-} from '../../../features/packsList/cards/cards-reducer'
-import { setPacksCurrentPage, setPacksPerPage } from '../../../features/packsList/packs-reducer'
+} from '../../../features/packsPage/cards/cards-reducer'
+import { setPacksCurrentPage, setPacksPerPage } from '../../../features/packsPage/packs-reducer'
 
 import s from './PaginationComponent.module.css'
 

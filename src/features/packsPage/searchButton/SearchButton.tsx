@@ -1,6 +1,6 @@
 import React from 'react'
 
-import s from '../PacksList.module.css'
+import s from '../PacksPage.module.css'
 
 import { PacksCardsButton } from './packCardsButtons/PackCardsButton'
 

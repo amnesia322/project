@@ -15,8 +15,8 @@ import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { findSubstr } from '../../../common/utils/findSubscr'
 import { setPackCards } from '../cards/cards-reducer'
 
-import s from './PackItem.module.css'
 import { PackItemActions } from './packItremActions/PackItemActions'
+import s from './PacksList.module.css'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -40,7 +40,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }))
 
-export const PackItem = () => {
+export const PacksList = () => {
   const packs = useAppSelector(state => state.packs.cardPacks)
   const dispatch = useAppDispatch()
 

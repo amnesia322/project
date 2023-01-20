@@ -12,7 +12,7 @@ import TableRow from '@mui/material/TableRow'
 import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
 import { findSubstr } from '../../../common/utils/findSubscr'
-import s from '../packItem/PackItem.module.css'
+import s from '../packsList/PacksList.module.css'
 
 import { CardItemActions } from './cardItemActions/CardItemActions'
 import { addCardTC } from './cards-reducer'
@@ -67,7 +67,7 @@ export const CardItem = ({ isMyId }: { isMyId: boolean }) => {
       {!cards.length ? (
         <div className={s.wrapperForTitle}>
           <div className={s.titleForEmptyPack}>This pack is empty.</div>
-          {!!isMyId && <ClassicButton title={'Add new card'} onClick={addCardHandler} />}
+          {isMyId && <ClassicButton title={'Add new card'} onClick={addCardHandler} />}
         </div>
       ) : (
         <TableContainer component={Paper}>

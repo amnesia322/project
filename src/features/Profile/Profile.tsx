@@ -1,6 +1,5 @@
 import React, { memo, useCallback, useEffect } from 'react'
 
-import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined'
 import LogoutIcon from '@mui/icons-material/Logout'
 import PhotoCameraOutlinedIcon from '@mui/icons-material/PhotoCameraOutlined'
 import { Avatar, Fab } from '@mui/material'
@@ -8,7 +7,7 @@ import { Avatar, Fab } from '@mui/material'
 import { useAppDispatch, useAppSelector } from '../../app/store'
 import { ClassicButton } from '../../common/components/ClassicButton/ClassicButton'
 import { EditableSpan } from '../../common/components/EditableSpan/EditableSpan'
-import { BackToPackList } from '../packsList/backToPackListButton/BackToPackList'
+import { BackToPackList } from '../packsPage/backToPackListButton/BackToPackList'
 
 import { ProfileDataType } from './profile-api'
 import { getProfileDataTC, logoutTC, updateProfileDataTC } from './profile-reducer'
