@@ -40,7 +40,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }))
 
-export const CardItem = ({ isMyId }: { isMyId: boolean }) => {
+export const CardItem = ({ isMyId }: CardItemPropsType) => {
   const cards = useAppSelector(state => state.cards.cards)
   const cardsPack_id = useAppSelector(state => state.cards.queryParams.cardsPack_id)
   const dispatch = useAppDispatch()
@@ -105,4 +105,9 @@ export const CardItem = ({ isMyId }: { isMyId: boolean }) => {
       )}
     </div>
   )
+}
+
+type CardItemPropsType = {
+  isMyId: boolean
+  cardsCount?: number
 }

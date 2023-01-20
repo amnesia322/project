@@ -20,7 +20,6 @@ export const Cards = () => {
   const page = useAppSelector(state => state.cards.page)
   const pageCount = useAppSelector(state => state.cards.queryParams.pageCount)
   const cards = useAppSelector(state => state.cards.cards)
-
   const dispatch = useAppDispatch()
 
   const chosenPack = useAppSelector(state => {
@@ -30,10 +29,14 @@ export const Cards = () => {
       return chosenPack
     }
   })
+  const cardsCount = chosenPack?.cardsCount
 
+  console.log('CC', cardsCount)
   useEffect(() => {
     dispatch(setCardsTC(cardsPack_id))
   }, [page, cardsPack_id, pageCount, query.cardQuestion, query.min, query.max, query.sortCards])
+
+  console.log(cardsCount)
 
   const isMyId = myId === chosenPack?.user_id
 
@@ -70,16 +73,16 @@ export const Cards = () => {
       ) : (
         <div className={s.wrapperButton}>
           <div className={s.titleTable}>{chosenPack?.name}</div>
-          {!!cards.length && <ClassicButton title={'Learn to pack'} />}
+          {cardsPack_id && <ClassicButton title={'Learn to pack'} />}
         </div>
       )}
       <div className={s.wrapperTable}>
         <div className={s.wrapperForSearchComponent}>
-          {!!cards.length && <SearchComponent isThisPlaceCards={true} />}
+          {!!(cardsCount || cards.length) && <SearchComponent isThisPlaceCards={true} />}
         </div>
-        <CardItem isMyId={isMyId} />
+        <CardItem isMyId={isMyId} cardsCount={cardsCount} />
       </div>
-      {totalCount > 5 && !!cards.length && (
+      {totalCount > 5 && (
         <PaginationComponent
           pageCount={pageCount}
           totalCount={totalCount}
