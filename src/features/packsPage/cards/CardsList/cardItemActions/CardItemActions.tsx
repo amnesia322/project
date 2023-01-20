@@ -2,10 +2,10 @@ import React from 'react'
 
 import { Link } from 'react-router-dom'
 
-import { useAppDispatch } from '../../../../app/store'
-import deleteIcon from '../../../../assets/svg/delete.svg'
-import editIcon from '../../../../assets/svg/edit.svg'
-import { deleteCardTC, editCardTitleTC } from '../cards-reducer'
+import { useAppDispatch } from '../../../../../app/store'
+import deleteIcon from '../../../../../assets/svg/delete.svg'
+import editIcon from '../../../../../assets/svg/edit.svg'
+import { deleteCardTC, editCardTitleTC } from '../../cards-reducer'
 
 import s from './CardItemAction.module.css'
 export const CardItemActions = ({ cardId }: { cardId: string }) => {

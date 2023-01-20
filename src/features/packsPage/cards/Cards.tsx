@@ -3,15 +3,15 @@ import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/store'
+import { BackToPackList } from '../../../common/components/BackToPackListButton/BackToPackList'
 import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
 import { PaginationComponent } from '../../../common/components/Pagination/PaginationComponent'
 import { SearchComponent } from '../../../common/components/SearchComponent/SearchComponent'
-import { BackToPackList } from '../backToPackListButton/BackToPackList'
 import { deletePackTC, editPackTitleTC } from '../packs-reducer'
 
-import { CardItem } from './CardItem'
 import { addCardTC, setCardsTC } from './cards-reducer'
 import s from './Cards.module.css'
+import { CardsList } from './CardsList/CardsList'
 import { MyPackMenu } from './myPackMenu/MyPackMenu'
 
 export const Cards = () => {
@@ -80,7 +80,7 @@ export const Cards = () => {
         <div className={s.wrapperForSearchComponent}>
           {totalCount && <SearchComponent isThisPlaceCards={true} />}
         </div>
-        <CardItem isMyId={isMyId} />
+        <CardsList isMyId={isMyId} />
       </div>
       {totalCount > 5 && (
         <PaginationComponent

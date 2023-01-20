@@ -31,7 +31,7 @@ const Header = () => {
         </NavLink>
       )}
       {/*<NavLink to={PATH.PROFILE} className={s.link}>*/}
-      {/*  Profile*/}
+      {/*  profile*/}
       {/*</NavLink>*/}
       {/*<NavLink to={PATH.LOGIN} className={s.link}>*/}
       {/*  Login*/}

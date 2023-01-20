@@ -9,7 +9,7 @@ import { Login } from '../../features/auth/Login/Login'
 import { Register } from '../../features/auth/Register/Register'
 import { Cards } from '../../features/packsPage/cards/Cards'
 import { PacksPage } from '../../features/packsPage/PacksPage'
-import Profile from '../../features/Profile/Profile'
+import Profile from '../../features/profile/Profile'
 
 import Error404 from './Error404/Error404'
 import { PrivateRoutes } from './PrivateRoutes'

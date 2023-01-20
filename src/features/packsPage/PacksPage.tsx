@@ -4,17 +4,18 @@ import { CircularProgress } from '@mui/material'
 
 import { useAppDispatch, useAppSelector } from '../../app/store'
 import { ClassicButton } from '../../common/components/ClassicButton/ClassicButton'
+import { PackCardsDoubleRange } from '../../common/components/PackCardsDoubleRange/PackCardsDubleRange'
 import { PaginationComponent } from '../../common/components/Pagination/PaginationComponent'
 import { SearchComponent } from '../../common/components/SearchComponent/SearchComponent'
 
-import { PackCardsDoubleRange } from './packCardsDoubleRange/PackCardsDubleRange'
+import { MyAllSelector } from './myAllSelector/MyAllSelector'
 import { addPackTC, setPacksTC } from './packs-reducer'
 import { PacksList } from './packsList/PacksList'
 import s from './PacksPage.module.css'
 import { RefreshFilter } from './refreshFilter/RefreshFilter'
-import { SearchButton } from './searchButton/SearchButton'
 export const PacksPage = () => {
   const dispatch = useAppDispatch()
+  const appStatus = useAppSelector(state => state.app.status)
   const query = useAppSelector(state => state.packs.queryParams)
   const totalCount = useAppSelector(state => state.packs.cardPacksTotalCount)
   const page = useAppSelector(state => state.packs.page)
@@ -41,7 +42,11 @@ export const PacksPage = () => {
     <div className={s.wrapper}>
       <div className={s.wrapperButton}>
         <div className={s.titleTable}>Packs list</div>
-        <ClassicButton title={'Add new pack'} onClick={onClickHandler} />
+        <ClassicButton
+          title={'Add new pack'}
+          onClick={onClickHandler}
+          disabled={appStatus === 'loading'}
+        />
       </div>
       <div className={s.wrapperTable}></div>
       <div className={s.wrapperForHeaderTable}>
@@ -49,7 +54,7 @@ export const PacksPage = () => {
           <SearchComponent isThisPlaceCards={false} />
         </div>
         <div className={s.wrapperFilterButton}>
-          <SearchButton />
+          <MyAllSelector />
         </div>
         <div className={s.wrapperForRange}>
           <PackCardsDoubleRange />
