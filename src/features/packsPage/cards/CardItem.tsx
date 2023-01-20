@@ -94,7 +94,7 @@ export const CardItem = ({ isMyId }: { isMyId: boolean }) => {
                   </StyledTableCell>
                   {isMyId && (
                     <StyledTableCell align="center">
-                      <CardItemActions />
+                      <CardItemActions cardId={row.id} />
                     </StyledTableCell>
                   )}
                 </StyledTableRow>
