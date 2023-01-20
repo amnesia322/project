@@ -4,7 +4,7 @@ import { Slider } from '@mui/material'
 
 import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { setSliderValue } from '../packs-reducer'
-import s from '../PacksList.module.css'
+import s from '../PacksPage.module.css'
 
 export const PackCardsDoubleRange = () => {
   const appStatus = useAppSelector(state => state.app.status)
@@ -30,6 +30,7 @@ export const PackCardsDoubleRange = () => {
 
   return (
     <div className={s.main}>
+      <span className={s.titleButton}>Number of Cards</span>
       <div className={s.sliderBlock}>
         <div className={s.value}>{sliderLocalValue[0]}</div>
         <div className={s.slider}>

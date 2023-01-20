@@ -42,6 +42,8 @@ export const cardsReducer = (
       return { ...state, queryParams: { ...state.queryParams, sortCards: action.sortCards } }
     case 'cards/SET_PACK_CARDS':
       return { ...state, queryParams: { ...state.queryParams, cardsPack_id: action.cardsPack_id } }
+    case 'cards/REFRESH-FILTERS':
+      return { ...state, queryParams: { ...state.queryParams, ...action.queryParams } }
     default:
       return state
   }
@@ -57,6 +59,8 @@ export const setSortCards = (sortCards: string) =>
   ({ type: 'cards/SET_SORT_CARDS', sortCards } as const)
 export const setPackCards = (cardsPack_id: string) =>
   ({ type: 'cards/SET_PACK_CARDS', cardsPack_id } as const)
+export const refreshCardsFilters = (queryParams: InitialStateType['queryParams']) =>
+  ({ type: 'cards/REFRESH-FILTERS', queryParams } as const)
 
 export const setCardsTC =
   (cardsPack_id: string): AppThunk =>
@@ -143,3 +147,4 @@ export type CardsActionType =
   | ReturnType<typeof setCardsQuestion>
   | ReturnType<typeof setSortCards>
   | ReturnType<typeof setPackCards>
+  | ReturnType<typeof refreshCardsFilters>

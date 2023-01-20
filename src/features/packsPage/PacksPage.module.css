@@ -10,6 +10,10 @@
 }
 
 .titleTable {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
   margin-top: 40px;
 
   font-family: 'Montserrat', serif;
@@ -24,15 +28,9 @@
   margin-top: 25px;
 }
 
-.titleLink {
-  margin-top: 25px;
-
-  font-family: 'Montserrat', serif;
-  font-size: 14px;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 24px;
-  color: #000000;
+.wrapperForSearchComponent{
+  width: 400px;
+  margin-bottom: 25px;
 }
 
 .input {
@@ -50,8 +48,22 @@
   letter-spacing: 0;
 }
 
+.titleSearchButton{
+  display: inline-block;
+
+  margin: 0 0 10px;
+
+  font-family: Montserrat, serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  text-align: left;
+  letter-spacing: 0;
+}
+
 .wrapperForRange{
-  margin-top: 3px;
+  width: 200px;
+  margin-top: 5px;
 }
 
 .range{
@@ -60,7 +72,8 @@
 
 .wrapperForHeaderTable {
   display: flex;
-  justify-content: space-around;
+  align-items:start;
+  justify-content: space-between;
 }
 
 .wrapperFilterButton {
@@ -84,13 +97,27 @@
   align-items: center;
 }
 
-.cleanFilter{
-  cursor: pointer;
+.sliderBlock{
+  display: flex;
 
-  display: inline-block;
+  margin-top: 15px;
+}
 
-  padding-top: 10px;
+.value {
+  padding-top: 5px;
+  padding-left:15px ;
+}
+.value:first-child{
+  padding-right: 15px ;
+  padding-left:0;
+}
 
-  transition: .3s;
+.slider{
+  display: block;
 
+  width: 150px;
+}
+
+.wrapperForRefreshFilter{
+  margin-top: 35px;
 }

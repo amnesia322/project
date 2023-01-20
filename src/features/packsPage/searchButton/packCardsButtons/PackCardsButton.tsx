@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { useAppDispatch, useAppSelector } from '../../../../app/store'
 import SuperButton from '../../../../common/components/SuperButton/SuperButton'
 import { setUserPacks } from '../../packs-reducer'
 
 export const PacksCardsButton = () => {
-  const [onOff, setOnOff] = useState(false)
+  const myPacks = useAppSelector(state => state.packs.queryParams.user_id)
   const userId = useAppSelector(state => state.profile.user._id)
   const dispatch = useAppDispatch()
   const userPackHandler = () => {
@@ -14,21 +14,23 @@ export const PacksCardsButton = () => {
   const allPackHandler = () => {
     dispatch(setUserPacks(''))
   }
-
   const onStyle = {
-    backgroundColor: onOff ? '#1976d2' : '#EFEFEF',
-    color: !onOff ? 'black' : 'white',
+    backgroundColor: myPacks ? '#1976d2' : '#EFEFEF',
+    color: !myPacks ? 'black' : 'white',
+    width: '85px',
+    height: '36px',
   }
   const offStyle = {
-    backgroundColor: onOff ? '#EFEFEF' : '#1976d2',
-    color: onOff ? 'black' : 'white',
+    backgroundColor: myPacks ? '#EFEFEF' : '#1976d2',
+    color: myPacks ? 'black' : 'white',
+    width: '85px',
+    height: '36px',
   }
 
   return (
     <div>
       <SuperButton
         onClick={() => {
-          setOnOff(true)
           userPackHandler()
         }}
         style={onStyle}
@@ -37,7 +39,6 @@ export const PacksCardsButton = () => {
       </SuperButton>
       <SuperButton
         onClick={() => {
-          setOnOff(false)
           allPackHandler()
         }}
         style={offStyle}
