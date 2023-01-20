@@ -38,7 +38,7 @@ export const PaginationComponent = (props: PaginationPropsType) => {
   }
 
   return (
-    <div>
+    <div className={s.container}>
       <Pagination onChange={handler} page={currentPage} count={limit} />
       <div className={s.perPage}>
         <div>Show</div>
