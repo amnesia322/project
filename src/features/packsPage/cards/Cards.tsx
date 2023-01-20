@@ -36,7 +36,17 @@ export const Cards = () => {
 
   useEffect(() => {
     dispatch(setCardsTC(id || cardsPack_id))
-  }, [dispatch, page, id, pageCount, query.cardQuestion, query.min, query.max, query.sortCards])
+  }, [
+    dispatch,
+    totalCount,
+    page,
+    id,
+    pageCount,
+    query.cardQuestion,
+    query.min,
+    query.max,
+    query.sortCards,
+  ])
 
   const isMyId = myId === chosenPack?.user_id
 

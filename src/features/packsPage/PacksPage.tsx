@@ -28,7 +28,7 @@ export const PacksPage = () => {
 
   useEffect(() => {
     dispatch(setPacksTC())
-  }, [dispatch, page, pageCount, query.max, query.min, query.packName, query.user_id, totalCount])
+  }, [dispatch, page, pageCount, query.max, query.min, query.packName, query.user_id])
 
   if (!isFetched) {
     return (
