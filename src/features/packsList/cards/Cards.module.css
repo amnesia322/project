@@ -10,6 +10,8 @@
 }
 
 .titleTable {
+  display: flex;
+
   margin-top: 40px;
 
   font-family: 'Montserrat', serif;
@@ -18,6 +20,10 @@
   font-style: normal;
   line-height: 27px;
   color: #000000;
+}
+
+.titlePack {
+  align-self: center;
 }
 
 .wrapperTable {

@@ -1,16 +1,11 @@
 import React, { useEffect } from 'react'
 
-import { Link } from 'react-router-dom'
-
-import { PATH } from '../../../app/Routes/Pages'
 import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
 import { PaginationComponent } from '../../../common/components/Pagination/PaginationComponent'
 import { SearchComponent } from '../../../common/components/SearchComponent/SearchComponent'
 import { BackToPackList } from '../backToPackListButton/BackToPackList'
 import { deletePackTC, editPackTitleTC } from '../packs-reducer'
-import s from '../PacksList.module.css'
-import { SearchInput } from '../SearchInput/SearchInput'
 
 import { CardItem } from './CardItem'
 import { addCardTC, setCardsTC } from './cards-reducer'
@@ -24,23 +19,23 @@ export const Cards = () => {
   const totalCount = useAppSelector(state => state.cards.cardsTotalCount)
   const page = useAppSelector(state => state.cards.page)
   const pageCount = useAppSelector(state => state.cards.queryParams.pageCount)
+  const cards = useAppSelector(state => state.cards.cards)
 
   const dispatch = useAppDispatch()
 
-  const userPack_id = useAppSelector(state => {
+  const chosenPack = useAppSelector(state => {
     const chosenPack = state.packs.cardPacks.find(item => item._id === cardsPack_id)
 
     if (chosenPack) {
-      return chosenPack.user_id
+      return chosenPack
     }
   })
 
   useEffect(() => {
     dispatch(setCardsTC(cardsPack_id))
-  }, [page, cardsPack_id, query, pageCount])
+  }, [page, cardsPack_id, pageCount, query.cardQuestion, query.min, query.max, query.sortCards])
 
-  const cards = useAppSelector(state => state.cards.cards)
-  const isMyId = myId === userPack_id
+  const isMyId = myId === chosenPack?.user_id
 
   const addCardHandler = () => {
     dispatch(addCardTC({ card: { cardsPack_id } }))
@@ -63,7 +58,7 @@ export const Cards = () => {
       {isMyId ? (
         <div className={s.wrapperButton}>
           <div className={s.titleTable}>
-            <span>My Pack</span>
+            <span className={s.titlePack}>{chosenPack?.name}</span>
             <MyPackMenu
               onEditHandler={editPackHandler}
               onDeleteHandler={deletePackHandler}
@@ -74,7 +69,7 @@ export const Cards = () => {
         </div>
       ) : (
         <div className={s.wrapperButton}>
-          <div className={s.titleTable}>Friend’s Pack</div>
+          <div className={s.titleTable}>{chosenPack?.name}</div>
           {!!cards.length && <ClassicButton title={'Learn to pack'} />}
         </div>
       )}
