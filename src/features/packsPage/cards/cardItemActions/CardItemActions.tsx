@@ -2,18 +2,29 @@ import React from 'react'
 
 import { Link } from 'react-router-dom'
 
-import deleted from '../../../../assets/svg/delete.svg'
-import edit from '../../../../assets/svg/edit.svg'
+import { useAppDispatch } from '../../../../app/store'
+import deleteIcon from '../../../../assets/svg/delete.svg'
+import editIcon from '../../../../assets/svg/edit.svg'
+import { deleteCardTC, editCardTitleTC } from '../cards-reducer'
 
 import s from './CardItemAction.module.css'
-export const CardItemActions = () => {
+export const CardItemActions = ({ cardId }: { cardId: string }) => {
+  const dispatch = useAppDispatch()
+
+  const onEditHandler = () => {
+    dispatch(editCardTitleTC({ card: { _id: cardId, question: 'Updated card title' } }))
+  }
+  const onDeleteHandler = () => {
+    dispatch(deleteCardTC(cardId))
+  }
+
   return (
     <div className={s.wrapper}>
       <Link to={'#'} className={s.link}>
-        <img src={edit} alt={'img'} onClick={() => alert('Hello. Put there your changes')} />
+        <img src={editIcon} alt={'editIcon'} onClick={onEditHandler} />
       </Link>
       <Link to={'#'} className={s.link}>
-        <img src={deleted} alt={'img'} onClick={() => alert('Hello.')} />
+        <img src={deleteIcon} alt={'deleteIcon'} onClick={onDeleteHandler} />
       </Link>
     </div>
   )
