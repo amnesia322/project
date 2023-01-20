@@ -3,13 +3,12 @@ import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
 import { PaginationComponent } from '../../../common/components/Pagination/PaginationComponent'
-import { BackToPackList } from '../backToPackListButton/BackToPackList'
 import { SearchComponent } from '../../../common/components/SearchComponent/SearchComponent'
-import s from '../PacksList.module.css'
-import { SearchInput } from '../SearchInput/SearchInput'
+import { BackToPackList } from '../backToPackListButton/BackToPackList'
 
 import { CardItem } from './CardItem'
 import { addCardTC, setCardsTC } from './cards-reducer'
+import s from './Cards.module.css'
 
 export const Cards = () => {
   const myId = useAppSelector(state => state.profile.user._id)
@@ -54,9 +53,10 @@ export const Cards = () => {
           {!!cards.length && <ClassicButton title={'Learn to pack'} />}
         </div>
       )}
-      <SearchComponent isThisPlaceCards={true} />
       <div className={s.wrapperTable}>
-        {!!cards.length && <SearchInput />}
+        <div className={s.wrapperForSearchComponent}>
+          {!!cards.length && <SearchComponent isThisPlaceCards={true} />}
+        </div>
         <CardItem isMyId={isMyId} />
       </div>
       {totalCount > 5 && !!cards.length && (

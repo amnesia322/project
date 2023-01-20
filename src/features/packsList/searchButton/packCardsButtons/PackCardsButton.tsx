@@ -14,14 +14,17 @@ export const PacsCardsButton = () => {
   const allPackHandler = () => {
     dispatch(setUserPacks(''))
   }
-
   const onStyle = {
     backgroundColor: onOff ? '#1976d2' : '#EFEFEF',
     color: !onOff ? 'black' : 'white',
+    width: '85px',
+    height: '36px',
   }
   const offStyle = {
     backgroundColor: onOff ? '#EFEFEF' : '#1976d2',
     color: onOff ? 'black' : 'white',
+    width: '85px',
+    height: '36px',
   }
 
   return (

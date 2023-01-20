@@ -3,19 +3,16 @@ import React, { useEffect } from 'react'
 import { CircularProgress } from '@mui/material'
 
 import { useAppDispatch, useAppSelector } from '../../app/store'
-import img from '../../assets/svg/cleanFilter.svg'
 import { ClassicButton } from '../../common/components/ClassicButton/ClassicButton'
 import { PaginationComponent } from '../../common/components/Pagination/PaginationComponent'
 import { SearchComponent } from '../../common/components/SearchComponent/SearchComponent'
 
-import { PacsCardsButton } from './packCardsButtons/PackCardsButton'
 import { PackCardsDoubleRange } from './packCardsDoubleRange/PackCardsDubleRange'
 import { PackItem } from './packItem/PackItem'
 import { addPackTC, setPacksTC } from './packs-reducer'
 import s from './PacksList.module.css'
-import { SearchButton } from './searchButton/SearchButton'
-import { SearchInput } from './SearchInput/SearchInput'
 import { RefreshFilter } from './refreshFilter/RefreshFilter'
+import { SearchButton } from './searchButton/SearchButton'
 export const PacksList = () => {
   const dispatch = useAppDispatch()
   const query = useAppSelector(state => state.packs.queryParams)
@@ -50,20 +47,16 @@ export const PacksList = () => {
           </div>
           <div className={s.wrapperTable}></div>
           <div className={s.wrapperForHeaderTable}>
-            <SearchComponent isThisPlaceCards={false} />
+            <div className={s.wrapperForSearchComponent}>
+              <SearchComponent isThisPlaceCards={false} />
+            </div>
             <div className={s.wrapperFilterButton}>
               <SearchButton />
-              <span className={s.titleButton}> Show packs cards</span>
-              <div>
-                <PacsCardsButton />
-              </div>
             </div>
             <div className={s.wrapperForRange}>
-              <span className={s.titleButton}> Number of Cards</span>
               <PackCardsDoubleRange />
             </div>
-            <img className={s.cleanFilter} src={img} alt={'img'} />
-            <div>
+            <div className={s.wrapperForRefrechFilter}>
               <RefreshFilter />
             </div>
           </div>
