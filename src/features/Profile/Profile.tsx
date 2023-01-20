@@ -54,7 +54,6 @@ const Profile = memo(() => {
           </div>
           <div className={s.name}>
             <EditableSpan value={user.name} onChange={onChangeTextHandler} />
-            <DriveFileRenameOutlineOutlinedIcon fontSize={'small'} sx={{ marginTop: '2px' }} />
           </div>
           <div className={s.email}>{user.email}</div>
           <ClassicButton title={'Log out'} onClick={onclickHandler}>
