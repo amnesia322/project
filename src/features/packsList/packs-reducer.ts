@@ -83,6 +83,7 @@ import { AxiosError } from 'axios'
 
 import { setAppStatusAC } from '../../app/app-reducer'
 import { AppThunk } from '../../app/store'
+import { sortingPacksMethods } from '../../common/constants/sortingMethods'
 import { errorUtils } from '../../common/utils/error-utils'
 
 import { CreatePackRequestType, packsAPI, PackType, UpdatePackRequestType } from './packs-api'
@@ -98,7 +99,7 @@ const initialState = {
     min: 0,
     max: 200,
     pageCount: 5, // количество элементов на странице
-    sortPacks: '0updated',
+    sortPacks: sortingPacksMethods.desUpdate,
     packName: '',
     user_id: '',
   },
@@ -106,7 +107,7 @@ const initialState = {
 
 export const emptyQueryParams: InitialStateType['queryParams'] = {
   pageCount: 5,
-  sortPacks: '0updated',
+  sortPacks: sortingPacksMethods.desUpdate,
   user_id: '',
   packName: '',
   min: 0,
@@ -160,7 +161,7 @@ export const setSliderValue = (sliderValue: number[]) =>
     max: sliderValue[1],
   } as const)
 
-export const setSortPacks = (sortPacks: string) =>
+export const setSortPacks = (sortPacks: sortingPacksMethods) =>
   ({ type: 'packs/SET_SORT_PACKS', sortPacks } as const)
 export const setSortPacksName = (packName: string) =>
   ({ type: 'packs/SORT_PACKS_NAME', packName } as const)

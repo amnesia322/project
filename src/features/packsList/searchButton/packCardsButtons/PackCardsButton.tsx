@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../../../app/store'
 import SuperButton from '../../../../common/components/SuperButton/SuperButton'
 import { setUserPacks } from '../../packs-reducer'
 
-export const PacsCardsButton = () => {
+export const PacksCardsButton = () => {
   const [onOff, setOnOff] = useState(false)
   const userId = useAppSelector(state => state.profile.user._id)
   const dispatch = useAppDispatch()

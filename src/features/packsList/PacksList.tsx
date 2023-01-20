@@ -7,13 +7,12 @@ import { ClassicButton } from '../../common/components/ClassicButton/ClassicButt
 import { PaginationComponent } from '../../common/components/Pagination/PaginationComponent'
 import { SearchComponent } from '../../common/components/SearchComponent/SearchComponent'
 
-import { PacsCardsButton } from './packCardsButtons/PackCardsButton'
 import { PackCardsDoubleRange } from './packCardsDoubleRange/PackCardsDubleRange'
 import { PackItem } from './packItem/PackItem'
 import { addPackTC, setPacksTC } from './packs-reducer'
 import s from './PacksList.module.css'
 import { RefreshFilter } from './refreshFilter/RefreshFilter'
-
+import { SearchButton } from './searchButton/SearchButton'
 export const PacksList = () => {
   const dispatch = useAppDispatch()
   const query = useAppSelector(state => state.packs.queryParams)
@@ -56,10 +55,7 @@ export const PacksList = () => {
       <div className={s.wrapperForHeaderTable}>
         <SearchComponent isThisPlaceCards={false} />
         <div className={s.wrapperFilterButton}>
-          <span className={s.titleButton}> Show packs cards</span>
-          <div>
-            <PacsCardsButton />
-          </div>
+          <SearchButton />
         </div>
         <div className={s.wrapperForRange}>
           <span className={s.titleButton}> Number of Cards</span>
