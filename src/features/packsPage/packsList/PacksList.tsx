@@ -10,7 +10,6 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import { Link } from 'react-router-dom'
 
-import { PATH } from '../../../app/Routes/Pages'
 import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { findSubstr } from '../../../common/utils/findSubscr'
 import { setPackCards } from '../cards/cards-reducer'
@@ -89,7 +88,7 @@ export const PacksList = () => {
             {rows.map(row => (
               <StyledTableRow key={row.id}>
                 <StyledTableCell component="th" scope="row" onClick={() => getQuestions(row.id)}>
-                  <Link className={s.link} to={PATH.CARDS_LIST}>
+                  <Link className={s.link} to={`/cards_list/${row.id}`}>
                     {row.name}
                   </Link>
                 </StyledTableCell>

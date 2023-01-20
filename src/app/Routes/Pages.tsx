@@ -23,7 +23,7 @@ export const PATH = {
   NEW_PASS: '/new_pass/*',
   CHECK_EMAIL: '/check_email',
   PACK_LIST: '/packs_list',
-  CARDS_LIST: '/cards_list',
+  CARDS_LIST: '/cards_list/:id',
 }
 
 function Pages() {
