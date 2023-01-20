@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { FormControl, MenuItem, Pagination, Select, SelectChangeEvent } from '@mui/material'
 
@@ -17,6 +17,13 @@ export const PaginationComponent = (props: PaginationPropsType) => {
   const limit = Math.ceil(totalCount / pageCount)
   const dispatch = useAppDispatch()
   const perPageValue = pageCount.toString()
+
+  useEffect(() => {
+    if (limit < currentPage) {
+      if (isThisPlaceCards) dispatch(setCardsCurrentPage(1))
+      if (!isThisPlaceCards) dispatch(setPacksCurrentPage(1))
+    }
+  }, [dispatch, currentPage, limit])
 
   const handler = (event: React.ChangeEvent<unknown>, currentPage: number) => {
     if (isThisPlaceCards) dispatch(setCardsCurrentPage(currentPage))
