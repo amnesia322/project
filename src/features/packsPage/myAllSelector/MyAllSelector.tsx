@@ -19,11 +19,11 @@ export const MyAllSelector = () => {
     dispatch(setUserPacks(''))
   }
   const onStyle = {
-    backgroundColor: myPacks ? '#1976d2' : '#EFEFEF',
+    backgroundColor: myPacks ? '#1976d2' : '#ffffff',
     color: myPacks ? 'white' : 'black',
   }
   const offStyle = {
-    backgroundColor: myPacks ? '#EFEFEF' : '#1976d2',
+    backgroundColor: myPacks ? '#ffffff' : '#1976d2',
     color: myPacks ? 'black' : 'white',
   }
 
