@@ -17,3 +17,10 @@
   color: black;
   text-decoration: none;
 }
+
+.disabledLink {
+  pointer-events: none;
+
+  color: #8d8989;
+  text-decoration: none;
+}

@@ -75,10 +75,8 @@ export const PacksPage = () => {
         </>
       ) : (
         <div>
-          {/*<div className={s.titleTable}>Is not Packs here</div>*/}
           <div className={s.wrapperForTitle}>
             <div className={s.titleForEmptyPack}>Packs list is empty. Сhange search parameters</div>
-            {/*<ClassicButton title={'Add new pack'} />*/}
           </div>
         </div>
       )}

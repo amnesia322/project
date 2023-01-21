@@ -88,14 +88,18 @@ export const PacksList = () => {
             {rows.map(row => (
               <StyledTableRow key={row.id}>
                 <StyledTableCell component="th" scope="row" onClick={() => getQuestions(row.id)}>
-                  <Link className={s.link} to={`/cards_list/${row.id}`}>
+                  <Link
+                    // className={row.cardsCount ? s.link : s.disabledLink} // for disable Link
+                    className={s.link}
+                    to={`/cards_list/${row.id}`}
+                  >
                     {row.name}
                   </Link>
                 </StyledTableCell>
                 <StyledTableCell align="center">{row.cardsCount}</StyledTableCell>
                 <StyledTableCell align="center">{row.lastUpdate}</StyledTableCell>
                 <StyledTableCell align="center">{row.createBy}</StyledTableCell>
-                <StyledTableCell align="center">
+                <StyledTableCell align="right">
                   <PackItemActions userId={row.userId} packId={row.id} />
                 </StyledTableCell>
               </StyledTableRow>

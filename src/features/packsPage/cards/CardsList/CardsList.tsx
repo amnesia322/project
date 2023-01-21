@@ -44,6 +44,7 @@ export const CardsList = ({ isMyId }: CardItemPropsType) => {
   const cards = useAppSelector(state => state.cards.cards)
   const cardsPack_id = useAppSelector(state => state.cards.queryParams.cardsPack_id)
   const dispatch = useAppDispatch()
+  const totalCount = useAppSelector(state => state.cards.cardsTotalCount)
   const createData = (
     questions: string,
     answer: string,
@@ -64,7 +65,7 @@ export const CardsList = ({ isMyId }: CardItemPropsType) => {
 
   return (
     <div>
-      {!cards.length ? (
+      {!totalCount ? (
         <div className={s.wrapperForTitle}>
           <div className={s.titleForEmptyPack}>This pack is empty.</div>
           {isMyId && <ClassicButton title={'Add new card'} onClick={addCardHandler} />}
