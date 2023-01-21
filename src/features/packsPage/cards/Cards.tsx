@@ -21,6 +21,7 @@ export const Cards = () => {
   const totalCount = useAppSelector(state => state.cards.cardsTotalCount)
   const page = useAppSelector(state => state.cards.page)
   const pageCount = useAppSelector(state => state.cards.queryParams.pageCount)
+  const cards = useAppSelector(state => state.cards.cards)
   const { id } = useParams()
 
   const dispatch = useAppDispatch()
@@ -35,7 +36,7 @@ export const Cards = () => {
 
   useEffect(() => {
     dispatch(setCardsTC(id || cardsPack_id))
-  }, [page, id, pageCount, query.cardQuestion, query.min, query.max, query.sortCards, totalCount])
+  }, [page, totalCount, id, pageCount, query.cardQuestion, query.min, query.max, query.sortCards])
 
   const isMyId = myId === chosenPack?.user_id
 
