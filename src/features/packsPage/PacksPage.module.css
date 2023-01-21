@@ -9,6 +9,15 @@
   justify-content: space-between;
 }
 
+.fontBlock{
+  font-family: Montserrat, serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  text-align: left;
+  letter-spacing: 0;
+}
+
 .titleTable {
   display: flex;
   align-items: center;
@@ -38,27 +47,17 @@
 }
 
 .titleButton {
-  margin: 5px 0 10px;
+ composes: fontBlock;
 
-  font-family: Montserrat, serif;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 17px;
-  text-align: left;
-  letter-spacing: 0;
+  margin: 5px 0 10px;
 }
 
 .titleSearchButton{
+  composes: fontBlock;
+
   display: inline-block;
 
   margin: 0 0 10px;
-
-  font-family: Montserrat, serif;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 17px;
-  text-align: left;
-  letter-spacing: 0;
 }
 
 .wrapperForRange{
@@ -107,6 +106,7 @@
   padding-top: 5px;
   padding-left:15px ;
 }
+
 .value:first-child{
   padding-right: 15px ;
   padding-left:0;

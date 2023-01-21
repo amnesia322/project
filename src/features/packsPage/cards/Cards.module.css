@@ -1,12 +1,9 @@
 .wrapper {
-  max-width: 1440px;
-  margin: 0 auto;
+  composes: wrapper from '../PacksPage.module.css';
 }
 
 .wrapperButton {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+  composes: wrapperButton from '../PacksPage.module.css';
 }
 
 .titleTable {
@@ -27,67 +24,17 @@
 }
 
 .wrapperTable {
-  margin-top: 25px;
+  composes: wrapperTable from '../PacksPage.module.css';
 }
 
 .wrapperForSearchComponent{
-width: 100%;
+  width: 100%;
   margin-bottom: 25px;
 }
 
-.input {
-  margin: 10px 0 15px;
-}
-
 .titleButton {
-  margin: 5px 0 10px;
-
-  font-family: Montserrat, serif;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 17px;
-  text-align: left;
-  letter-spacing: 0;
+  composes: titleButton from '../PacksPage.module.css';
 }
 
-.titleSearchButton{
-  display: inline-block;
-
-  margin: 0 0 10px;
-}
-
-.wrapperForRange{
-  margin-top: 3px;
-}
-
-.range{
-  margin-top: 20px;
-}
-
-.wrapperForHeaderTable {
-  display: flex;
-  justify-content: space-between;
-}
-
-.wrapperFilterButton {
-  display: flex;
-  flex-direction: column;
-}
-
-.titleForEmptyPack {
-  margin: 55px auto 35px;
-
-  font-family: 'Montserrat', serif;
-  font-size: 16px;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 20px;
-}
-
-.wrapperForTitle {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
 

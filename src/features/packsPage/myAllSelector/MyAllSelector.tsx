@@ -3,7 +3,8 @@ import React from 'react'
 import { useAppDispatch, useAppSelector } from '../../../app/store'
 import SuperButton from '../../../common/components/SuperButton/SuperButton'
 import { setUserPacks } from '../packs-reducer'
-import s from '../PacksPage.module.css'
+
+import s from './MyAllSelector.module.css'
 
 export const MyAllSelector = () => {
   const appStatus = useAppSelector(state => state.app.status)
@@ -19,15 +20,11 @@ export const MyAllSelector = () => {
   }
   const onStyle = {
     backgroundColor: myPacks ? '#1976d2' : '#EFEFEF',
-    color: !myPacks ? 'black' : 'white',
-    width: '85px',
-    height: '36px',
+    color: myPacks ? 'white' : 'black',
   }
   const offStyle = {
     backgroundColor: myPacks ? '#EFEFEF' : '#1976d2',
     color: myPacks ? 'black' : 'white',
-    width: '85px',
-    height: '36px',
   }
 
   return (
@@ -41,6 +38,7 @@ export const MyAllSelector = () => {
             }}
             style={onStyle}
             disabled={appStatus === 'loading'}
+            className={s.filterButton}
           >
             My
           </SuperButton>
@@ -50,6 +48,7 @@ export const MyAllSelector = () => {
             }}
             style={offStyle}
             disabled={appStatus === 'loading'}
+            className={s.filterButton}
           >
             All
           </SuperButton>
