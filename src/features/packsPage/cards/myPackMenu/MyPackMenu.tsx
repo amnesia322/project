@@ -8,18 +8,22 @@ import MenuItem from '@mui/material/MenuItem'
 import deleteIcon from '../../../../assets/svg/delete.svg'
 import editIcon from '../../../../assets/svg/edit.svg'
 import learnIcon from '../../../../assets/svg/leran.svg'
+import { EditPackModal } from '../../packsList/modals/addPackModal/EditPackModal'
+import { DeletePackModal } from '../../packsList/modals/deletePackModal/DeletePackModal'
 import s from '../myPackMenu/MyPackMenu.module.css'
 
 type MyPackMenuPropsType = {
-  onEditHandler: () => void
-  onDeleteHandler: () => void
   onLearnHandler: () => void
+  packId: string
+  packName: string | undefined
+  isPrivate: boolean
 }
 
 export const MyPackMenu = ({
-  onEditHandler,
-  onDeleteHandler,
   onLearnHandler,
+  packId,
+  packName,
+  isPrivate,
 }: MyPackMenuPropsType) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
@@ -47,7 +51,7 @@ export const MyPackMenu = ({
         id="account-menu"
         open={open}
         onClose={handleClose}
-        onClick={handleClose}
+        // onClick={handleClose}
         PaperProps={{
           elevation: 0,
           sx: {
@@ -77,13 +81,17 @@ export const MyPackMenu = ({
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={onEditHandler} sx={{ display: 'flex', justifyContent: 'flex-start' }}>
-          <img src={editIcon} alt="edit" className={s.img} />
-          Edit
+        <MenuItem sx={{ display: 'flex', justifyContent: 'flex-start' }}>
+          <EditPackModal packId={packId} packName={packName} isPrivate={isPrivate}>
+            <img src={editIcon} alt="edit" className={s.img} />
+            Edit
+          </EditPackModal>
         </MenuItem>
-        <MenuItem onClick={onDeleteHandler} sx={{ display: 'flex', justifyContent: 'flex-start' }}>
-          <img src={deleteIcon} alt="delete" className={s.img} />
-          Delete
+        <MenuItem sx={{ display: 'flex', justifyContent: 'flex-start' }}>
+          <DeletePackModal packId={packId} packName={packName}>
+            <img src={deleteIcon} alt="delete" className={s.img} />
+            Delete
+          </DeletePackModal>
         </MenuItem>
         <MenuItem onClick={onLearnHandler} sx={{ display: 'flex', justifyContent: 'flex-start' }}>
           <img src={learnIcon} alt="learn" className={s.img} />

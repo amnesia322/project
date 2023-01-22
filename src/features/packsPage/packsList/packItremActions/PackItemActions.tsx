@@ -2,24 +2,28 @@ import React from 'react'
 
 import { Link } from 'react-router-dom'
 
-import { useAppDispatch, useAppSelector } from '../../../../app/store'
+import { useAppSelector } from '../../../../app/store'
 import deleteIcon from '../../../../assets/svg/delete.svg'
 import editIcon from '../../../../assets/svg/edit.svg'
 import learnIcon from '../../../../assets/svg/leran.svg'
-import { deletePackTC, editPackTitleTC } from '../../packs-reducer'
+import { EditPackModal } from '../modals/addPackModal/EditPackModal'
+import { DeletePackModal } from '../modals/deletePackModal/DeletePackModal'
 
 import s from './PackItemAction.module.css'
 
-export const PackItemActions = ({ userId, packId }: { userId: string; packId: string }) => {
+export const PackItemActions = ({
+  userId,
+  packId,
+  packName,
+  isPrivate,
+}: {
+  userId: string
+  packId: string
+  packName: string
+  isPrivate: boolean
+}) => {
   const myId = useAppSelector(state => state.profile.user._id)
-  const dispatch = useAppDispatch()
 
-  const onEditHandler = () => {
-    dispatch(editPackTitleTC({ cardsPack: { _id: packId, name: '!Updated The Best team pack!' } }))
-  }
-  const onDeleteHandler = () => {
-    dispatch(deletePackTC(packId))
-  }
   const onLearnHandler = () => {
     alert('onLearnHandler')
   }
@@ -31,12 +35,12 @@ export const PackItemActions = ({ userId, packId }: { userId: string; packId: st
       </Link>
       {myId == userId && (
         <>
-          <Link to={'#'} className={s.link}>
-            <img src={editIcon} alt={'edit'} onClick={onEditHandler} />
-          </Link>
-          <Link to={'#'} className={s.link}>
-            <img src={deleteIcon} alt={'delete'} onClick={onDeleteHandler} />
-          </Link>
+          <EditPackModal packId={packId} packName={packName} isPrivate={isPrivate}>
+            <img src={editIcon} alt={'edit'} />
+          </EditPackModal>
+          <DeletePackModal packId={packId} packName={packName}>
+            <img src={deleteIcon} alt={'delete'} />
+          </DeletePackModal>
         </>
       )}
     </div>

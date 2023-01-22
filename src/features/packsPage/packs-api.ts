@@ -42,6 +42,7 @@ export type PackType = {
   created: string
   updated: string
   user_name: string
+  private: boolean
 }
 
 export type CreatePackRequestType = {
@@ -54,6 +55,7 @@ export type CreatePackRequestType = {
 export type UpdatePackRequestType = {
   cardsPack: {
     _id: string
-    name: string // не обязательно
+    name?: string // не обязательно
+    private?: boolean
   }
 }

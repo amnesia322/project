@@ -7,7 +7,6 @@ import { BackToPackList } from '../../../common/components/BackToPackListButton/
 import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
 import { PaginationComponent } from '../../../common/components/Pagination/PaginationComponent'
 import { SearchComponent } from '../../../common/components/SearchComponent/SearchComponent'
-import { deletePackTC, editPackTitleTC } from '../packs-reducer'
 
 import { addCardTC, setCardsTC } from './cards-reducer'
 import s from './Cards.module.css'
@@ -53,14 +52,7 @@ export const Cards = () => {
   const addCardHandler = () => {
     dispatch(addCardTC({ card: { cardsPack_id } }))
   }
-  const editPackHandler = () => {
-    dispatch(
-      editPackTitleTC({ cardsPack: { _id: cardsPack_id, name: '!Updated The Best team pack!' } })
-    )
-  }
-  const deletePackHandler = () => {
-    dispatch(deletePackTC(cardsPack_id))
-  }
+
   const learnPackHandler = () => {
     alert('learnPackHandler')
   }
@@ -73,9 +65,10 @@ export const Cards = () => {
           <div className={s.titleTable}>
             <span className={s.titlePack}>{chosenPack?.name}</span>
             <MyPackMenu
-              onEditHandler={editPackHandler}
-              onDeleteHandler={deletePackHandler}
               onLearnHandler={learnPackHandler}
+              packId={cardsPack_id}
+              packName={chosenPack.name}
+              isPrivate={chosenPack.private}
             />
           </div>
           {!!cards.length && <ClassicButton title={'Add new card'} onClick={addCardHandler} />}

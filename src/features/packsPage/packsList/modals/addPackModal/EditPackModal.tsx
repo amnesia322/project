@@ -1,6 +1,5 @@
 import React, { ChangeEvent, ReactNode, useState } from 'react'
 
-import Button from '@mui/material/Button'
 import Checkbox from '@mui/material/Checkbox'
 import FormControl from '@mui/material/FormControl'
 import FormControlLabel from '@mui/material/FormControlLabel'
@@ -9,38 +8,42 @@ import TextField from '@mui/material/TextField'
 import { useAppDispatch } from '../../../../../app/store'
 import { BasicModal } from '../../../../../common/components/BasicModal/BasicModal'
 import { ClassicButton } from '../../../../../common/components/ClassicButton/ClassicButton'
-import { ClassicTextInput } from '../../../../../common/components/ClassicTextInput/ClassicTextInput'
-import { addPackTC } from '../../../packs-reducer'
-import s from '../addPackModal/AddPackModal.module.css'
+import { editPackTitleTC } from '../../../packs-reducer'
+
+import s from './EditPackModal.module.css'
 type PropsType = {
   children?: ReactNode
+  packId: string
+  packName?: string
+  isPrivate?: boolean
 }
-export const AddPackModal = ({ children }: PropsType) => {
+export const EditPackModal = ({ children, packId, packName, isPrivate }: PropsType) => {
   const dispatch = useAppDispatch()
   const [open, setOpen] = useState(false)
 
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
 
-  const [packName, setPackName] = useState('')
-  const setNewPackName = (e: ChangeEvent<HTMLInputElement>) => {
-    setPackName(e.currentTarget.value)
+  const [newPackName, setNewPackName] = useState(packName)
+  const changePackName = (e: ChangeEvent<HTMLInputElement>) => {
+    setNewPackName(e.currentTarget.value)
   }
-  const addPackHandler = () => {
-    dispatch(addPackTC({ cardsPack: { name: packName, private: isPrivate } }))
+  const editPackHandler = () => {
+    dispatch(
+      editPackTitleTC({ cardsPack: { _id: packId, name: newPackName, private: packStatus } })
+    )
     setOpen(false)
   }
 
-  const [isPrivate, setIsPrivate] = useState(false)
+  const [packStatus, setPackStatus] = useState(isPrivate)
   const setChecked = (e: ChangeEvent<HTMLInputElement>) => {
-    setIsPrivate(e.target.checked)
+    setPackStatus(e.target.checked)
   }
 
   return (
     <>
-      <Button onClick={handleOpen}>{children}</Button>
-      <BasicModal title={'Add new pack'} open={open} handleClose={handleClose}>
-        {/*<ClassicTextInput label={'Pack Name'} placeholder={'Pack Name'} />*/}
+      <div onClick={handleOpen}>{children}</div>
+      <BasicModal title={'Edit pack'} open={open} handleClose={handleClose}>
         <FormControl fullWidth>
           <TextField
             className={s.container}
@@ -48,19 +51,19 @@ export const AddPackModal = ({ children }: PropsType) => {
             size="small"
             variant="standard"
             label="Pack Name"
-            value={packName}
-            onChange={setNewPackName}
+            value={newPackName}
+            onChange={changePackName}
             placeholder={'Pack Name'}
           />
           <FormControlLabel
             className={s.container}
-            control={<Checkbox checked={isPrivate} onChange={setChecked} />}
+            control={<Checkbox checked={packStatus} onChange={setChecked} />}
             label="Private pack"
           />
         </FormControl>
         <div className={s.buttonsContainer}>
-          <ClassicButton title={'Cancel'} onClick={handleClose} />
-          <ClassicButton title={'Save'} onClick={addPackHandler} />
+          <ClassicButton title={'Cancel'} onClick={handleClose} color={'inherit'} />
+          <ClassicButton title={'Save'} onClick={editPackHandler} />
         </div>
       </BasicModal>
     </>

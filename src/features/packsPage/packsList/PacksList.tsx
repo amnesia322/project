@@ -49,9 +49,10 @@ export const PacksList = () => {
     lastUpdate: string,
     createBy: string,
     id: string,
-    userId: string
+    userId: string,
+    isPrivate: boolean
   ) => {
-    return { name, cardsCount, lastUpdate, createBy, id, userId }
+    return { name, cardsCount, lastUpdate, createBy, id, userId, isPrivate }
   }
 
   const rows = packs.map(item =>
@@ -61,7 +62,8 @@ export const PacksList = () => {
       findSubstr(item.updated),
       item.user_name,
       item._id,
-      item.user_id
+      item.user_id,
+      item.private
     )
   )
 
@@ -96,7 +98,12 @@ export const PacksList = () => {
                 <StyledTableCell align="center">{row.lastUpdate}</StyledTableCell>
                 <StyledTableCell align="center">{row.createBy}</StyledTableCell>
                 <StyledTableCell align="center">
-                  <PackItemActions userId={row.userId} packId={row.id} />
+                  <PackItemActions
+                    userId={row.userId}
+                    packId={row.id}
+                    packName={row.name}
+                    isPrivate={row.isPrivate}
+                  />
                 </StyledTableCell>
               </StyledTableRow>
             ))}
