@@ -15,6 +15,13 @@
 }
 
 .label {
+  display: flex;
+
+  padding-top: 15px;
+}
+
+.span{
+  display: inline-block;
 }
 
 .options {

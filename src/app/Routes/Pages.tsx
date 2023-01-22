@@ -7,6 +7,7 @@ import { ForgotPassword } from '../../features/auth/ForgotPassword/ForgotPasswor
 import NewPass from '../../features/auth/ForgotPassword/NewPass/NewPass'
 import { Login } from '../../features/auth/Login/Login'
 import { Register } from '../../features/auth/Register/Register'
+import { Learn } from '../../features/learn/Learn'
 import { Cards } from '../../features/packsPage/cards/Cards'
 import { PacksPage } from '../../features/packsPage/PacksPage'
 import Profile from '../../features/profile/Profile'
@@ -24,6 +25,7 @@ export const PATH = {
   CHECK_EMAIL: '/check_email',
   PACK_LIST: '/packs_list',
   CARDS_LIST: '/cards_list/:id',
+  LEARN: '/learn',
 }
 
 function Pages() {
@@ -35,6 +37,7 @@ function Pages() {
           <Route path={PATH.PROFILE} element={<Profile />} />
           <Route path={PATH.PACK_LIST} element={<PacksPage />} />
           <Route path={PATH.CARDS_LIST} element={<Cards />} />
+          <Route path={PATH.LEARN} element={<Learn />} />
         </Route>
         <Route path={PATH.LOGIN} element={<Login />} />
         <Route path={PATH.REGISTER} element={<Register />} />
