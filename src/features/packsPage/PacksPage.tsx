@@ -9,7 +9,8 @@ import { PaginationComponent } from '../../common/components/Pagination/Paginati
 import { SearchComponent } from '../../common/components/SearchComponent/SearchComponent'
 
 import { MyAllSelector } from './myAllSelector/MyAllSelector'
-import { addPackTC, setPacksTC } from './packs-reducer'
+import { setPacksTC } from './packs-reducer'
+import { AddPackModal } from './packsList/modals/addPackModal/addPackModal'
 import { PacksList } from './packsList/PacksList'
 import s from './PacksPage.module.css'
 import { RefreshFilter } from './refreshFilter/RefreshFilter'
@@ -21,10 +22,6 @@ export const PacksPage = () => {
   const page = useAppSelector(state => state.packs.page)
   const pageCount = useAppSelector(state => state.packs.queryParams.pageCount)
   const isFetched = useAppSelector(state => state.packs.isPacksFetched)
-
-  const onClickHandler = () => {
-    dispatch(addPackTC({ cardsPack: { name: '!The Best team pack!' } }))
-  }
 
   useEffect(() => {
     dispatch(setPacksTC())
@@ -42,11 +39,9 @@ export const PacksPage = () => {
     <div className={s.wrapper}>
       <div className={s.wrapperButton}>
         <div className={s.titleTable}>Packs list</div>
-        <ClassicButton
-          title={'Add new pack'}
-          onClick={onClickHandler}
-          disabled={appStatus === 'loading'}
-        />
+        <AddPackModal>
+          <ClassicButton title={'Add new pack'} disabled={appStatus === 'loading'} />
+        </AddPackModal>
       </div>
       <div className={s.wrapperTable}></div>
       <div className={s.wrapperForHeaderTable}>
