@@ -30,7 +30,7 @@ export const DeleteCardModal = memo(({ children, cardId, cardName }: PropsType) 
       <div className={s.iconButton} onClick={handleOpen}>
         {children}
       </div>
-      <BasicModal title={'Delete pack'} open={open} handleClose={handleClose}>
+      <BasicModal title={'Delete card'} open={open} handleClose={handleClose}>
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
           Do you really want to remove&nbsp;
           <span style={{ fontWeight: 600 }}>{cardName}</span>? The card will be deleted.
