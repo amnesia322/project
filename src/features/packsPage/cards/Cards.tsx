@@ -8,9 +8,10 @@ import { ClassicButton } from '../../../common/components/ClassicButton/ClassicB
 import { PaginationComponent } from '../../../common/components/Pagination/PaginationComponent'
 import { SearchComponent } from '../../../common/components/SearchComponent/SearchComponent'
 
-import { addCardTC, setCardsTC } from './cards-reducer'
+import { setCardsTC } from './cards-reducer'
 import s from './Cards.module.css'
 import { CardsList } from './CardsList/CardsList'
+import { AddCardModal } from './CardsList/cardsModals/addCardModal/AddCardModal'
 import { MyPackMenu } from './myPackMenu/MyPackMenu'
 
 export const Cards = () => {
@@ -49,10 +50,6 @@ export const Cards = () => {
 
   const isMyId = myId === chosenPack?.user_id
 
-  const addCardHandler = () => {
-    dispatch(addCardTC({ card: { cardsPack_id } }))
-  }
-
   const learnPackHandler = () => {
     alert('learnPackHandler')
   }
@@ -71,7 +68,11 @@ export const Cards = () => {
               isPrivate={chosenPack.private}
             />
           </div>
-          {!!cards.length && <ClassicButton title={'Add new card'} onClick={addCardHandler} />}
+          {!!cards.length && (
+            <AddCardModal cardsPack_id={cardsPack_id}>
+              <ClassicButton title={'Add new card'} />
+            </AddCardModal>
+          )}
         </div>
       ) : (
         <div className={s.wrapperButton}>

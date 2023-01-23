@@ -6,8 +6,8 @@ import { useAppSelector } from '../../../../app/store'
 import deleteIcon from '../../../../assets/svg/delete.svg'
 import editIcon from '../../../../assets/svg/edit.svg'
 import learnIcon from '../../../../assets/svg/leran.svg'
-import { DeletePackModal } from '../modals/deletePackModal/DeletePackModal'
-import { EditPackModal } from '../modals/editPackModal/EditPackModal'
+import { DeletePackModal } from '../packsModals/deletePackModal/DeletePackModal'
+import { EditPackModal } from '../packsModals/editPackModal/EditPackModal'
 
 import s from './PackItemAction.module.css'
 

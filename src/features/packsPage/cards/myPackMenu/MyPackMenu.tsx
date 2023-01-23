@@ -8,8 +8,8 @@ import MenuItem from '@mui/material/MenuItem'
 import deleteIcon from '../../../../assets/svg/delete.svg'
 import editIcon from '../../../../assets/svg/edit.svg'
 import learnIcon from '../../../../assets/svg/leran.svg'
-import { DeletePackModal } from '../../packsList/modals/deletePackModal/DeletePackModal'
-import { EditPackModal } from '../../packsList/modals/editPackModal/EditPackModal'
+import { DeletePackModal } from '../../packsList/packsModals/deletePackModal/DeletePackModal'
+import { EditPackModal } from '../../packsList/packsModals/editPackModal/EditPackModal'
 import s from '../myPackMenu/MyPackMenu.module.css'
 
 type MyPackMenuPropsType = {

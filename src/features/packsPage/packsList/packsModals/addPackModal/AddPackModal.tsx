@@ -9,7 +9,7 @@ import { useAppDispatch } from '../../../../../app/store'
 import { BasicModal } from '../../../../../common/components/BasicModal/BasicModal'
 import { ClassicButton } from '../../../../../common/components/ClassicButton/ClassicButton'
 import { addPackTC } from '../../../packs-reducer'
-import s from '../editPackModal/EditPackModal.module.css'
+import s from '../addPackModal/AddPackModal.module.css'
 type PropsType = {
   children?: ReactNode
 }

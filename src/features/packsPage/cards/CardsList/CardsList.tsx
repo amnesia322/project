@@ -9,13 +9,13 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 
-import { useAppDispatch, useAppSelector } from '../../../../app/store'
+import { useAppSelector } from '../../../../app/store'
 import { ClassicButton } from '../../../../common/components/ClassicButton/ClassicButton'
 import { findSubstr } from '../../../../common/utils/findSubscr'
 import s from '../../packsList/PacksList.module.css'
-import { addCardTC } from '../cards-reducer'
 
 import { CardItemActions } from './cardItemActions/CardItemActions'
+import { AddCardModal } from './cardsModals/addCardModal/AddCardModal'
 import { CardsRating } from './cardsRating/CardsRating'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -43,7 +43,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export const CardsList = ({ isMyId }: CardItemPropsType) => {
   const cards = useAppSelector(state => state.cards.cards)
   const cardsPack_id = useAppSelector(state => state.cards.queryParams.cardsPack_id)
-  const dispatch = useAppDispatch()
+
   const createData = (
     questions: string,
     answer: string,
@@ -58,16 +58,16 @@ export const CardsList = ({ isMyId }: CardItemPropsType) => {
     createData(item.question, item.answer, findSubstr(item.updated), item.grade, item._id)
   )
 
-  const addCardHandler = () => {
-    dispatch(addCardTC({ card: { cardsPack_id } }))
-  }
-
   return (
     <div>
       {!cards.length ? (
         <div className={s.wrapperForTitle}>
           <div className={s.titleForEmptyPack}>This pack is empty.</div>
-          {isMyId && <ClassicButton title={'Add new card'} onClick={addCardHandler} />}
+          {isMyId && (
+            <AddCardModal cardsPack_id={cardsPack_id}>
+              <ClassicButton title={'Add new card'} />
+            </AddCardModal>
+          )}
         </div>
       ) : (
         <TableContainer component={Paper}>
@@ -94,7 +94,11 @@ export const CardsList = ({ isMyId }: CardItemPropsType) => {
                   </StyledTableCell>
                   {isMyId && (
                     <StyledTableCell align="center">
-                      <CardItemActions cardId={row.id} />
+                      <CardItemActions
+                        cardId={row.id}
+                        cardQuestion={row.questions}
+                        cardAnswer={row.answer}
+                      />
                     </StyledTableCell>
                   )}
                 </StyledTableRow>

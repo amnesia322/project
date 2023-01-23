@@ -6,7 +6,7 @@ import { useAppDispatch } from '../../../../../app/store'
 import { BasicModal } from '../../../../../common/components/BasicModal/BasicModal'
 import { ClassicButton } from '../../../../../common/components/ClassicButton/ClassicButton'
 import { deletePackTC } from '../../../packs-reducer'
-import s from '../editPackModal/EditPackModal.module.css'
+import s from '../deletePackModal/DeletePackModal.module.css'
 type PropsType = {
   children?: ReactNode
   packId: string

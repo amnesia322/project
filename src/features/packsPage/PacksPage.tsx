@@ -10,8 +10,8 @@ import { SearchComponent } from '../../common/components/SearchComponent/SearchC
 
 import { MyAllSelector } from './myAllSelector/MyAllSelector'
 import { setPacksTC } from './packs-reducer'
-import { AddPackModal } from './packsList/modals/addPackModal/AddPackModal'
 import { PacksList } from './packsList/PacksList'
+import { AddPackModal } from './packsList/packsModals/addPackModal/AddPackModal'
 import s from './PacksPage.module.css'
 import { RefreshFilter } from './refreshFilter/RefreshFilter'
 export const PacksPage = () => {
