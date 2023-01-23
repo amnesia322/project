@@ -6,22 +6,19 @@ import { useAppSelector } from '../../../../app/store'
 import deleteIcon from '../../../../assets/svg/delete.svg'
 import editIcon from '../../../../assets/svg/edit.svg'
 import learnIcon from '../../../../assets/svg/leran.svg'
-import { EditPackModal } from '../modals/addPackModal/EditPackModal'
 import { DeletePackModal } from '../modals/deletePackModal/DeletePackModal'
+import { EditPackModal } from '../modals/editPackModal/EditPackModal'
 
 import s from './PackItemAction.module.css'
 
-export const PackItemActions = ({
-  userId,
-  packId,
-  packName,
-  isPrivate,
-}: {
-  userId: string
+type PropsType = {
   packId: string
+  userId: string
   packName: string
   isPrivate: boolean
-}) => {
+}
+
+export const PackItemActions = ({ userId, packId, packName, isPrivate }: PropsType) => {
   const myId = useAppSelector(state => state.profile.user._id)
 
   const onLearnHandler = () => {

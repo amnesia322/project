@@ -2,7 +2,7 @@ import React, { ChangeEvent, useState } from 'react'
 
 import TextField from '@mui/material/TextField'
 
-import s from '../../../features/packsPage/packsList/modals/addPackModal/EditPackModal.module.css'
+import s from '../../../features/packsPage/packsList/modals/editPackModal/EditPackModal.module.css'
 
 type PropsType = {
   label: string

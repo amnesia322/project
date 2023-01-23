@@ -1,6 +1,5 @@
 import React, { ChangeEvent, memo, ReactNode, useCallback, useState } from 'react'
 
-import Button from '@mui/material/Button'
 import Checkbox from '@mui/material/Checkbox'
 import FormControl from '@mui/material/FormControl'
 import FormControlLabel from '@mui/material/FormControlLabel'
@@ -10,7 +9,7 @@ import { useAppDispatch } from '../../../../../app/store'
 import { BasicModal } from '../../../../../common/components/BasicModal/BasicModal'
 import { ClassicButton } from '../../../../../common/components/ClassicButton/ClassicButton'
 import { addPackTC } from '../../../packs-reducer'
-import s from '../addPackModal/EditPackModal.module.css'
+import s from '../editPackModal/EditPackModal.module.css'
 type PropsType = {
   children?: ReactNode
 }
@@ -37,7 +36,9 @@ export const AddPackModal = memo(({ children }: PropsType) => {
 
   return (
     <>
-      <Button onClick={handleOpen}>{children}</Button>
+      <div className={s.iconButton} onClick={handleOpen}>
+        {children}
+      </div>
       <BasicModal title={'Add new pack'} open={open} handleClose={handleClose}>
         {/*<ClassicTextInput label={'Pack Name'} placeholder={'Pack Name'} />*/}
         <FormControl fullWidth>

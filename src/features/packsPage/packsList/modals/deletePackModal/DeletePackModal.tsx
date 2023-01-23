@@ -6,7 +6,7 @@ import { useAppDispatch } from '../../../../../app/store'
 import { BasicModal } from '../../../../../common/components/BasicModal/BasicModal'
 import { ClassicButton } from '../../../../../common/components/ClassicButton/ClassicButton'
 import { deletePackTC } from '../../../packs-reducer'
-import s from '../addPackModal/EditPackModal.module.css'
+import s from '../editPackModal/EditPackModal.module.css'
 type PropsType = {
   children?: ReactNode
   packId: string
@@ -26,7 +26,9 @@ export const DeletePackModal = memo(({ children, packId, packName }: PropsType) 
 
   return (
     <>
-      <div onClick={handleOpen}>{children}</div>
+      <div className={s.iconButton} onClick={handleOpen}>
+        {children}
+      </div>
       <BasicModal title={'Delete pack'} open={open} handleClose={handleClose}>
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
           Do you really want to remove&nbsp;

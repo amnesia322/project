@@ -11,6 +11,7 @@ import { ClassicButton } from '../../../../../common/components/ClassicButton/Cl
 import { editPackTitleTC } from '../../../packs-reducer'
 
 import s from './EditPackModal.module.css'
+
 type PropsType = {
   children?: ReactNode
   packId: string
@@ -42,7 +43,9 @@ export const EditPackModal = memo(({ children, packId, packName, isPrivate }: Pr
 
   return (
     <>
-      <div onClick={handleOpen}>{children}</div>
+      <div className={s.iconButton} onClick={handleOpen}>
+        {children}
+      </div>
       <BasicModal title={'Edit pack'} open={open} handleClose={handleClose}>
         <FormControl fullWidth>
           <TextField
