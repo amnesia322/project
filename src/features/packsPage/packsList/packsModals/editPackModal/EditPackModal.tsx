@@ -26,7 +26,7 @@ export const EditPackModal = memo(({ children, packId, packName, isPrivate }: Pr
   const handleClose = useCallback(() => setOpen(false), [])
 
   const [newPackName, setNewPackName] = useState(packName)
-  const changePackName = (e: ChangeEvent<HTMLInputElement>) => {
+  const changePackNameHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setNewPackName(e.currentTarget.value)
   }
   const editPackHandler = () => {
@@ -37,7 +37,7 @@ export const EditPackModal = memo(({ children, packId, packName, isPrivate }: Pr
   }
 
   const [packStatus, setPackStatus] = useState(isPrivate)
-  const setChecked = (e: ChangeEvent<HTMLInputElement>) => {
+  const changeCheckedHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setPackStatus(e.target.checked)
   }
 
@@ -55,12 +55,12 @@ export const EditPackModal = memo(({ children, packId, packName, isPrivate }: Pr
             variant="standard"
             label="Pack Name"
             value={newPackName}
-            onChange={changePackName}
+            onChange={changePackNameHandler}
             placeholder={'Pack Name'}
           />
           <FormControlLabel
             className={s.container}
-            control={<Checkbox checked={packStatus} onChange={setChecked} />}
+            control={<Checkbox checked={packStatus} onChange={changeCheckedHandler} />}
             label="Private pack"
           />
         </FormControl>

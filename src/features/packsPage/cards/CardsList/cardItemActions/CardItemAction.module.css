@@ -1,12 +1,8 @@
-.link {
-  padding-left: 25px;
-}
-
-.link:first-child {
-  padding-left: 0;
-}
-
 .wrapper {
   display: flex;
   justify-content: center;
+}
+
+img {
+  margin-right: 10px;
 }
