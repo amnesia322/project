@@ -2,24 +2,25 @@ import React from 'react'
 
 import { Link } from 'react-router-dom'
 
-import { useAppDispatch, useAppSelector } from '../../../../app/store'
+import { useAppSelector } from '../../../../app/store'
 import deleteIcon from '../../../../assets/svg/delete.svg'
 import editIcon from '../../../../assets/svg/edit.svg'
 import learnIcon from '../../../../assets/svg/leran.svg'
-import { deletePackTC, editPackTitleTC } from '../../packs-reducer'
+import { DeletePackModal } from '../packsModals/deletePackModal/DeletePackModal'
+import { EditPackModal } from '../packsModals/editPackModal/EditPackModal'
 
 import s from './PackItemAction.module.css'
 
-export const PackItemActions = ({ userId, packId }: { userId: string; packId: string }) => {
-  const myId = useAppSelector(state => state.profile.user._id)
-  const dispatch = useAppDispatch()
+type PropsType = {
+  packId: string
+  userId: string
+  packName: string
+  isPrivate: boolean
+}
 
-  const onEditHandler = () => {
-    dispatch(editPackTitleTC({ cardsPack: { _id: packId, name: '!Updated The Best team pack!' } }))
-  }
-  const onDeleteHandler = () => {
-    dispatch(deletePackTC(packId))
-  }
+export const PackItemActions = ({ userId, packId, packName, isPrivate }: PropsType) => {
+  const myId = useAppSelector(state => state.profile.user._id)
+
   const onLearnHandler = () => {
     alert('onLearnHandler')
   }
@@ -31,12 +32,12 @@ export const PackItemActions = ({ userId, packId }: { userId: string; packId: st
       </Link>
       {myId == userId && (
         <>
-          <Link to={'#'} className={s.link}>
-            <img src={editIcon} alt={'edit'} onClick={onEditHandler} />
-          </Link>
-          <Link to={'#'} className={s.link}>
-            <img src={deleteIcon} alt={'delete'} onClick={onDeleteHandler} />
-          </Link>
+          <EditPackModal packId={packId} packName={packName} isPrivate={isPrivate}>
+            <img src={editIcon} alt={'edit'} />
+          </EditPackModal>
+          <DeletePackModal packId={packId} packName={packName}>
+            <img src={deleteIcon} alt={'delete'} />
+          </DeletePackModal>
         </>
       )}
     </div>

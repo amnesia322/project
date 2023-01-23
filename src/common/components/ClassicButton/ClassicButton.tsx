@@ -7,6 +7,7 @@ type ClassicButtonPropsType = {
   children?: JSX.Element | JSX.Element[]
   onClick?: () => void
   sx?: { [key: string]: string }
+  color?: 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning'
 
   disabled?: boolean
 }
@@ -16,7 +17,7 @@ export const ClassicButton = (props: ClassicButtonPropsType) => {
     <Button
       type={'submit'}
       variant={'contained'}
-      color={'primary'}
+      color={props.color}
       sx={{
         borderRadius: '30px',
         fontFamily: 'Montserrat',

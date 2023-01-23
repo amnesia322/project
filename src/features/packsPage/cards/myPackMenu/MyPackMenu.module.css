@@ -1,6 +1,17 @@
 .container {
     border-color: black;
 }
+
+/*.menuItem {*/
+/*    font-family: 'Montserrat';*/
+/*    font-size: 14px;*/
+/*    font-weight: 400;*/
+/*    font-style: normal;*/
+/*    line-height: 24px;*/
+/*    color: #0D0C0B;*/
+/*    letter-spacing: -0.01em;*/
+/*}*/
+
 .img {
     margin-right: 10px;
 }
