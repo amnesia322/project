@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ReactNode, useState } from 'react'
+import React, { ChangeEvent, memo, ReactNode, useCallback, useState } from 'react'
 
 import Checkbox from '@mui/material/Checkbox'
 import FormControl from '@mui/material/FormControl'
@@ -17,12 +17,12 @@ type PropsType = {
   packName?: string
   isPrivate?: boolean
 }
-export const EditPackModal = ({ children, packId, packName, isPrivate }: PropsType) => {
+export const EditPackModal = memo(({ children, packId, packName, isPrivate }: PropsType) => {
   const dispatch = useAppDispatch()
   const [open, setOpen] = useState(false)
 
   const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
+  const handleClose = useCallback(() => setOpen(false), [])
 
   const [newPackName, setNewPackName] = useState(packName)
   const changePackName = (e: ChangeEvent<HTMLInputElement>) => {
@@ -68,4 +68,4 @@ export const EditPackModal = ({ children, packId, packName, isPrivate }: PropsTy
       </BasicModal>
     </>
   )
-}
+})

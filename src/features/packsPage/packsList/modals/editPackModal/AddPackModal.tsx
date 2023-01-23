@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ReactNode, useState } from 'react'
+import React, { ChangeEvent, memo, ReactNode, useCallback, useState } from 'react'
 
 import Button from '@mui/material/Button'
 import Checkbox from '@mui/material/Checkbox'
@@ -14,12 +14,12 @@ import s from '../addPackModal/EditPackModal.module.css'
 type PropsType = {
   children?: ReactNode
 }
-export const AddPackModal = ({ children }: PropsType) => {
+export const AddPackModal = memo(({ children }: PropsType) => {
   const dispatch = useAppDispatch()
   const [open, setOpen] = useState(false)
 
   const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
+  const handleClose = useCallback(() => setOpen(false), [])
 
   const [packName, setPackName] = useState('')
   const setNewPackName = (e: ChangeEvent<HTMLInputElement>) => {
@@ -64,4 +64,4 @@ export const AddPackModal = ({ children }: PropsType) => {
       </BasicModal>
     </>
   )
-}
+})

@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react'
+import React, { memo, ReactNode, useCallback, useState } from 'react'
 
 import Typography from '@mui/material/Typography'
 
@@ -12,12 +12,12 @@ type PropsType = {
   packId: string
   packName: string | undefined
 }
-export const DeletePackModal = ({ children, packId, packName }: PropsType) => {
+export const DeletePackModal = memo(({ children, packId, packName }: PropsType) => {
   const dispatch = useAppDispatch()
   const [open, setOpen] = useState(false)
 
   const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
+  const handleClose = useCallback(() => setOpen(false), [])
 
   const deletePackHandler = () => {
     dispatch(deletePackTC(packId))
@@ -39,4 +39,4 @@ export const DeletePackModal = ({ children, packId, packName }: PropsType) => {
       </BasicModal>
     </>
   )
-}
+})

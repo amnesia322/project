@@ -1,7 +1,6 @@
-import React, { ReactNode, useState } from 'react'
+import React, { memo, ReactNode } from 'react'
 
 import CloseIcon from '@mui/icons-material/Close'
-import Backdrop from '@mui/material/Backdrop'
 import Box from '@mui/material/Box'
 import Divider from '@mui/material/Divider'
 import Fade from '@mui/material/Fade'
@@ -18,7 +17,7 @@ type PropsType = {
   handleClose: () => void
 }
 
-export const BasicModal = ({ children, title, open, handleClose }: PropsType) => {
+export const BasicModal = memo(({ children, title, open, handleClose }: PropsType) => {
   return (
     <div>
       <Modal
@@ -27,10 +26,6 @@ export const BasicModal = ({ children, title, open, handleClose }: PropsType) =>
         open={open}
         onClose={handleClose}
         closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
       >
         <Fade in={open}>
           <Box className={s.container}>
@@ -47,4 +42,4 @@ export const BasicModal = ({ children, title, open, handleClose }: PropsType) =>
       </Modal>
     </div>
   )
-}
+})
