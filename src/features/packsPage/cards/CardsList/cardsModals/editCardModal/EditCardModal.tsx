@@ -41,6 +41,7 @@ export const EditCardModal = memo(({ children, cardId, question, answer }: Props
 
   const editCardHandler = () => {
     dispatch(editCardTitleTC({ card: { _id: cardId, question: newQuestion, answer: newAnswer } }))
+    setOpen(false)
   }
 
   return (
