@@ -26,7 +26,6 @@ export const ClassicButton = (props: ClassicButtonPropsType) => {
         fontSize: '16px',
         lineHeight: '20px',
         textTransform: 'none',
-        // backgroundColor: '#366eff',
         ...props.sx,
       }}
       onClick={props.onClick}

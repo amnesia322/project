@@ -1,35 +1,20 @@
-import React, { ChangeEvent } from 'react'
+import React from 'react'
 
-import { Box, Slider } from '@material-ui/core'
+import { Slider } from '@material-ui/core'
 
 type SuperDoubleRangePropsType = {
   onChangeRange?: (value: number[]) => void
   value?: number[]
-  // min, max, step, disable, ...
 }
 
-export const SuperDoubleRange: React.FC<SuperDoubleRangePropsType> = ({
-  onChangeRange,
-  value,
-  // min, max, step, disable, ...
-}) => {
+export const SuperDoubleRange: React.FC<SuperDoubleRangePropsType> = ({ onChangeRange, value }) => {
   const handleChange = (event: React.ChangeEvent<{}>, value: number | number[]) => {
-    // setValue(newValue as number[]);
     Array.isArray(value) && onChangeRange && onChangeRange(value)
   }
-  // function valuetext(value: number) {
-  //     return `${value}°C`;
-  // }
 
   return (
     <div style={{ width: 160 }}>
-      <Slider
-        // getAriaLabel={() => 'Temperature range'}
-        value={value || [0, 100]}
-        onChange={handleChange}
-        valueLabelDisplay="auto"
-        // getAriaValueText={valuetext}
-      />
+      <Slider value={value || [0, 100]} onChange={handleChange} valueLabelDisplay="auto" />
     </div>
   )
 }

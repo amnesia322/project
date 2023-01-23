@@ -26,7 +26,7 @@ export const PATH = {
   PACK_LIST: '/packs_list',
   CARDS_LIST: '/cards_list/:id',
   LEARN: '/learn',
-}
+} as const
 
 function Pages() {
   return (

@@ -9,15 +9,15 @@ import { CreatePackRequestType, packsAPI, PackType, UpdatePackRequestType } from
 
 const initialState = {
   cardPacks: [] as PackType[],
-  cardPacksTotalCount: 100, // количество колод
+  cardPacksTotalCount: 100,
   maxCardsCount: 0,
   minCardsCount: 0,
-  page: 1, // выбранная страница,
+  page: 1,
   isPacksFetched: false,
   queryParams: {
     min: 0,
     max: 200,
-    pageCount: 5, // количество элементов на странице
+    pageCount: 5,
     sortPacks: sortingPacksMethods.desUpdate,
     packName: '',
     user_id: '',

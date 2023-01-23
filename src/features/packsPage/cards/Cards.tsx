@@ -82,7 +82,7 @@ export const Cards = () => {
       )}
       <div className={s.wrapperTable}>
         <div className={s.wrapperForSearchComponent}>
-          {totalCount && <SearchComponent isThisPlaceCards={true} />}
+          {!!totalCount && <SearchComponent isThisPlaceCards={true} />}
         </div>
         <CardsList isMyId={isMyId} />
       </div>
