@@ -13,6 +13,9 @@ export const cardsApi = {
   updateCard(payload: UpdateCardRequestType) {
     return instance.put<GetCardsResponseType>('cards/card', payload)
   },
+  setGrade(payload: { grade: string; card_id: string }) {
+    return instance.put<ResponseUpdatedGradeType>('cards/grade', payload)
+  },
 }
 
 export type CardType = {
@@ -78,3 +81,30 @@ export type UpdateCardRequestType = {
     questionImg?: string
   }
 }
+
+export type SetGradeType = {
+  grade: number
+  card_id: string
+}
+
+export type ResponseUpdatedGradeType = {
+  updatedGrade: {
+    _id: string
+    cardsPack_id: string
+    card_id: string
+    user_id: string
+    grade: number
+    shots: number
+  }
+}
+
+// _id: string
+// answer: string
+// question: string
+// cardsPack_id: string
+// grade: number
+// shots: number
+// user_id: string
+// created: string
+// updated: string
+// questionImg?: string

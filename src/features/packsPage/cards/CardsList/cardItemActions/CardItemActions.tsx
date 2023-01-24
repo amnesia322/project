@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { useAppDispatch } from '../../../../../app/store'
 import deleteIcon from '../../../../../assets/svg/delete.svg'
 import editIcon from '../../../../../assets/svg/edit.svg'
+// eslint-disable-next-line import/namespace
 import { deleteCardTC, editCardTitleTC } from '../../cards-reducer'
 
 import s from './CardItemAction.module.css'

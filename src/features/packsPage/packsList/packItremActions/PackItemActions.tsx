@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../../../app/store'
 import deleteIcon from '../../../../assets/svg/delete.svg'
 import editIcon from '../../../../assets/svg/edit.svg'
 import learnIcon from '../../../../assets/svg/leran.svg'
+import { setCardsPerPage, setCardsTC } from '../../cards/cards-reducer'
 import { deletePackTC, editPackTitleTC } from '../../packs-reducer'
 
 import s from './PackItemAction.module.css'
@@ -13,6 +14,9 @@ import s from './PackItemAction.module.css'
 export const PackItemActions = ({ userId, packId }: { userId: string; packId: string }) => {
   const myId = useAppSelector(state => state.profile.user._id)
   const dispatch = useAppDispatch()
+  const cardsCount = useAppSelector(
+    state => state.packs.cardPacks.find(item => item._id === packId)!.cardsCount
+  )
 
   const onEditHandler = () => {
     dispatch(editPackTitleTC({ cardsPack: { _id: packId, name: '!Updated The Best team pack!' } }))
@@ -21,12 +25,13 @@ export const PackItemActions = ({ userId, packId }: { userId: string; packId: st
     dispatch(deletePackTC(packId))
   }
   const onLearnHandler = () => {
-    alert('onLearnHandler')
+    dispatch(setCardsPerPage(cardsCount))
+    dispatch(setCardsTC(packId))
   }
 
   return (
     <div className={s.wrapper}>
-      <Link to={'#'} className={s.link}>
+      <Link to={'/learn'} className={s.link}>
         <img src={learnIcon} alt={'learn'} onClick={onLearnHandler} />
       </Link>
       {myId == userId && (

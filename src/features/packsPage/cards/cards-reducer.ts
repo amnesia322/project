@@ -4,7 +4,14 @@ import { setAppStatusAC } from '../../../app/app-reducer'
 import { AppThunk } from '../../../app/store'
 import { errorUtils } from '../../../common/utils/error-utils'
 
-import { cardsApi, CardType, CreateCardRequestType, UpdateCardRequestType } from './cards-api'
+import {
+  cardsApi,
+  CardType,
+  CreateCardRequestType,
+  ResponseUpdatedGradeType,
+  SetGradeType,
+  UpdateCardRequestType,
+} from './cards-api'
 
 const initialState = {
   queryParams: {
@@ -23,6 +30,7 @@ const initialState = {
   minGrade: 0,
   page: 1,
   packUserId: '',
+  packName: '',
 }
 
 export const cardsReducer = (
@@ -44,6 +52,15 @@ export const cardsReducer = (
       return { ...state, queryParams: { ...state.queryParams, cardsPack_id: action.cardsPack_id } }
     case 'cards/REFRESH-FILTERS':
       return { ...state, queryParams: { ...state.queryParams, ...action.queryParams } }
+    case 'cards/SET_GRADE':
+      return {
+        ...state,
+        cards: state.cards.map(item =>
+          item._id === action.updatedGrade.updatedGrade.card_id
+            ? { ...item, ...action.updatedGrade.updatedGrade }
+            : item
+        ),
+      }
     default:
       return state
   }
@@ -61,6 +78,8 @@ export const setPackCards = (cardsPack_id: string) =>
   ({ type: 'cards/SET_PACK_CARDS', cardsPack_id } as const)
 export const refreshCardsFilters = (queryParams: InitialStateType['queryParams']) =>
   ({ type: 'cards/REFRESH-FILTERS', queryParams } as const)
+export const setGrade = (updatedGrade: ResponseUpdatedGradeType) =>
+  ({ type: 'cards/SET_GRADE', updatedGrade } as const)
 
 export const setCardsTC =
   (cardsPack_id: string): AppThunk =>
@@ -138,6 +157,25 @@ export const editCardTitleTC =
     }
   }
 
+export const setCardGradeTC =
+  (value: string, card_id: string): AppThunk =>
+  async dispatch => {
+    dispatch(setAppStatusAC('loading'))
+    try {
+      const payload = { grade: value, card_id }
+      const response = await cardsApi.setGrade(payload)
+
+      dispatch(setGrade(response.data))
+      dispatch(setAppStatusAC('succeeded'))
+    } catch (error) {
+      const err = error as Error | AxiosError<{ error: string }>
+
+      errorUtils(err, dispatch)
+    } finally {
+      dispatch(setAppStatusAC('idle'))
+    }
+  }
+
 type InitialStateType = typeof initialState
 
 export type CardsActionType =
@@ -148,3 +186,4 @@ export type CardsActionType =
   | ReturnType<typeof setSortCards>
   | ReturnType<typeof setPackCards>
   | ReturnType<typeof refreshCardsFilters>
+  | ReturnType<typeof setGrade>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import Paper from '@mui/material/Paper'
 import { styled } from '@mui/material/styles'
@@ -13,7 +13,7 @@ import { useAppDispatch, useAppSelector } from '../../../../app/store'
 import { ClassicButton } from '../../../../common/components/ClassicButton/ClassicButton'
 import { findSubstr } from '../../../../common/utils/findSubscr'
 import s from '../../packsList/PacksList.module.css'
-import { addCardTC } from '../cards-reducer'
+import { addCardTC, setCardsPerPage } from '../cards-reducer'
 
 import { CardItemActions } from './cardItemActions/CardItemActions'
 import { CardsRating } from './cardsRating/CardsRating'
@@ -45,6 +45,11 @@ export const CardsList = ({ isMyId }: CardItemPropsType) => {
   const cardsPack_id = useAppSelector(state => state.cards.queryParams.cardsPack_id)
   const dispatch = useAppDispatch()
   const totalCount = useAppSelector(state => state.cards.cardsTotalCount)
+  let cardsCountInPage = 5
+
+  useEffect(() => {
+    dispatch(dispatch(setCardsPerPage(cardsCountInPage)))
+  }, [])
   const createData = (
     questions: string,
     answer: string,
