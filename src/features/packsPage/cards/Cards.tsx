@@ -7,11 +7,11 @@ import { BackToPackList } from '../../../common/components/BackToPackListButton/
 import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
 import { PaginationComponent } from '../../../common/components/Pagination/PaginationComponent'
 import { SearchComponent } from '../../../common/components/SearchComponent/SearchComponent'
-import { deletePackTC, editPackTitleTC } from '../packs-reducer'
 
-import { addCardTC, setCardsTC } from './cards-reducer'
+import { setCardsTC } from './cards-reducer'
 import s from './Cards.module.css'
 import { CardsList } from './CardsList/CardsList'
+import { AddCardModal } from './CardsList/cardsModals/addCardModal/AddCardModal'
 import { MyPackMenu } from './myPackMenu/MyPackMenu'
 
 export const Cards = () => {
@@ -36,21 +36,20 @@ export const Cards = () => {
 
   useEffect(() => {
     dispatch(setCardsTC(id || cardsPack_id))
-  }, [page, totalCount, id, pageCount, query.cardQuestion, query.min, query.max, query.sortCards])
+  }, [
+    dispatch,
+    totalCount,
+    page,
+    id,
+    pageCount,
+    query.cardQuestion,
+    query.min,
+    query.max,
+    query.sortCards,
+  ])
 
   const isMyId = myId === chosenPack?.user_id
 
-  const addCardHandler = () => {
-    dispatch(addCardTC({ card: { cardsPack_id } }))
-  }
-  const editPackHandler = () => {
-    dispatch(
-      editPackTitleTC({ cardsPack: { _id: cardsPack_id, name: '!Updated The Best team pack!' } })
-    )
-  }
-  const deletePackHandler = () => {
-    dispatch(deletePackTC(cardsPack_id))
-  }
   const learnPackHandler = () => {
     alert('learnPackHandler')
   }
@@ -63,12 +62,17 @@ export const Cards = () => {
           <div className={s.titleTable}>
             <span className={s.titlePack}>{chosenPack?.name}</span>
             <MyPackMenu
-              onEditHandler={editPackHandler}
-              onDeleteHandler={deletePackHandler}
               onLearnHandler={learnPackHandler}
+              packId={cardsPack_id}
+              packName={chosenPack.name}
+              isPrivate={chosenPack.private}
             />
           </div>
-          {!!totalCount && <ClassicButton title={'Add new card'} onClick={addCardHandler} />}
+          {!!cards.length && (
+            <AddCardModal cardsPack_id={cardsPack_id}>
+              <ClassicButton title={'Add new card'} />
+            </AddCardModal>
+          )}
         </div>
       ) : (
         <div className={s.wrapperButton}>
@@ -78,7 +82,7 @@ export const Cards = () => {
       )}
       <div className={s.wrapperTable}>
         <div className={s.wrapperForSearchComponent}>
-          {<SearchComponent isThisPlaceCards={true} />}
+          {!!totalCount && <SearchComponent isThisPlaceCards={true} />}
         </div>
         <CardsList isMyId={isMyId} />
       </div>

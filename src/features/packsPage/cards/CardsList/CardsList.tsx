@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import Paper from '@mui/material/Paper'
 import { styled } from '@mui/material/styles'
@@ -13,9 +13,10 @@ import { useAppDispatch, useAppSelector } from '../../../../app/store'
 import { ClassicButton } from '../../../../common/components/ClassicButton/ClassicButton'
 import { findSubstr } from '../../../../common/utils/findSubscr'
 import s from '../../packsList/PacksList.module.css'
-import { addCardTC, setCardsPerPage } from '../cards-reducer'
+import { addCardTC } from '../cards-reducer'
 
 import { CardItemActions } from './cardItemActions/CardItemActions'
+import { AddCardModal } from './cardsModals/addCardModal/AddCardModal'
 import { CardsRating } from './cardsRating/CardsRating'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -73,7 +74,11 @@ export const CardsList = ({ isMyId }: CardItemPropsType) => {
       {!totalCount ? (
         <div className={s.wrapperForTitle}>
           <div className={s.titleForEmptyPack}>This pack is empty.</div>
-          {isMyId && <ClassicButton title={'Add new card'} onClick={addCardHandler} />}
+          {isMyId && (
+            <AddCardModal cardsPack_id={cardsPack_id}>
+              <ClassicButton title={'Add new card'} />
+            </AddCardModal>
+          )}
         </div>
       ) : (
         <TableContainer component={Paper}>
@@ -100,7 +105,11 @@ export const CardsList = ({ isMyId }: CardItemPropsType) => {
                   </StyledTableCell>
                   {isMyId && (
                     <StyledTableCell align="center">
-                      <CardItemActions cardId={row.id} />
+                      <CardItemActions
+                        cardId={row.id}
+                        cardQuestion={row.questions}
+                        cardAnswer={row.answer}
+                      />
                     </StyledTableCell>
                   )}
                 </StyledTableRow>
