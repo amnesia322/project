@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useAppDispatch, useAppSelector } from '../../app/store'
 import { BackToPackList } from '../../common/components/BackToPackListButton/BackToPackList'
@@ -18,7 +18,7 @@ export const Learn = () => {
   const dispatch = useAppDispatch()
   const cards = useAppSelector(state => state.cards.cards)
   const packName = useAppSelector(state => state.cards.packName)
-  const cardsCount = useAppSelector(state => state.cards.cardsTotalCount)
+  // const cardsCount = useAppSelector(state => state.cards.cardsTotalCount)
   const answerArr = [
     { id: '1', value: 'Did not know' },
     { id: '2', value: 'Forgot' },
@@ -28,27 +28,36 @@ export const Learn = () => {
   ]
   const [value, onChangeOption] = useState(answerArr[2].id)
   const [isShow, setIsShow] = useState<boolean>(false)
+  const [cardAnsfer, setCardAncfer] = useState<any>()
 
-  // function arrayRandElement(arr: Array<CardType>) {
-  //   var rand = Math.floor(Math.random() * arr.length)
-  //
-  //   return arr[rand]
-  // }
-  let [questionIndex, setQuestionIndex] = useState(0)
-  const randomCardsArr = cards[questionIndex]
+  const getCard = (cards: CardType[]) => {
+    const sum = cards.reduce((acc, card) => acc + (6 - card.grade) * (6 - card.grade), 0)
+    const rand = Math.random() * sum
+    const res = cards.reduce(
+      (acc: { sum: number; id: number }, card, i) => {
+        const newSum = acc.sum + (6 - card.grade) * (6 - card.grade)
 
-  const onClickHandler = (value: string) => {
-    questionIndex < cardsCount
-      ? setQuestionIndex(questionIndex + 1)
-      : setQuestionIndex((questionIndex = 0))
-    setIsShow(false)
-    dispatch(setCardGradeTC(value, randomCardsArr._id))
+        return { sum: newSum, id: newSum < rand ? i : acc.id }
+      },
+      { sum: 0, id: -1 }
+    )
+
+    setCardAncfer(cards[res.id + 1])
   }
 
+  useEffect(() => {
+    getCard(cards)
+  }, [cards])
+
+  const onClickHandler = (grade: string) => {
+    setIsShow(false)
+    dispatch(setCardGradeTC(grade, cardAnsfer._id))
+  }
+
+  // console.log('qI', questionIndex, 'CC', cardsCount)
   // const onSumbitHandler = (value: string) => {
   //   console.log(value)
   //   dispatch(setCardGradeTC(value, randomCardsArr._id))
-  // }
 
   return (
     <div>
@@ -57,11 +66,11 @@ export const Learn = () => {
       <div className={s.wrapperLearn}>
         <div className={s.questionWrapper}>
           <div className={s.titleQuestion}>Question:</div>
-          <div className={s.textQuestion}>{randomCardsArr && randomCardsArr.question}</div>
+          <div className={s.textQuestion}>{cardAnsfer && cardAnsfer.question}</div>
         </div>
         <div className={s.titleQuantityAnswer}>
           Количество попыток ответа:
-          <span className={s.quantityAnswer}>{randomCardsArr && randomCardsArr.shots}</span>
+          <span className={s.quantityAnswer}>{cardAnsfer && cardAnsfer.shots}</span>
         </div>
         <div className={s.wrapperButton}>
           <ClassicButton title={'Show answer'} sx={button} onClick={() => setIsShow(true)} />
@@ -70,15 +79,10 @@ export const Learn = () => {
           <>
             <div className={s.answerWrapper}>
               <div className={s.titleQuestion}>Answer:</div>
-              <div className={s.textQuestion}>{randomCardsArr && randomCardsArr.answer}</div>
+              <div className={s.textQuestion}>{cardAnsfer && cardAnsfer.answer}</div>
             </div>
             <div className={s.textRate}>Rate yourself:</div>
-            <form
-              className={s.form}
-              // onSubmit={e => {
-              //   e.preventDefault()
-              // }}
-            >
+            <div className={s.form}>
               <div className={s.wrapperSuperRadio}>
                 <SuperRadio
                   name={'radio'}
@@ -90,7 +94,7 @@ export const Learn = () => {
               <div className={s.wrapperButtonNext}>
                 <ClassicButton title={'Next'} sx={button} onClick={() => onClickHandler(value)} />
               </div>
-            </form>
+            </div>
           </>
         ) : (
           ' '

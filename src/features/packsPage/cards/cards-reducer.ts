@@ -9,7 +9,6 @@ import {
   CardType,
   CreateCardRequestType,
   ResponseUpdatedGradeType,
-  SetGradeType,
   UpdateCardRequestType,
 } from './cards-api'
 
@@ -158,11 +157,15 @@ export const editCardTitleTC =
   }
 
 export const setCardGradeTC =
-  (value: string, card_id: string): AppThunk =>
-  async dispatch => {
+  (value: string, id: string): AppThunk =>
+  async (dispatch, getState) => {
     dispatch(setAppStatusAC('loading'))
+    const card_idFromResponse = getState().cards.cards.find(item => item._id === id)!.card_id
+    const card_id = card_idFromResponse || id
+
     try {
       const payload = { grade: value, card_id }
+
       const response = await cardsApi.setGrade(payload)
 
       dispatch(setGrade(response.data))

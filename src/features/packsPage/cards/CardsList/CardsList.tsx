@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import Paper from '@mui/material/Paper'
 import { styled } from '@mui/material/styles'
@@ -13,7 +13,7 @@ import { useAppDispatch, useAppSelector } from '../../../../app/store'
 import { ClassicButton } from '../../../../common/components/ClassicButton/ClassicButton'
 import { findSubstr } from '../../../../common/utils/findSubscr'
 import s from '../../packsList/PacksList.module.css'
-import { addCardTC } from '../cards-reducer'
+import { setCardsPerPage } from '../cards-reducer'
 
 import { CardItemActions } from './cardItemActions/CardItemActions'
 import { AddCardModal } from './cardsModals/addCardModal/AddCardModal'
@@ -64,10 +64,6 @@ export const CardsList = ({ isMyId }: CardItemPropsType) => {
   const rows = cards.map(item =>
     createData(item.question, item.answer, findSubstr(item.updated), item.grade, item._id)
   )
-
-  const addCardHandler = () => {
-    dispatch(addCardTC({ card: { cardsPack_id } }))
-  }
 
   return (
     <div>

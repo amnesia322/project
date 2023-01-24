@@ -29,6 +29,7 @@ export type CardType = {
   created: string
   updated: string
   questionImg?: string
+  card_id?: string
 }
 
 export type GetCardsRequestType = {

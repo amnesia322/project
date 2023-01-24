@@ -7,7 +7,8 @@ import deleteIcon from '../../../../assets/svg/delete.svg'
 import editIcon from '../../../../assets/svg/edit.svg'
 import learnIcon from '../../../../assets/svg/leran.svg'
 import { setCardsPerPage, setCardsTC } from '../../cards/cards-reducer'
-import { deletePackTC, editPackTitleTC } from '../../packs-reducer'
+import { DeletePackModal } from '../packsModals/deletePackModal/DeletePackModal'
+import { EditPackModal } from '../packsModals/editPackModal/EditPackModal'
 
 import s from './PackItemAction.module.css'
 
@@ -33,15 +34,15 @@ export const PackItemActions = ({ userId, packId, packName, isPrivate }: PropsTy
   return (
     <div className={s.wrapper}>
       <Link to={'/learn'} className={s.link}>
-        <img src={learnIcon} alt={'learn'} onClick={onLearnHandler} />
+        <img src={learnIcon} className={s.img} alt={'learn'} onClick={onLearnHandler} />
       </Link>
       {myId == userId && (
         <>
           <EditPackModal packId={packId} packName={packName} isPrivate={isPrivate}>
-            <img src={editIcon} alt={'edit'} />
+            <img src={editIcon} className={s.img} alt={'edit'} />
           </EditPackModal>
           <DeletePackModal packId={packId} packName={packName}>
-            <img src={deleteIcon} alt={'delete'} />
+            <img src={deleteIcon} className={s.img} alt={'delete'} />
           </DeletePackModal>
         </>
       )}
