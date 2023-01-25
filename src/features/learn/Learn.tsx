@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../app/store'
 import { BackToPackList } from '../../common/components/BackToPackListButton/BackToPackList'
 import { ClassicButton } from '../../common/components/ClassicButton/ClassicButton'
 import SuperRadio from '../../common/components/SuperRadio/SuperRadio'
+import { getCard } from '../../common/utils/getCard'
 import { CardType } from '../packsPage/cards/cards-api'
 import { setCardGradeTC } from '../packsPage/cards/cards-reducer'
 
@@ -31,23 +32,8 @@ export const Learn = () => {
   const [isShow, setIsShow] = useState<boolean>(false)
   const [cardAnsfer, setCardAncfer] = useState<CardType>()
 
-  const getCard = (cards: CardType[]) => {
-    const sum = cards.reduce((acc, card) => acc + (6 - card.grade) * (6 - card.grade), 0)
-    const rand = Math.random() * sum
-    const res = cards.reduce(
-      (acc: { sum: number; id: number }, card, i) => {
-        const newSum = acc.sum + (6 - card.grade) * (6 - card.grade)
-
-        return { sum: newSum, id: newSum < rand ? i : acc.id }
-      },
-      { sum: 0, id: -1 }
-    )
-
-    setCardAncfer(cards[res.id + 1])
-  }
-
   useEffect(() => {
-    getCard(cards)
+    setCardAncfer(getCard(cards))
   }, [cards])
 
   useEffect(() => {
