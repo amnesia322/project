@@ -50,9 +50,6 @@ export const Cards = () => {
   const isMyId = myId === chosenPack?.user_id
 
   const learnPackHandler = () => {
-    alert('learnPackHandler')
-  }
-  const onClickHandler = () => {
     dispatch(setCardsPerPage(totalCount))
     dispatch(setCardsTC(cardsPack_id))
     navigate('/learn')
@@ -81,7 +78,7 @@ export const Cards = () => {
       ) : (
         <div className={s.wrapperButton}>
           <div className={s.titleTable}>{chosenPack?.name}</div>
-          {!!totalCount && <ClassicButton title={'Learn to pack'} onClick={onClickHandler} />}
+          {!!totalCount && <ClassicButton title={'Learn to pack'} onClick={learnPackHandler} />}
         </div>
       )}
       <div className={s.wrapperTable}>

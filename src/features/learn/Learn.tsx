@@ -14,19 +14,20 @@ const button = {
   marginTop: '30px',
 }
 
+const answerArr = [
+  { id: '1', value: 'Did not know' },
+  { id: '2', value: 'Forgot' },
+  { id: '3', value: 'A lot of thought' },
+  { id: '4', value: 'Confused' },
+  { id: '5', value: 'Knew the answer' },
+]
+
 export const Learn = () => {
   const dispatch = useAppDispatch()
   const cards = useAppSelector(state => state.cards.cards)
   const packName = useAppSelector(state => state.cards.packName)
-  // const cardsCount = useAppSelector(state => state.cards.cardsTotalCount)
-  const answerArr = [
-    { id: '1', value: 'Did not know' },
-    { id: '2', value: 'Forgot' },
-    { id: '3', value: 'A lot of thought' },
-    { id: '4', value: 'Confused' },
-    { id: '5', value: 'Knew the answer' },
-  ]
-  const [value, onChangeOption] = useState<string>('0')
+
+  let [value, onChangeOption] = useState<string>('0')
   const [isShow, setIsShow] = useState<boolean>(false)
   const [cardAnsfer, setCardAncfer] = useState<CardType>()
 
@@ -49,15 +50,14 @@ export const Learn = () => {
     getCard(cards)
   }, [cards])
 
+  useEffect(() => {
+    onChangeOption('0')
+  }, [isShow])
+
   const onClickHandler = (grade: string) => {
     setIsShow(false)
     dispatch(setCardGradeTC(grade, cardAnsfer!._id))
   }
-
-  // console.log('qI', questionIndex, 'CC', cardsCount)
-  // const onSumbitHandler = (value: string) => {
-  //   console.log(value)
-  //   dispatch(setCardGradeTC(value, randomCardsArr._id))
 
   return (
     <div>
@@ -92,7 +92,12 @@ export const Learn = () => {
                 />
               </div>
               <div className={s.wrapperButtonNext}>
-                <ClassicButton title={'Next'} sx={button} onClick={() => onClickHandler(value)} />
+                <ClassicButton
+                  title={'Next'}
+                  sx={button}
+                  onClick={() => onClickHandler(value)}
+                  disabled={value === '0'}
+                />
               </div>
             </div>
           </>
