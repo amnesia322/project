@@ -10,8 +10,8 @@ import { SearchComponent } from '../../../common/components/SearchComponent/Sear
 
 import { setCardsTC } from './cards-reducer'
 import s from './Cards.module.css'
-import { CardsList } from './CardsList/CardsList'
-import { AddCardModal } from './CardsList/cardsModals/addCardModal/AddCardModal'
+import { CardsList } from './cardsList/CardsList'
+import { AddCardModal } from './cardsList/cardsModals/addCardModal/AddCardModal'
 import { MyPackMenu } from './myPackMenu/MyPackMenu'
 
 export const Cards = () => {

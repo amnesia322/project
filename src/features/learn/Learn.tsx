@@ -26,9 +26,9 @@ export const Learn = () => {
     { id: '4', value: 'Confused' },
     { id: '5', value: 'Knew the answer' },
   ]
-  const [value, onChangeOption] = useState(answerArr[2].id)
+  const [value, onChangeOption] = useState<string>('0')
   const [isShow, setIsShow] = useState<boolean>(false)
-  const [cardAnsfer, setCardAncfer] = useState<any>()
+  const [cardAnsfer, setCardAncfer] = useState<CardType>()
 
   const getCard = (cards: CardType[]) => {
     const sum = cards.reduce((acc, card) => acc + (6 - card.grade) * (6 - card.grade), 0)
@@ -51,7 +51,7 @@ export const Learn = () => {
 
   const onClickHandler = (grade: string) => {
     setIsShow(false)
-    dispatch(setCardGradeTC(grade, cardAnsfer._id))
+    dispatch(setCardGradeTC(grade, cardAnsfer!._id))
   }
 
   // console.log('qI', questionIndex, 'CC', cardsCount)

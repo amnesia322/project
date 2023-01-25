@@ -56,7 +56,11 @@ export const cardsReducer = (
         ...state,
         cards: state.cards.map(item =>
           item._id === action.updatedGrade.updatedGrade.card_id
-            ? { ...item, ...action.updatedGrade.updatedGrade }
+            ? {
+                ...item,
+                grade: action.updatedGrade.updatedGrade.grade,
+                shots: action.updatedGrade.updatedGrade.shots,
+              }
             : item
         ),
       }
@@ -160,9 +164,10 @@ export const setCardGradeTC =
   (value: string, id: string): AppThunk =>
   async (dispatch, getState) => {
     dispatch(setAppStatusAC('loading'))
-    const card_idFromResponse = getState().cards.cards.find(item => item._id === id)!.card_id
-    const card_id = card_idFromResponse || id
+    // const card_idFromResponse = getState().cards.cards.find(item => item._id === id)!.card_id
+    const card_id = id
 
+    debugger
     try {
       const payload = { grade: value, card_id }
 
