@@ -16,7 +16,7 @@ const initialState = {
   isPacksFetched: false,
   queryParams: {
     min: 0,
-    max: 200,
+    max: 100,
     pageCount: 5,
     sortPacks: sortingPacksMethods.desUpdate,
     packName: '',
@@ -30,7 +30,7 @@ export const emptyQueryParams: InitialStateType['queryParams'] = {
   user_id: '',
   packName: '',
   min: 0,
-  max: 110,
+  max: 100,
 }
 
 export const packsReducer = (
@@ -59,7 +59,7 @@ export const packsReducer = (
         ...state,
         minCardsCount: 0,
         maxCardsCount: 110,
-        queryParams: { ...state.queryParams, ...action.queryParams },
+        queryParams: { ...action.queryParams },
       }
     default:
       return state

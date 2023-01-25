@@ -8,6 +8,7 @@ import {
   setCardsPerPage,
 } from '../../../features/packsPage/cards/cards-reducer'
 import { setPacksCurrentPage, setPacksPerPage } from '../../../features/packsPage/packs-reducer'
+import { SearchParamsType } from '../../../features/packsPage/PacksPage'
 
 import s from './PaginationComponent.module.css'
 
@@ -27,7 +28,10 @@ export const PaginationComponent = (props: PaginationPropsType) => {
 
   const handler = (event: React.ChangeEvent<unknown>, currentPage: number) => {
     if (isThisPlaceCards) dispatch(setCardsCurrentPage(currentPage))
-    if (!isThisPlaceCards) dispatch(setPacksCurrentPage(currentPage))
+    if (!isThisPlaceCards) {
+      dispatch(setPacksCurrentPage(currentPage))
+      props.setSearchParams({ ...props.params, page: currentPage })
+    }
   }
 
   const perPageHandler = (event: SelectChangeEvent) => {
@@ -75,4 +79,6 @@ type PaginationPropsType = {
   totalCount: number
   currentPage: number
   isThisPlaceCards: boolean
+  setSearchParams: Function
+  params: SearchParamsType
 }
