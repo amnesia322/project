@@ -3,9 +3,17 @@
 /*  left: -10px;*/
 /*}*/
 
+.disabledLink{
+  pointer-events: none;
+}
+
 .img {
   width: 16px;
   height: 16px;
+}
+
+.imgDisabled{
+  opacity: .5;
 }
 
 .wrapper {

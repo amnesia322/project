@@ -33,8 +33,13 @@ export const PackItemActions = ({ userId, packId, packName, isPrivate }: PropsTy
 
   return (
     <div className={s.wrapper}>
-      <Link to={'/learn'} className={s.link}>
-        <img src={learnIcon} className={s.img} alt={'learn'} onClick={onLearnHandler} />
+      <Link to={'/learn'} className={cardsCount ? s.link : s.disabledLink}>
+        <img
+          src={learnIcon}
+          className={cardsCount ? s.img : s.imgDisabled}
+          alt={'learn'}
+          onClick={onLearnHandler}
+        />
       </Link>
       {myId == userId && (
         <>
