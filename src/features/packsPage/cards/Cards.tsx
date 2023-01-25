@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { BackToPackList } from '../../../common/components/BackToPackListButton/BackToPackList'
@@ -8,7 +8,7 @@ import { ClassicButton } from '../../../common/components/ClassicButton/ClassicB
 import { PaginationComponent } from '../../../common/components/Pagination/PaginationComponent'
 import { SearchComponent } from '../../../common/components/SearchComponent/SearchComponent'
 
-import { setCardsTC } from './cards-reducer'
+import { setCardsPerPage, setCardsTC } from './cards-reducer'
 import s from './Cards.module.css'
 import { CardsList } from './cardsList/CardsList'
 import { AddCardModal } from './cardsList/cardsModals/addCardModal/AddCardModal'
@@ -21,9 +21,8 @@ export const Cards = () => {
   const totalCount = useAppSelector(state => state.cards.cardsTotalCount)
   const page = useAppSelector(state => state.cards.page)
   const pageCount = useAppSelector(state => state.cards.queryParams.pageCount)
-  const cards = useAppSelector(state => state.cards.cards)
   const { id } = useParams()
-
+  const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
   const chosenPack = useAppSelector(state => {
@@ -53,6 +52,11 @@ export const Cards = () => {
   const learnPackHandler = () => {
     alert('learnPackHandler')
   }
+  const onClickHandler = () => {
+    dispatch(setCardsPerPage(totalCount))
+    dispatch(setCardsTC(cardsPack_id))
+    navigate('/learn')
+  }
 
   return (
     <div className={s.wrapper}>
@@ -68,7 +72,7 @@ export const Cards = () => {
               isPrivate={chosenPack.private}
             />
           </div>
-          {!!cards.length && (
+          {!!totalCount && (
             <AddCardModal cardsPack_id={cardsPack_id}>
               <ClassicButton title={'Add new card'} />
             </AddCardModal>
@@ -77,12 +81,12 @@ export const Cards = () => {
       ) : (
         <div className={s.wrapperButton}>
           <div className={s.titleTable}>{chosenPack?.name}</div>
-          {!!totalCount && <ClassicButton title={'Learn to pack'} />}
+          {!!totalCount && <ClassicButton title={'Learn to pack'} onClick={onClickHandler} />}
         </div>
       )}
       <div className={s.wrapperTable}>
         <div className={s.wrapperForSearchComponent}>
-          {!!totalCount && <SearchComponent isThisPlaceCards={true} />}
+          <SearchComponent isThisPlaceCards={true} />
         </div>
         <CardsList isMyId={isMyId} />
       </div>

@@ -162,12 +162,10 @@ export const editCardTitleTC =
 
 export const setCardGradeTC =
   (value: string, id: string): AppThunk =>
-  async (dispatch, getState) => {
+  async dispatch => {
     dispatch(setAppStatusAC('loading'))
-    // const card_idFromResponse = getState().cards.cards.find(item => item._id === id)!.card_id
     const card_id = id
 
-    debugger
     try {
       const payload = { grade: value, card_id }
 

@@ -51,6 +51,7 @@ export const CardsList = ({ isMyId }: CardItemPropsType) => {
   useEffect(() => {
     dispatch(dispatch(setCardsPerPage(cardsCountInPage)))
   }, [])
+
   const createData = (
     questions: string,
     answer: string,
