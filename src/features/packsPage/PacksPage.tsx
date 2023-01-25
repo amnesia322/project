@@ -1,15 +1,23 @@
 import React, { useEffect } from 'react'
 
 import { CircularProgress } from '@mui/material'
+import { useSearchParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../app/store'
 import { ClassicButton } from '../../common/components/ClassicButton/ClassicButton'
 import { PackCardsDoubleRange } from '../../common/components/PackCardsDoubleRange/PackCardsDubleRange'
 import { PaginationComponent } from '../../common/components/Pagination/PaginationComponent'
 import { SearchComponent } from '../../common/components/SearchComponent/SearchComponent'
+import { sortingPacksMethods } from '../../common/constants/sortingMethods'
 
 import { MyAllSelector } from './myAllSelector/MyAllSelector'
-import { setPacksTC } from './packs-reducer'
+import {
+  setPacksCurrentPage,
+  setPacksTC,
+  setSliderValue,
+  setSortPacksName,
+  setUserPacks,
+} from './packs-reducer'
 import { PacksList } from './packsList/PacksList'
 import { AddPackModal } from './packsList/packsModals/addPackModal/AddPackModal'
 import s from './PacksPage.module.css'
@@ -17,15 +25,40 @@ import { RefreshFilter } from './refreshFilter/RefreshFilter'
 export const PacksPage = () => {
   const dispatch = useAppDispatch()
   const appStatus = useAppSelector(state => state.app.status)
-  const query = useAppSelector(state => state.packs.queryParams)
   const totalCount = useAppSelector(state => state.packs.cardPacksTotalCount)
   const page = useAppSelector(state => state.packs.page)
-  const pageCount = useAppSelector(state => state.packs.queryParams.pageCount)
   const isFetched = useAppSelector(state => state.packs.isPacksFetched)
+
+  const maxFromState = useAppSelector(state => state.packs.queryParams.max)
+  const minFromState = useAppSelector(state => state.packs.queryParams.min)
+  const user_id = useAppSelector(state => state.packs.queryParams.user_id)
+  const packName = useAppSelector(state => state.packs.queryParams.packName)
+  const sortPacks = useAppSelector(state => state.packs.queryParams.sortPacks)
+  const pageCount = useAppSelector(state => state.packs.queryParams.pageCount)
+
+  const [searchParams, setSearchParams]: [URLSearchParams, Function] = useSearchParams()
+  const params = Object.fromEntries(searchParams)
+
+  useEffect(() => {
+    if (
+      params.max &&
+      params.min &&
+      (+params.max !== maxFromState || +params.min !== minFromState)
+    ) {
+      dispatch(setSliderValue([+params.min, +params.max]))
+    }
+    if (params.user_id && params.user_id !== user_id) {
+      dispatch(setUserPacks(params.user_id))
+    }
+    if (params.packName) dispatch(setSortPacksName(params.packName))
+    if (params.page) dispatch(setPacksCurrentPage(+params.page))
+  }, [])
+
+  console.log('pack page render')
 
   useEffect(() => {
     dispatch(setPacksTC())
-  }, [dispatch, page, pageCount, query.max, query.min, query.packName, query.user_id])
+  }, [dispatch, page, pageCount, maxFromState, minFromState, packName, user_id])
 
   if (!isFetched) {
     return (
@@ -46,16 +79,25 @@ export const PacksPage = () => {
       <div className={s.wrapperTable}></div>
       <div className={s.wrapperForHeaderTable}>
         <div className={s.wrapperForSearchComponent}>
-          <SearchComponent isThisPlaceCards={false} />
+          <SearchComponent
+            isThisPlaceCards={false}
+            setSearchParams={setSearchParams}
+            params={params}
+          />
         </div>
         <div className={s.wrapperFilterButton}>
-          <MyAllSelector />
+          <MyAllSelector setSearchParams={setSearchParams} params={params} />
         </div>
         <div className={s.wrapperForRange}>
-          <PackCardsDoubleRange />
+          <PackCardsDoubleRange
+            setSearchParams={setSearchParams}
+            params={params}
+            min={minFromState}
+            max={maxFromState}
+          />
         </div>
         <div className={s.wrapperForRefreshFilter}>
-          <RefreshFilter />
+          <RefreshFilter setSearchParams={setSearchParams} />
         </div>
       </div>
       {totalCount ? (
@@ -66,6 +108,8 @@ export const PacksPage = () => {
             totalCount={totalCount}
             currentPage={page}
             isThisPlaceCards={false}
+            setSearchParams={setSearchParams}
+            params={params}
           />
         </>
       ) : (
@@ -77,4 +121,13 @@ export const PacksPage = () => {
       )}
     </div>
   )
+}
+
+export type SearchParamsType = {
+  min?: string
+  max?: string
+  pageCount?: string
+  sortPacks?: sortingPacksMethods.desUpdate
+  packName?: string
+  user_id?: string
 }

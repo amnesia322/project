@@ -3,10 +3,11 @@ import React from 'react'
 import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { SuperButton } from '../../../common/components/SuperButton/SuperButton'
 import { setUserPacks } from '../packs-reducer'
+import { SearchParamsType } from '../PacksPage'
 
 import s from './MyAllSelector.module.css'
 
-export const MyAllSelector = () => {
+export const MyAllSelector = ({ params, setSearchParams }: MyAllSelectorPropsType) => {
   const appStatus = useAppSelector(state => state.app.status)
   const myPacks = useAppSelector(state => state.packs.queryParams.user_id)
   const userId = useAppSelector(state => state.profile.user._id)
@@ -14,9 +15,11 @@ export const MyAllSelector = () => {
 
   const userPackHandler = () => {
     dispatch(setUserPacks(userId))
+    setSearchParams({ ...params, user_id: userId })
   }
   const allPackHandler = () => {
     dispatch(setUserPacks(''))
+    setSearchParams({ ...params, user_id: '' })
   }
   const onStyle = {
     backgroundColor: myPacks ? '#1976d2' : '#ffffff',
@@ -56,4 +59,9 @@ export const MyAllSelector = () => {
       </div>
     </>
   )
+}
+
+type MyAllSelectorPropsType = {
+  params: SearchParamsType
+  setSearchParams: Function
 }

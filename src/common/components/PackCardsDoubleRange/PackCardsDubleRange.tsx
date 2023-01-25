@@ -4,21 +4,28 @@ import { Slider } from '@mui/material'
 
 import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { setSliderValue } from '../../../features/packsPage/packs-reducer'
+import { SearchParamsType } from '../../../features/packsPage/PacksPage'
 import s from '../../../features/packsPage/PacksPage.module.css'
 
-export const PackCardsDoubleRange = () => {
+export const PackCardsDoubleRange = ({
+  params,
+  setSearchParams,
+  min,
+  max,
+}: DoubleRangePropsType) => {
   const appStatus = useAppSelector(state => state.app.status)
   const minSliderValue = useAppSelector(state => state.packs.minCardsCount)
   const maxSliderValue = useAppSelector(state => state.packs.maxCardsCount)
-  const min = useAppSelector(state => state.packs.queryParams.min)
-  const max = useAppSelector(state => state.packs.queryParams.max)
-  const [sliderLocalValue, setSliderLocalValue] = useState<number[]>([min, max])
+
+  const initialMax = max > maxSliderValue ? maxSliderValue : max
+
+  const [sliderLocalValue, setSliderLocalValue] = useState<number[]>([min, initialMax])
 
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    setSliderLocalValue([minSliderValue, maxSliderValue])
-  }, [minSliderValue, maxSliderValue])
+    setSliderLocalValue([min, initialMax])
+  }, [min, max])
 
   const changeValue = (event: Event, newValue: number | number[]) => {
     setSliderLocalValue(newValue as number[])
@@ -26,6 +33,7 @@ export const PackCardsDoubleRange = () => {
 
   const changeCommitted = () => {
     dispatch(setSliderValue(sliderLocalValue))
+    setSearchParams({ ...params, min: sliderLocalValue[0], max: sliderLocalValue[1] })
   }
 
   return (
@@ -47,4 +55,11 @@ export const PackCardsDoubleRange = () => {
       </div>
     </div>
   )
+}
+
+type DoubleRangePropsType = {
+  params: SearchParamsType
+  setSearchParams: Function
+  min: number
+  max: number
 }

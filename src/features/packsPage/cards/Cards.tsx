@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { BackToPackList } from '../../../common/components/BackToPackListButton/BackToPackList'
@@ -24,6 +24,9 @@ export const Cards = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
+
+  const [searchParams, setSearchParams]: [URLSearchParams, Function] = useSearchParams()
+  const params = Object.fromEntries(searchParams)
 
   const chosenPack = useAppSelector(state => {
     const chosenPack = state.packs.cardPacks.find(item => item._id === cardsPack_id)
@@ -84,6 +87,13 @@ export const Cards = () => {
       <div className={s.wrapperTable}>
         <div className={s.wrapperForSearchComponent}>
           <SearchComponent isThisPlaceCards={true} />
+          {!!totalCount && (
+            <SearchComponent
+              isThisPlaceCards={true}
+              setSearchParams={setSearchParams}
+              params={params}
+            />
+          )}
         </div>
         <CardsList isMyId={isMyId} />
       </div>
@@ -93,6 +103,8 @@ export const Cards = () => {
           totalCount={totalCount}
           currentPage={page}
           isThisPlaceCards={true}
+          setSearchParams={setSearchParams}
+          params={params}
         />
       )}
     </div>
