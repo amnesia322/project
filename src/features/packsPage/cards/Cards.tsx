@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { BackToPackList } from '../../../common/components/BackToPackListButton/BackToPackList'
@@ -86,7 +86,6 @@ export const Cards = () => {
       )}
       <div className={s.wrapperTable}>
         <div className={s.wrapperForSearchComponent}>
-          <SearchComponent isThisPlaceCards={true} />
           {!!totalCount && (
             <SearchComponent
               isThisPlaceCards={true}
