@@ -29,9 +29,13 @@ export const Caption = memo(({ name, callback }: CaptionPropsType) => {
   return (
     <StyledTableCell align="center" onClick={handler}>
       {name}{' '}
-      <IconButton sx={{ padding: '.2rem' }} onClick={handler}>
-        {isArrowDown ? <ArrowDropDownIcon color="info" /> : <ArrowDropUpIcon color="info" />}
-      </IconButton>{' '}
+      {name === 'Question' || name === 'Answer' ? (
+        ''
+      ) : (
+        <IconButton sx={{ padding: '.2rem' }} onClick={handler}>
+          {isArrowDown ? <ArrowDropDownIcon color="info" /> : <ArrowDropUpIcon color="info" />}
+        </IconButton>
+      )}{' '}
     </StyledTableCell>
   )
 })

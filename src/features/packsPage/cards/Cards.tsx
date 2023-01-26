@@ -17,10 +17,13 @@ import { MyPackMenu } from './myPackMenu/MyPackMenu'
 export const Cards = () => {
   const myId = useAppSelector(state => state.profile.user._id)
   const cardsPack_id = useAppSelector(state => state.cards.queryParams.cardsPack_id)
-  const query = useAppSelector(state => state.cards.queryParams)
   const totalCount = useAppSelector(state => state.cards.cardsTotalCount)
   const page = useAppSelector(state => state.cards.page)
   const pageCount = useAppSelector(state => state.cards.queryParams.pageCount)
+  const cardQuestion = useAppSelector(state => state.cards.queryParams.cardQuestion)
+  const min = useAppSelector(state => state.cards.queryParams.min)
+  const max = useAppSelector(state => state.cards.queryParams.max)
+  const sortCards = useAppSelector(state => state.cards.queryParams.sortCards)
   const { id } = useParams()
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
@@ -38,17 +41,7 @@ export const Cards = () => {
 
   useEffect(() => {
     dispatch(setCardsTC(id || cardsPack_id))
-  }, [
-    dispatch,
-    totalCount,
-    page,
-    id,
-    pageCount,
-    query.cardQuestion,
-    query.min,
-    query.max,
-    query.sortCards,
-  ])
+  }, [dispatch, totalCount, page, cardsPack_id, pageCount, cardQuestion, min, max, sortCards])
 
   const isMyId = myId === chosenPack?.user_id
 

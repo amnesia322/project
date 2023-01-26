@@ -10,7 +10,9 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 
 import { useAppDispatch, useAppSelector } from '../../../../app/store'
+import { Captions } from '../../../../common/components/Captions/Captions'
 import { ClassicButton } from '../../../../common/components/ClassicButton/ClassicButton'
+import { cardsCaptions } from '../../../../common/constants/captionsArray'
 import { findSubstr } from '../../../../common/utils/findSubscr'
 import s from '../../packsList/PacksList.module.css'
 import { setCardsPerPage } from '../cards-reducer'
@@ -82,10 +84,11 @@ export const CardsList = ({ isMyId }: CardItemPropsType) => {
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell>Question</StyledTableCell>
+                {/*<StyledTableCell>Question</StyledTableCell>
                 <StyledTableCell align="center">Answer</StyledTableCell>
                 <StyledTableCell align="center">Last Update</StyledTableCell>
-                <StyledTableCell align="center">Grade</StyledTableCell>
+                <StyledTableCell align="center">Grade</StyledTableCell>*/}
+                <Captions captions={cardsCaptions} isThisPlaceCards={true} />
                 {isMyId && <StyledTableCell align="center">Actions</StyledTableCell>}
               </TableRow>
             </TableHead>
