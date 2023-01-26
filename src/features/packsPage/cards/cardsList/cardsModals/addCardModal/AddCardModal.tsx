@@ -55,24 +55,24 @@ export const AddCardModal = memo(({ children, cardsPack_id }: PropsType) => {
             handleChange={changeQuestionFormatHandler}
           />
           <TextField
-            className={s.container}
+            sx={{ marginTop: '22px' }}
             fullWidth={true}
             size="small"
             variant="standard"
             label="Question"
             value={question}
             onChange={setNewQuestion}
-            placeholder={'Question'}
+            placeholder={'Enter your question'}
           />
           <TextField
-            className={s.container}
+            sx={{ marginTop: '22px' }}
             fullWidth={true}
             size="small"
             variant="standard"
             label="Answer"
             value={answer}
             onChange={setNewAnswer}
-            placeholder={'Answer'}
+            placeholder={'Enter your answer'}
           />
         </FormControl>
         <div className={s.buttonsContainer}>

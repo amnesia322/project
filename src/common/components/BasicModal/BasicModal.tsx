@@ -34,7 +34,7 @@ export const BasicModal = memo(({ children, title, open, handleClose }: PropsTyp
               <CloseIcon />
             </IconButton>
           </Typography>
-          <Divider variant={'fullWidth'} />
+          <Divider variant={'fullWidth'} sx={{ marginBottom: '22px' }} />
           {children}
         </Box>
       </Fade>
