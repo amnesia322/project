@@ -11,6 +11,8 @@ import TableRow from '@mui/material/TableRow'
 import { Link } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/store'
+import { Captions } from '../../../common/components/Captions/Captions'
+import { packsCaptions } from '../../../common/constants/captionsArray'
 import { findSubstr } from '../../../common/utils/findSubscr'
 import { setPackCards } from '../cards/cards-reducer'
 
@@ -79,10 +81,11 @@ export const PacksList = () => {
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow sx={styleForRow}>
-              <StyledTableCell>Name</StyledTableCell>
+              {/*<StyledTableCell>Name</StyledTableCell>
               <StyledTableCell align="center">Cards</StyledTableCell>
               <StyledTableCell align="center">Last Update</StyledTableCell>
-              <StyledTableCell align="center">Create by</StyledTableCell>
+              <StyledTableCell align="center">Create by</StyledTableCell>*/}
+              <Captions captions={packsCaptions} isThisPlaceCards={false} />
               <StyledTableCell align="center">Actions</StyledTableCell>
             </TableRow>
           </TableHead>

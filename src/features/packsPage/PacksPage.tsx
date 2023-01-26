@@ -58,7 +58,7 @@ export const PacksPage = () => {
 
   useEffect(() => {
     dispatch(setPacksTC())
-  }, [dispatch, page, pageCount, maxFromState, minFromState, packName, user_id])
+  }, [dispatch, page, pageCount, maxFromState, minFromState, packName, user_id, sortPacks])
 
   if (!isFetched) {
     return (

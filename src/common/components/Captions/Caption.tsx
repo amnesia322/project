@@ -30,7 +30,7 @@ export const Caption = memo(({ name, callback }: CaptionPropsType) => {
     <StyledTableCell align="center" onClick={handler}>
       {name}{' '}
       <IconButton sx={{ padding: '.2rem' }} onClick={handler}>
-        {isArrowDown ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
+        {isArrowDown ? <ArrowDropDownIcon color="info" /> : <ArrowDropUpIcon color="info" />}
       </IconButton>{' '}
     </StyledTableCell>
   )

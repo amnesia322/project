@@ -53,7 +53,6 @@ export const Captions = ({ captions, isThisPlaceCards }: CaptionsPropsType) => {
       {captions.map(m => (
         <Caption key={m.id} name={m.label} callback={sortHandler} />
       ))}
-      )
     </>
   )
 }
