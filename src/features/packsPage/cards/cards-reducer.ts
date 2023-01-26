@@ -2,6 +2,7 @@ import { AxiosError } from 'axios'
 
 import { setAppStatusAC } from '../../../app/app-reducer'
 import { AppThunk } from '../../../app/store'
+import { sortingCardsMethods } from '../../../common/constants/sortingMethods'
 import { errorUtils } from '../../../common/utils/error-utils'
 
 import {
@@ -19,7 +20,7 @@ const initialState = {
     cardsPack_id: '',
     min: 0,
     max: 5,
-    sortCards: '0grade',
+    sortCards: sortingCardsMethods.desGrade,
     page: 1,
     pageCount: 5,
   },
@@ -75,7 +76,7 @@ export const setCardsPerPage = (pageCount: number) =>
   ({ type: 'cards/SET_PAGE_COUNT', pageCount } as const)
 export const setCardsQuestion = (cardQuestion: string) =>
   ({ type: 'cards/SET_CARDS_QUESTION', cardQuestion } as const)
-export const setSortCards = (sortCards: string) =>
+export const setSortCards = (sortCards: sortingCardsMethods) =>
   ({ type: 'cards/SET_SORT_CARDS', sortCards } as const)
 export const setPackCards = (cardsPack_id: string) =>
   ({ type: 'cards/SET_PACK_CARDS', cardsPack_id } as const)
