@@ -17,14 +17,12 @@ type PropsType = {
   userId: string
   packName: string
   isPrivate: boolean
+  cardsCount: number
 }
 
-export const PackItemActions = ({ userId, packId, packName, isPrivate }: PropsType) => {
+export const PackItemActions = ({ userId, packId, packName, isPrivate, cardsCount }: PropsType) => {
   const myId = useAppSelector(state => state.profile.user._id)
   const dispatch = useAppDispatch()
-  const cardsCount = useAppSelector(
-    state => state.packs.cardPacks.find(item => item._id === packId)!.cardsCount
-  )
 
   const onLearnHandler = () => {
     dispatch(setCardsPerPage(cardsCount))
