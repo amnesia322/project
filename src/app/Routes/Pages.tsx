@@ -25,7 +25,7 @@ export const PATH = {
   CHECK_EMAIL: '/check_email',
   PACK_LIST: '/packs_list',
   CARDS_LIST: '/cards_list/:id',
-  LEARN: '/learn',
+  LEARN: '/learn/:id',
 } as const
 
 function Pages() {

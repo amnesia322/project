@@ -31,7 +31,7 @@ export const PackItemActions = ({ userId, packId, packName, isPrivate, cardsCoun
 
   return (
     <div className={s.wrapper}>
-      <Link to={'/learn'} className={cardsCount ? s.link : s.disabledLink}>
+      <Link to={`/learn/${packId}`} className={cardsCount ? s.link : s.disabledLink}>
         <img
           src={learnIcon}
           className={cardsCount ? s.img : s.imgDisabled}
