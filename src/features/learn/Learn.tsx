@@ -8,7 +8,7 @@ import { ClassicButton } from '../../common/components/ClassicButton/ClassicButt
 import SuperRadio from '../../common/components/SuperRadio/SuperRadio'
 import { getCard } from '../../common/utils/getCard'
 import { CardType } from '../packsPage/cards/cards-api'
-import { setCardGradeTC } from '../packsPage/cards/cards-reducer'
+import { setCardGradeTC, setCardsTC } from '../packsPage/cards/cards-reducer'
 
 import s from './Learn.module.css'
 
@@ -35,7 +35,10 @@ export const Learn = () => {
   const [cardAnsfer, setCardAncfer] = useState<CardType>()
   const { id } = useParams()
 
-  console.log('id', id)
+  useEffect(() => {
+    id && dispatch(setCardsTC(id))
+  }, [])
+
   useEffect(() => {
     setCardAncfer(getCard(cards))
   }, [cards])
