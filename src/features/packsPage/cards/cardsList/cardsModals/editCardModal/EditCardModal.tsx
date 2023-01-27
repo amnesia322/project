@@ -57,7 +57,7 @@ export const EditCardModal = memo(({ children, cardId, question, answer }: Props
             handleChange={changeQuestionFormatHandler}
           />
           <TextField
-            className={s.container}
+            sx={{ marginTop: '22px' }}
             fullWidth={true}
             size="small"
             variant="standard"
@@ -67,7 +67,7 @@ export const EditCardModal = memo(({ children, cardId, question, answer }: Props
             placeholder={'Question'}
           />
           <TextField
-            className={s.container}
+            sx={{ marginTop: '22px' }}
             fullWidth={true}
             size="small"
             variant="standard"

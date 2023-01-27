@@ -10,6 +10,7 @@ import { BasicModal } from '../../../../../common/components/BasicModal/BasicMod
 import { ClassicButton } from '../../../../../common/components/ClassicButton/ClassicButton'
 import { addPackTC } from '../../../packs-reducer'
 import s from '../addPackModal/AddPackModal.module.css'
+
 type PropsType = {
   children?: ReactNode
 }
@@ -50,7 +51,7 @@ export const AddPackModal = memo(({ children }: PropsType) => {
             label="Pack Name"
             value={packName}
             onChange={setNewPackName}
-            placeholder={'Pack Name'}
+            placeholder={'Enter your pack name'}
           />
           <FormControlLabel
             className={s.container}
