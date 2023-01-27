@@ -48,7 +48,7 @@ export const Cards = () => {
   const learnPackHandler = () => {
     dispatch(setCardsPerPage(totalCount))
     dispatch(setCardsTC(cardsPack_id))
-    navigate('/learn')
+    navigate(`/learn/${cardsPack_id}`)
   }
 
   return (

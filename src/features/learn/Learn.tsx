@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
+import { useParams } from 'react-router-dom'
+
 import { useAppDispatch, useAppSelector } from '../../app/store'
 import { BackToPackList } from '../../common/components/BackToPackListButton/BackToPackList'
 import { ClassicButton } from '../../common/components/ClassicButton/ClassicButton'
@@ -31,7 +33,9 @@ export const Learn = () => {
   let [value, onChangeOption] = useState<string>('0')
   const [isShow, setIsShow] = useState<boolean>(false)
   const [cardAnsfer, setCardAncfer] = useState<CardType>()
+  const { id } = useParams()
 
+  console.log('id', id)
   useEffect(() => {
     setCardAncfer(getCard(cards))
   }, [cards])
