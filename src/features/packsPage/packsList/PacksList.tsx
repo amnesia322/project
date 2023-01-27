@@ -106,6 +106,7 @@ export const PacksList = () => {
                     packId={row.id}
                     packName={row.name}
                     isPrivate={row.isPrivate}
+                    cardsCount={row.cardsCount}
                   />
                 </StyledTableCell>
               </StyledTableRow>

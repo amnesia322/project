@@ -17,10 +17,11 @@ type MyPackMenuPropsType = {
   packId: string
   packName: string | undefined
   isPrivate: boolean
+  totalCount: number
 }
 
 export const MyPackMenu = memo(
-  ({ onLearnHandler, packId, packName, isPrivate }: MyPackMenuPropsType) => {
+  ({ onLearnHandler, packId, packName, isPrivate, totalCount }: MyPackMenuPropsType) => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
     const open = Boolean(anchorEl)
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -89,7 +90,7 @@ export const MyPackMenu = memo(
               Delete
             </DeletePackModal>
           </MenuItem>
-          <MenuItem onClick={onLearnHandler}>
+          <MenuItem onClick={onLearnHandler} disabled={!totalCount}>
             <img src={learnIcon} alt="learn" className={s.img} />
             Learn
           </MenuItem>

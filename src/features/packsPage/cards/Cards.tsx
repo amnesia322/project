@@ -63,6 +63,7 @@ export const Cards = () => {
               packId={cardsPack_id}
               packName={chosenPack.name}
               isPrivate={chosenPack.private}
+              totalCount={totalCount}
             />
           </div>
           {!!totalCount && (
@@ -79,13 +80,11 @@ export const Cards = () => {
       )}
       <div className={s.wrapperTable}>
         <div className={s.wrapperForSearchComponent}>
-          {!!totalCount && (
-            <SearchComponent
-              isThisPlaceCards={true}
-              setSearchParams={setSearchParams}
-              params={params}
-            />
-          )}
+          <SearchComponent
+            isThisPlaceCards={true}
+            setSearchParams={setSearchParams}
+            params={params}
+          />
         </div>
         <CardsList isMyId={isMyId} />
       </div>
