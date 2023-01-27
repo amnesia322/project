@@ -1,5 +1,6 @@
 import React from 'react'
 
+import Tooltip from '@material-ui/core/Tooltip'
 import { Link } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../../app/store'
@@ -34,20 +35,26 @@ export const PackItemActions = ({ userId, packId, packName, isPrivate }: PropsTy
   return (
     <div className={s.wrapper}>
       <Link to={'/learn'} className={cardsCount ? s.link : s.disabledLink}>
-        <img
-          src={learnIcon}
-          className={cardsCount ? s.img : s.imgDisabled}
-          alt={'learn'}
-          onClick={onLearnHandler}
-        />
+        <Tooltip title="Learn">
+          <img
+            src={learnIcon}
+            className={cardsCount ? s.img : s.imgDisabled}
+            alt={'learn'}
+            onClick={onLearnHandler}
+          />
+        </Tooltip>
       </Link>
       {myId == userId && (
         <>
           <EditPackModal packId={packId} packName={packName} isPrivate={isPrivate}>
-            <img src={editIcon} className={s.img} alt={'edit'} />
+            <Tooltip title="Edit">
+              <img src={editIcon} className={s.img} alt={'edit'} />
+            </Tooltip>
           </EditPackModal>
           <DeletePackModal packId={packId} packName={packName}>
-            <img src={deleteIcon} className={s.img} alt={'delete'} />
+            <Tooltip title="Delete">
+              <img src={deleteIcon} className={s.img} alt={'delete'} />
+            </Tooltip>
           </DeletePackModal>
         </>
       )}
