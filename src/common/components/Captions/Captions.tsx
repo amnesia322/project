@@ -20,11 +20,9 @@ export const Captions = ({ captions, isThisPlaceCards }: CaptionsPropsType) => {
         }
       }
       if (whatWeSort === 'Cards') {
-        if (isArrowDown) {
-          dispatch(setSortPacks(sortingPacksMethods.desCardsCount))
-        } else if (!isArrowDown) {
-          dispatch(setSortPacks(sortingPacksMethods.ascCardsCount))
-        }
+        isArrowDown
+          ? dispatch(setSortPacks(sortingPacksMethods.desCardsCount))
+          : dispatch(setSortPacks(sortingPacksMethods.ascCardsCount))
       }
       if (whatWeSort === 'Last Updated') {
         if (isArrowDown) {

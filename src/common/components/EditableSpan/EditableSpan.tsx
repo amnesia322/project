@@ -8,13 +8,7 @@ import editIcon from '../../../assets/svg/edit.svg'
 
 import s from './EditableSpan.module.css'
 
-type EditableSpanPropsType = {
-  value: string
-  onChange: (newValue: string) => void
-}
-
 export const EditableSpan = memo(function (props: EditableSpanPropsType) {
-  console.log('EditableSpan called')
   let [editMode, setEditMode] = useState(false)
   let [title, setTitle] = useState(props.value)
 
@@ -49,9 +43,14 @@ export const EditableSpan = memo(function (props: EditableSpanPropsType) {
       <span>
         {props.value}
         <IconButton onClick={activateEditMode}>
-          <img src={editIcon} />
+          <img src={editIcon} alt="editIcon" />
         </IconButton>
       </span>
     </div>
   )
 })
+
+type EditableSpanPropsType = {
+  value: string
+  onChange: (newValue: string) => void
+}

@@ -16,22 +16,22 @@ export const packsAPI = {
 }
 
 export type GetPacksRequestType = {
-  packName?: string // не обязательно
-  min?: number // не обязательно
-  max?: number // не обязательно
-  sortPacks?: string // не обязательно
-  page?: number // не обязательно
-  pageCount?: number // не обязательно
-  user_id?: string // чьи колоды не обязательно, или придут все
-  block?: boolean // не обязательно
+  packName?: string
+  min?: number
+  max?: number
+  sortPacks?: string
+  page?: number
+  pageCount?: number
+  user_id?: string
+  block?: boolean
 }
 export type GetPacksResponseType = {
   cardPacks: PackType[]
-  cardPacksTotalCount: number // количество колод
+  cardPacksTotalCount: number
   maxCardsCount: number
   minCardsCount: number
-  page: number // выбранная страница
-  pageCount: number // количество элементов на странице
+  page: number
+  pageCount: number
 }
 
 export type PackType = {
@@ -47,9 +47,9 @@ export type PackType = {
 
 export type CreatePackRequestType = {
   cardsPack: {
-    name: string // если не отправить будет таким
-    deckCover?: string // не обязателен
-    private?: boolean // если не отправить будет такой
+    name: string
+    deckCover?: string
+    private?: boolean
   }
 }
 export type UpdatePackRequestType = {

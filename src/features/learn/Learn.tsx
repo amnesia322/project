@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../app/store'
 import { BackToPackList } from '../../common/components/BackToPackListButton/BackToPackList'
 import { ClassicButton } from '../../common/components/ClassicButton/ClassicButton'
 import SuperRadio from '../../common/components/SuperRadio/SuperRadio'
+import { answerArr } from '../../common/constants/answerArr'
 import { getCard } from '../../common/utils/getCard'
 import { CardType } from '../packsPage/cards/cards-api'
 import { setCardGradeTC, setCardsTC } from '../packsPage/cards/cards-reducer'
@@ -16,14 +17,6 @@ const button = {
   width: '85%',
   marginTop: '30px',
 }
-
-const answerArr = [
-  { id: '1', value: 'Did not know' },
-  { id: '2', value: 'Forgot' },
-  { id: '3', value: 'A lot of thought' },
-  { id: '4', value: 'Confused' },
-  { id: '5', value: 'Knew the answer' },
-]
 
 export const Learn = () => {
   const dispatch = useAppDispatch()

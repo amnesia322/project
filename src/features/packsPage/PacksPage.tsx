@@ -54,8 +54,6 @@ export const PacksPage = () => {
     if (params.page) dispatch(setPacksCurrentPage(+params.page))
   }, [])
 
-  console.log('pack page render')
-
   useEffect(() => {
     dispatch(setPacksTC())
   }, [dispatch, page, pageCount, maxFromState, minFromState, packName, user_id, sortPacks])
