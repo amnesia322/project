@@ -11,6 +11,10 @@
 .radio::before {
 }
 
+.radio:hover{
+  cursor: pointer;
+}
+
 .radio:checked::before {
 }
 
@@ -18,6 +22,10 @@
   display: flex;
 
   padding-top: 15px;
+}
+
+.label:hover {
+  cursor:pointer;
 }
 
 .span{

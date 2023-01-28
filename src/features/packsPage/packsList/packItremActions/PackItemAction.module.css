@@ -10,9 +10,12 @@
 .img {
   width: 16px;
   height: 16px;
+  margin-left: 15px;
 }
 
 .imgDisabled{
+  margin-left: 15px;
+
   opacity: .5;
 }
 

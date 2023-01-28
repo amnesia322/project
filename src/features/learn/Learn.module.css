@@ -5,6 +5,7 @@
     margin-bottom: 20px;
 
     text-align: center;
+    word-wrap: break-word;
 }
 
 .wrapper {
@@ -19,7 +20,7 @@
     flex-direction: column;
 
     height: auto;
-    margin-top: 0px ;
+    margin-top: 0;
 }
 
 .questionWrapper {
@@ -36,12 +37,20 @@
 .answerWrapper{
     composes: questionWrapper;
 
-    padding-top: 0px;
+    padding-top: 0;
 }
 .titleQuestion {
     padding-right: 10px;
 
     font-weight: bold;
+}
+
+.textQuestion {
+    overflow: hidden; /* Обрезаем все, что не помещается в область */
+
+
+    text-overflow: ellipsis;
+    word-wrap: break-word;
 }
 
 .titleQuantityAnswer {
