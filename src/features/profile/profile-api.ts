@@ -21,7 +21,7 @@ export type ProfileDataType = {
 }
 
 export type UpdateProfileModelType = {
-  name: string
+  name?: string
   avatar?: string
 }
 
