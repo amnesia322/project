@@ -26,7 +26,6 @@ export const EditableSpan = memo(function (props: EditableSpanPropsType) {
 
   return editMode ? (
     <div className={s.container}>
-      {' '}
       <TextField
         variant="standard"
         label="Nickname"

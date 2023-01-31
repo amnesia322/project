@@ -3,6 +3,7 @@ import React from 'react'
 import { Avatar } from '@mui/material'
 import { NavLink } from 'react-router-dom'
 
+import avatarImg from '../../assets/img/avatar.png'
 import logo from '../../assets/svg/logo.svg'
 import { ClassicButton } from '../../common/components/ClassicButton/ClassicButton'
 import { PATH } from '../Routes/Pages'
@@ -25,7 +26,7 @@ const Header = () => {
       ) : (
         <NavLink to={PATH.PROFILE} className={s.userInfo}>
           <span className={s.userName}>{userName}</span>
-          <Avatar alt="avatar" src={userAvatar} />
+          <Avatar alt="avatar" src={userAvatar ? userAvatar : avatarImg} />
         </NavLink>
       )}
       {/*<NavLink to={PATH.PROFILE} className={s.link}>*/}
