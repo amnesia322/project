@@ -50,7 +50,7 @@ export const ClassicFileInput = (props: PropsType) => {
       <input type="file" ref={inputRef} onChange={uploadHandler} style={{ display: 'none' }} />
       <div className={s.coverBlock}>
         {props.cover ? (
-          <img src={props.cover} className={s.cover} alt={'cover'} />
+          <img alt={'cover'} src={props.cover} className={s.cover} />
         ) : (
           <AutoStoriesOutlinedIcon
             sx={{ width: '347px', height: '119px' }}
