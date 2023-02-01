@@ -18,10 +18,11 @@ type MyPackMenuPropsType = {
   packName: string | undefined
   isPrivate: boolean
   totalCount: number
+  deckCover: string
 }
 
 export const MyPackMenu = memo(
-  ({ onLearnHandler, packId, packName, isPrivate, totalCount }: MyPackMenuPropsType) => {
+  ({ onLearnHandler, packId, packName, isPrivate, totalCount, deckCover }: MyPackMenuPropsType) => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
     const open = Boolean(anchorEl)
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -79,7 +80,12 @@ export const MyPackMenu = memo(
           anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
           <MenuItem>
-            <EditPackModal packId={packId} packName={packName} isPrivate={isPrivate}>
+            <EditPackModal
+              packId={packId}
+              packName={packName}
+              isPrivate={isPrivate}
+              deckCover={deckCover}
+            >
               <img src={editIcon} alt="edit" className={s.img} />
               <span>Edit</span>
             </EditPackModal>

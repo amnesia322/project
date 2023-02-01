@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 
+import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/store'
@@ -64,6 +65,7 @@ export const Cards = () => {
               packName={chosenPack.name}
               isPrivate={chosenPack.private}
               totalCount={totalCount}
+              deckCover={chosenPack.deckCover}
             />
           </div>
           {!!totalCount && (
@@ -74,10 +76,22 @@ export const Cards = () => {
         </div>
       ) : (
         <div className={s.wrapperButton}>
-          <div className={s.titleTable}>{chosenPack?.name}</div>
+          <div className={s.titleTable}>
+            <span>{chosenPack?.name}</span>
+          </div>
           {!!totalCount && <ClassicButton title={'Learn to pack'} onClick={learnPackHandler} />}
         </div>
       )}
+      {!chosenPack?.deckCover ? (
+        <AutoStoriesOutlinedIcon
+          sx={{ width: '170px', height: '107px' }}
+          fontSize={'large'}
+          color={'action'}
+        />
+      ) : (
+        <img className={s.cover} src={chosenPack.deckCover} alt={'deckCover'} />
+      )}
+
       <div className={s.wrapperTable}>
         <div className={s.wrapperForSearchComponent}>
           <SearchComponent

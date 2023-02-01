@@ -1,0 +1,48 @@
+.titleBlock {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 7px;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: left;
+    letter-spacing: 0;
+
+}
+
+.button {
+    cursor: pointer;
+
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    color: #366EFF;
+    text-align: left;
+    text-decoration: underline;
+    letter-spacing: 0;
+
+    background-color: inherit;
+    border: none;
+
+}
+
+.coverBlock {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 347px; 
+    height: 119px;
+    margin-bottom: 25px;
+}
+
+.cover {
+    width: auto;
+    height: 100%;
+
+}

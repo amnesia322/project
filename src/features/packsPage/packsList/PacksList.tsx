@@ -1,5 +1,6 @@
 import React from 'react'
 
+import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -29,9 +30,10 @@ export const PacksList = () => {
     createBy: string,
     id: string,
     userId: string,
-    isPrivate: boolean
+    isPrivate: boolean,
+    deckCover: string
   ) => {
-    return { name, cardsCount, lastUpdate, createBy, id, userId, isPrivate }
+    return { name, cardsCount, lastUpdate, createBy, id, userId, isPrivate, deckCover }
   }
 
   const rows = packs.map(item =>
@@ -42,7 +44,8 @@ export const PacksList = () => {
       item.user_name,
       item._id,
       item.user_id,
-      item.private
+      item.private,
+      item.deckCover
     )
   )
 
@@ -67,7 +70,18 @@ export const PacksList = () => {
               <StyledTableRow key={row.id}>
                 <StyledTableCell component="th" scope="row" onClick={() => getQuestions(row.id)}>
                   <Link className={s.link} to={`/cards_list/${row.id}`}>
-                    {row.name}
+                    {row.deckCover === 'url or base64' ||
+                    !row.deckCover ||
+                    row.deckCover === 'startValue' ? (
+                      <AutoStoriesOutlinedIcon
+                        sx={{ width: '80px', height: '60px', marginRight: '16px' }}
+                        fontSize={'large'}
+                        color={'action'}
+                      />
+                    ) : (
+                      <img className={s.cover} src={row.deckCover} alt={'deckCover'} />
+                    )}
+                    <span>{row.name}</span>
                   </Link>
                 </StyledTableCell>
                 <StyledTableCell align="center">{row.cardsCount}</StyledTableCell>
@@ -80,6 +94,7 @@ export const PacksList = () => {
                     packName={row.name}
                     isPrivate={row.isPrivate}
                     cardsCount={row.cardsCount}
+                    deckCover={row.deckCover}
                   />
                 </StyledTableCell>
               </StyledTableRow>

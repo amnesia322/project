@@ -19,9 +19,17 @@ type PropsType = {
   packName: string
   isPrivate: boolean
   cardsCount: number
+  deckCover: string
 }
 
-export const PackItemActions = ({ userId, packId, packName, isPrivate, cardsCount }: PropsType) => {
+export const PackItemActions = ({
+  userId,
+  packId,
+  packName,
+  isPrivate,
+  cardsCount,
+  deckCover,
+}: PropsType) => {
   const myId = useAppSelector(state => state.profile.user._id)
   const dispatch = useAppDispatch()
 
@@ -44,7 +52,12 @@ export const PackItemActions = ({ userId, packId, packName, isPrivate, cardsCoun
       </Link>
       {myId == userId && (
         <>
-          <EditPackModal packId={packId} packName={packName} isPrivate={isPrivate}>
+          <EditPackModal
+            packId={packId}
+            packName={packName}
+            isPrivate={isPrivate}
+            deckCover={deckCover}
+          >
             <Tooltip title="Edit">
               <img src={editIcon} className={s.img} alt={'edit'} />
             </Tooltip>

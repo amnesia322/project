@@ -29,6 +29,11 @@
   word-wrap: break-word;
 }
 
+.cover {
+  width: 170px;
+  height: 107px;
+}
+
 .wrapperTable {
   composes: wrapperTable from '../PacksPage.module.css';
 }

@@ -43,6 +43,7 @@ export type PackType = {
   updated: string
   user_name: string
   private: boolean
+  deckCover: string
 }
 
 export type CreatePackRequestType = {
@@ -57,5 +58,6 @@ export type UpdatePackRequestType = {
     _id: string
     name?: string // не обязательно
     private?: boolean
+    deckCover?: string
   }
 }
