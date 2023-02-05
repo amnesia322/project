@@ -20,8 +20,8 @@ export const ClassicSelect = ({ value, title, handleChange }: PropsType) => {
     <FormControl fullWidth>
       <span className={s.title}>{title}</span>
       <Select value={value} onChange={onChangeHandler} size="small">
-        <MenuItem value={'text'}>Text</MenuItem>
-        <MenuItem value={'picture'}>Picture</MenuItem>
+        <MenuItem value={'Text'}>Text</MenuItem>
+        <MenuItem value={'Picture'}>Picture</MenuItem>
       </Select>
     </FormControl>
   )

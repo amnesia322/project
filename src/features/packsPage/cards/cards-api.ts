@@ -28,7 +28,7 @@ export type CardType = {
   user_id: string
   created: string
   updated: string
-  questionImg?: string
+  questionImg?: string | undefined
   card_id?: string
 }
 

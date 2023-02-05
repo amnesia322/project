@@ -24,15 +24,25 @@
 }
 
 .questionWrapper {
+    overflow: hidden;
     display: flex;
+    flex-direction: column;
 
-    padding-top: 30px   ;
-    padding-left: 33px   ;
+
+    width: 100%;
+    padding-top: 30px;
+    padding-right: 33px;
+    padding-left: 33px ;
 
     font-family: Montserrat, serif;
     font-size: 16px;
     font-style: normal;
-    line-height: 24px; 
+    line-height: 24px;
+}
+
+.cover {
+    width: 100%;
+    height: auto;
 }
 .answerWrapper{
     composes: questionWrapper;
@@ -60,8 +70,6 @@
     font-size: 14px;
 
     opacity: 0.5;
-
-    font-height: normal;
 }
 
 .quantityAnswer {

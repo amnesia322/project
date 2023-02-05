@@ -32,17 +32,25 @@ export const CardsList = ({ isMyId }: CardItemPropsType) => {
   }, [])
 
   const createData = (
-    questions: string,
+    question: string,
     answer: string,
     lastUpdate: string,
     grade: number,
-    id: string
+    id: string,
+    questionImg: string | undefined
   ) => {
-    return { questions, answer, lastUpdate, grade, id }
+    return { questions: question, answer, lastUpdate, grade, id, questionImg }
   }
 
   const rows = cards.map(item =>
-    createData(item.question, item.answer, findSubstr(item.updated), item.grade, item._id)
+    createData(
+      item.question,
+      item.answer,
+      findSubstr(item.updated),
+      item.grade,
+      item._id,
+      item.questionImg
+    )
   )
 
   return (
@@ -69,7 +77,11 @@ export const CardsList = ({ isMyId }: CardItemPropsType) => {
               {rows.map(row => (
                 <StyledTableRow key={row.id}>
                   <StyledTableCell component="th" scope="row">
-                    {row.questions}
+                    {!row.questionImg ? (
+                      row.questions
+                    ) : (
+                      <img className={s.questionImg} src={row.questionImg} alt={'questionImg'} />
+                    )}
                   </StyledTableCell>
                   <StyledTableCell align="center">{row.answer}</StyledTableCell>
                   <StyledTableCell align="center">{row.lastUpdate}</StyledTableCell>
@@ -82,6 +94,7 @@ export const CardsList = ({ isMyId }: CardItemPropsType) => {
                         cardId={row.id}
                         cardQuestion={row.questions}
                         cardAnswer={row.answer}
+                        cardQuestionImg={row.questionImg}
                       />
                     </StyledTableCell>
                   )}

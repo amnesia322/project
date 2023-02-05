@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField'
 import { useAppDispatch } from '../../../../../../app/store'
 import { BasicModal } from '../../../../../../common/components/BasicModal/BasicModal'
 import { ClassicButton } from '../../../../../../common/components/ClassicButton/ClassicButton'
+import { ClassicFileInput } from '../../../../../../common/components/ClassicFileInput/ClassicFileInput'
 import { ClassicSelect } from '../../../../../../common/components/ClassicSelect/CalssicSelect'
 import { addCardTC } from '../../../cards-reducer'
 import s from '../addCardModal/AddCardModal.module.css'
@@ -28,8 +29,8 @@ export const AddCardModal = memo(({ children, cardsPack_id }: PropsType) => {
   }
 
   const [questionFormat, setQuestionFormat] = useState('Text')
-  const changeQuestionFormatHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setQuestionFormat(e.currentTarget.value)
+  const changeQuestionFormatHandler = (value: QuestionFormatType) => {
+    setQuestionFormat(value)
   }
 
   const [answer, setAnswer] = useState('')
@@ -38,8 +39,13 @@ export const AddCardModal = memo(({ children, cardsPack_id }: PropsType) => {
   }
 
   const addCardHandler = () => {
-    dispatch(addCardTC({ card: { cardsPack_id, question, answer } }))
+    dispatch(addCardTC({ card: { cardsPack_id, question, answer, questionImg } }))
     setOpen(false)
+  }
+
+  const [questionImg, setQuestionImg] = useState('')
+  const addCover = (file64: string) => {
+    setQuestionImg(file64)
   }
 
   return (
@@ -54,16 +60,20 @@ export const AddCardModal = memo(({ children, cardsPack_id }: PropsType) => {
             title={'Choose a question format'}
             handleChange={changeQuestionFormatHandler}
           />
-          <TextField
-            sx={{ marginTop: '22px' }}
-            fullWidth={true}
-            size="small"
-            variant="standard"
-            label="Question"
-            value={question}
-            onChange={setNewQuestion}
-            placeholder={'Enter your question'}
-          />
+          {questionFormat === 'Picture' ? (
+            <ClassicFileInput changeCover={addCover} cover={questionImg} title={'Question'} />
+          ) : (
+            <TextField
+              sx={{ marginTop: '22px' }}
+              fullWidth={true}
+              size="small"
+              variant="standard"
+              label="Question"
+              value={question}
+              onChange={setNewQuestion}
+              placeholder={'Enter your question'}
+            />
+          )}
           <TextField
             sx={{ marginTop: '22px' }}
             fullWidth={true}
@@ -83,3 +93,4 @@ export const AddCardModal = memo(({ children, cardsPack_id }: PropsType) => {
     </>
   )
 })
+export type QuestionFormatType = 'Text' | 'Picture'

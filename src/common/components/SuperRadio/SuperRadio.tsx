@@ -55,5 +55,3 @@ export const SuperRadio: React.FC<SuperRadioPropsType> = ({
 
   return <div className={s.options}>{mappedOptions}</div>
 }
-
-export default SuperRadio

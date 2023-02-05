@@ -13,12 +13,23 @@ type PropsType = {
   cardId: string
   cardAnswer: string
   cardQuestion: string
+  cardQuestionImg: string | undefined
 }
 
-export const CardItemActions = ({ cardId, cardAnswer, cardQuestion }: PropsType) => {
+export const CardItemActions = ({
+  cardId,
+  cardAnswer,
+  cardQuestion,
+  cardQuestionImg,
+}: PropsType) => {
   return (
     <div className={s.wrapper}>
-      <EditCardModal cardId={cardId} answer={cardAnswer} question={cardQuestion}>
+      <EditCardModal
+        cardId={cardId}
+        answer={cardAnswer}
+        question={cardQuestion}
+        questionImg={cardQuestionImg}
+      >
         <Tooltip title="Edit">
           <img className={s.img} src={editIcon} alt={'editIcon'} />
         </Tooltip>

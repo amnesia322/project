@@ -1,7 +1,8 @@
 .titleBlock {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between;    
 
+    margin-top: 21px;
     margin-bottom: 7px;
 }
 
@@ -44,5 +45,4 @@
 .cover {
     width: auto;
     height: 100%;
-
 }
