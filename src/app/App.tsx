@@ -33,7 +33,9 @@ function App() {
 
       <AppBar position="static">
         <Header />
-        {status === 'loading' && <LinearProgress />}
+        <div style={{ height: '5px', backgroundColor: 'inherit' }}>
+          {status === 'loading' && <LinearProgress />}
+        </div>
       </AppBar>
       <Pages />
     </div>

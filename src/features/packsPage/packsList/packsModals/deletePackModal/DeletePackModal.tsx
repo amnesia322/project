@@ -1,7 +1,9 @@
 import React, { memo, ReactNode, useCallback, useState } from 'react'
 
 import Typography from '@mui/material/Typography'
+import { useNavigate } from 'react-router-dom'
 
+import { PATH } from '../../../../../app/Routes/Pages'
 import { useAppDispatch } from '../../../../../app/store'
 import { BasicModal } from '../../../../../common/components/BasicModal/BasicModal'
 import { ClassicButton } from '../../../../../common/components/ClassicButton/ClassicButton'
@@ -14,6 +16,7 @@ type PropsType = {
 }
 export const DeletePackModal = memo(({ children, packId, packName }: PropsType) => {
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const [open, setOpen] = useState(false)
 
   const handleOpen = () => setOpen(true)
@@ -22,6 +25,7 @@ export const DeletePackModal = memo(({ children, packId, packName }: PropsType) 
   const deletePackHandler = () => {
     dispatch(deletePackTC(packId))
     setOpen(false)
+    navigate(PATH.PACK_LIST)
   }
 
   return (

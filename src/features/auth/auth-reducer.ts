@@ -3,6 +3,8 @@ import { AxiosError } from 'axios'
 import { setAppStatusAC } from '../../app/app-reducer'
 import { AppThunk } from '../../app/store'
 import { errorUtils } from '../../common/utils/error-utils'
+import { profileAPI } from '../profile/profile-api'
+import { setProfileData } from '../profile/profile-reducer'
 
 import { authAPI, NewPassDataType, registerPayloadType } from './auth-api'
 import { FormikValueTypeForgotPassword } from './ForgotPassword/ForgotPassword'
@@ -92,6 +94,9 @@ export const loginTC =
     dispatch(setAppStatusAC('loading'))
     try {
       await authAPI.login(data)
+      const userData = await profileAPI.getProfileData()
+
+      dispatch(setProfileData(userData.data))
       dispatch(setIsLoggedInAC(true))
       dispatch(setAppStatusAC('succeeded'))
     } catch (error) {

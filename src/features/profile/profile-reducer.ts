@@ -69,9 +69,11 @@ export const updateProfileDataTC =
 
 export const logoutTC = (): AppThunk => async dispatch => {
   dispatch(setAppStatusAC('loading'))
+
   try {
+    debugger
     await authAPI.logOut()
-    dispatch(setProfileData(initialState.user))
+    // dispatch(setProfileData(initialState.user))
     dispatch(setIsLoggedInAC(false))
     dispatch(setAppStatusAC('succeeded'))
   } catch (error) {

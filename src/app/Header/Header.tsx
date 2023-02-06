@@ -29,24 +29,6 @@ const Header = () => {
           <Avatar alt="avatar" src={userAvatar ? userAvatar : avatarImg} />
         </NavLink>
       )}
-      {/*<NavLink to={PATH.PROFILE} className={s.link}>*/}
-      {/*  profile*/}
-      {/*</NavLink>*/}
-      {/*<NavLink to={PATH.LOGIN} className={s.link}>*/}
-      {/*  Login*/}
-      {/*</NavLink>*/}
-      {/*<NavLink to={PATH.REGISTER} className={s.link}>*/}
-      {/*  Register*/}
-      {/*</NavLink>*/}
-      {/*<NavLink to={PATH.NEW_PASS} className={s.link}>*/}
-      {/*  New Pass*/}
-      {/*</NavLink>*/}
-      {/*<NavLink to={PATH.PASS_RECOVERY} className={s.link}>*/}
-      {/*  Forgot Password*/}
-      {/*</NavLink>*/}
-      {/*<NavLink to={PATH.ERROR} className={s.link}>*/}
-      {/*  Error 404*/}
-      {/*</NavLink>*/}
     </div>
   )
 }

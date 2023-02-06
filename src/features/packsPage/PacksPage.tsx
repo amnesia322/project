@@ -39,6 +39,7 @@ export const PacksPage = () => {
   const [searchParams, setSearchParams]: [URLSearchParams, Function] = useSearchParams()
   const params = Object.fromEntries(searchParams)
 
+  console.log(params)
   useEffect(() => {
     if (
       params.max &&
@@ -56,7 +57,7 @@ export const PacksPage = () => {
 
   useEffect(() => {
     dispatch(setPacksTC())
-  }, [dispatch, page, pageCount, maxFromState, minFromState, packName, user_id, sortPacks])
+  }, [searchParams])
 
   if (!isFetched) {
     return (

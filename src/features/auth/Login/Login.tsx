@@ -63,7 +63,7 @@ export const Login = () => {
   })
 
   if (isLogged) {
-    return <Navigate to={PATH.PROFILE} />
+    return <Navigate to={PATH.PACK_LIST} />
   }
 
   return (

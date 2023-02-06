@@ -18,6 +18,7 @@ import { MyPackMenu } from './myPackMenu/MyPackMenu'
 export const Cards = () => {
   const myId = useAppSelector(state => state.profile.user._id)
   const cardsPack_id = useAppSelector(state => state.cards.queryParams.cardsPack_id)
+  const cardsPackName = useAppSelector(state => state.cards.packName)
   const totalCount = useAppSelector(state => state.cards.cardsTotalCount)
   const page = useAppSelector(state => state.cards.page)
   const pageCount = useAppSelector(state => state.cards.queryParams.pageCount)
@@ -58,7 +59,7 @@ export const Cards = () => {
       {isMyId ? (
         <div className={s.wrapperButton}>
           <div className={s.titleTable}>
-            <span className={s.titlePack}>{chosenPack?.name}</span>
+            <span className={s.titlePack}>{cardsPackName}</span>
             <MyPackMenu
               onLearnHandler={learnPackHandler}
               packId={cardsPack_id}
@@ -77,7 +78,7 @@ export const Cards = () => {
       ) : (
         <div className={s.wrapperButton}>
           <div className={s.titleTable}>
-            <span>{chosenPack?.name}</span>
+            <span>{cardsPackName}</span>
           </div>
           {!!totalCount && <ClassicButton title={'Learn to pack'} onClick={learnPackHandler} />}
         </div>

@@ -24,6 +24,10 @@ export const PackCardsDoubleRange = ({
   const dispatch = useAppDispatch()
 
   useEffect(() => {
+    setSliderLocalValue([minSliderValue, maxSliderValue])
+  }, [minSliderValue, maxSliderValue])
+
+  useEffect(() => {
     setSliderLocalValue([min, initialMax])
   }, [min, max])
 

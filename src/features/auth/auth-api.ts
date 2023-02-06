@@ -9,7 +9,7 @@ export const authAPI = {
     return instance.post<'', AxiosResponse<LoginResponseType>, FormikValueType>('auth/login', data)
   },
   logOut() {
-    return instance.delete('auth/me')
+    return instance.delete('auth/me', {})
   },
   register(payload: registerPayloadType) {
     return instance.post<ResponseRegisterType>('auth/register', payload)

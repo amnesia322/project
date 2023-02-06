@@ -57,7 +57,9 @@ export const CardsList = ({ isMyId }: CardItemPropsType) => {
     <div>
       {!totalCount ? (
         <div className={s.wrapperForTitle}>
-          <div className={s.titleForEmptyPack}>This pack is empty or change search parameters </div>
+          <div className={s.titleForEmptyPack}>
+            This pack is empty. Please, add new card or change search parameters{' '}
+          </div>
           {isMyId && (
             <AddCardModal cardsPack_id={cardsPack_id}>
               <ClassicButton title={'Add new card'} />

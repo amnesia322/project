@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 
 import LogoutIcon from '@mui/icons-material/Logout'
 
@@ -12,15 +12,12 @@ import { ProfileDataType } from './profile-api'
 import { getProfileDataTC, logoutTC, updateProfileDataTC } from './profile-reducer'
 import s from './Profile.module.css'
 
-const Profile = memo(() => {
+const Profile = () => {
   const dispatch = useAppDispatch()
   const user = useAppSelector<ProfileDataType>(state => state.profile.user)
-  const isLoggedIn = useAppSelector(state => state.auth.isLogged)
+  // const isLoggedIn = useAppSelector(state => state.auth.isLogged)
 
   useEffect(() => {
-    if (!isLoggedIn) {
-      return
-    }
     dispatch(getProfileDataTC())
   }, [])
 
@@ -31,9 +28,9 @@ const Profile = memo(() => {
     [dispatch]
   )
 
-  const onclickHandler = useCallback(() => {
+  const onclickHandler = () => {
     dispatch(logoutTC())
-  }, [dispatch])
+  }
 
   return (
     <>
@@ -53,6 +50,6 @@ const Profile = memo(() => {
       </div>
     </>
   )
-})
+}
 
 export default Profile

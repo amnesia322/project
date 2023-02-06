@@ -14,9 +14,11 @@ const initialState = {
   minCardsCount: 0,
   page: 1,
   isPacksFetched: false,
+  min: 0,
+  max: 0,
   queryParams: {
     min: 0,
-    max: 100,
+    max: 1000,
     pageCount: 5,
     sortPacks: sortingPacksMethods.desUpdate,
     packName: '',
@@ -30,7 +32,7 @@ export const emptyQueryParams: InitialStateType['queryParams'] = {
   user_id: '',
   packName: '',
   min: 0,
-  max: 100,
+  max: 53,
 }
 
 export const packsReducer = (
@@ -98,8 +100,10 @@ export const setPacksTC = (): AppThunk => async (dispatch, getState) => {
       page: getState().packs.page,
       ...getState().packs.queryParams,
     }
+
     const response = await packsAPI.getPacks(payload)
 
+    console.log(response)
     dispatch(setPacks(response.data))
     dispatch(setAppStatusAC('succeeded'))
     dispatch(setIsPacksFetched(true))
