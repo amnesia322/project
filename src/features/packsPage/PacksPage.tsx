@@ -39,7 +39,6 @@ export const PacksPage = () => {
   const [searchParams, setSearchParams]: [URLSearchParams, Function] = useSearchParams()
   const params = Object.fromEntries(searchParams)
 
-  console.log(params)
   useEffect(() => {
     if (
       params.max &&

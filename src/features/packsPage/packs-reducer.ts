@@ -103,7 +103,6 @@ export const setPacksTC = (): AppThunk => async (dispatch, getState) => {
 
     const response = await packsAPI.getPacks(payload)
 
-    console.log(response)
     dispatch(setPacks(response.data))
     dispatch(setAppStatusAC('succeeded'))
     dispatch(setIsPacksFetched(true))
