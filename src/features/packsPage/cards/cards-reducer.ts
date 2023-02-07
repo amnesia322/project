@@ -31,6 +31,8 @@ const initialState = {
   page: 1,
   packUserId: '',
   packName: '',
+  packDeckCover: '',
+  packPrivate: false,
 }
 
 export const cardsReducer = (

@@ -44,6 +44,7 @@ export const initializeAppTC = (): AppThunk => async dispatch => {
     const response = await profileAPI.getProfileData()
 
     dispatch(setProfileData(response.data))
+
     if (response.data._id) {
       dispatch(setIsLoggedInAC(true))
     }

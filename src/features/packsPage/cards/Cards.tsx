@@ -18,7 +18,10 @@ import { MyPackMenu } from './myPackMenu/MyPackMenu'
 export const Cards = () => {
   const myId = useAppSelector(state => state.profile.user._id)
   const cardsPack_id = useAppSelector(state => state.cards.queryParams.cardsPack_id)
-  const cardsPackName = useAppSelector(state => state.cards.packName)
+  const packUserId = useAppSelector(state => state.cards.packUserId)
+  const packName = useAppSelector(state => state.cards.packName)
+  const packDeckCover = useAppSelector(state => state.cards.packDeckCover)
+  const packPrivate = useAppSelector(state => state.cards.packPrivate)
   const totalCount = useAppSelector(state => state.cards.cardsTotalCount)
   const page = useAppSelector(state => state.cards.page)
   const pageCount = useAppSelector(state => state.cards.queryParams.pageCount)
@@ -26,6 +29,7 @@ export const Cards = () => {
   const min = useAppSelector(state => state.cards.queryParams.min)
   const max = useAppSelector(state => state.cards.queryParams.max)
   const sortCards = useAppSelector(state => state.cards.queryParams.sortCards)
+
   const { id } = useParams()
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
@@ -33,19 +37,11 @@ export const Cards = () => {
   const [searchParams, setSearchParams]: [URLSearchParams, Function] = useSearchParams()
   const params = Object.fromEntries(searchParams)
 
-  const chosenPack = useAppSelector(state => {
-    const chosenPack = state.packs.cardPacks.find(item => item._id === cardsPack_id)
-
-    if (chosenPack) {
-      return chosenPack
-    }
-  })
-
   useEffect(() => {
     dispatch(setCardsTC(id || cardsPack_id))
   }, [dispatch, totalCount, page, cardsPack_id, pageCount, cardQuestion, min, max, sortCards])
 
-  const isMyId = myId === chosenPack?.user_id
+  const isMyId = myId === packUserId
 
   const learnPackHandler = () => {
     dispatch(setCardsPerPage(totalCount))
@@ -59,14 +55,14 @@ export const Cards = () => {
       {isMyId ? (
         <div className={s.wrapperButton}>
           <div className={s.titleTable}>
-            <span className={s.titlePack}>{cardsPackName}</span>
+            <span className={s.titlePack}>{packName}</span>
             <MyPackMenu
               onLearnHandler={learnPackHandler}
               packId={cardsPack_id}
-              packName={chosenPack.name}
-              isPrivate={chosenPack.private}
+              packName={packName}
+              isPrivate={packPrivate}
               totalCount={totalCount}
-              deckCover={chosenPack.deckCover}
+              deckCover={packDeckCover}
             />
           </div>
           {!!totalCount && (
@@ -78,19 +74,19 @@ export const Cards = () => {
       ) : (
         <div className={s.wrapperButton}>
           <div className={s.titleTable}>
-            <span>{cardsPackName}</span>
+            <span>{packName}</span>
           </div>
           {!!totalCount && <ClassicButton title={'Learn to pack'} onClick={learnPackHandler} />}
         </div>
       )}
-      {!chosenPack?.deckCover ? (
+      {!packDeckCover ? (
         <AutoStoriesOutlinedIcon
           sx={{ width: '170px', height: '107px' }}
           fontSize={'large'}
           color={'action'}
         />
       ) : (
-        <img className={s.cover} src={chosenPack.deckCover} alt={'deckCover'} />
+        <img className={s.cover} src={packDeckCover} alt={'deckCover'} />
       )}
 
       <div className={s.wrapperTable}>

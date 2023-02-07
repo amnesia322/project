@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback } from 'react'
 
 import LogoutIcon from '@mui/icons-material/Logout'
 
@@ -9,17 +9,12 @@ import { EditableSpan } from '../../common/components/EditableSpan/EditableSpan'
 
 import { AvatarComponent } from './avatarComponent/AvatarComponent'
 import { ProfileDataType } from './profile-api'
-import { getProfileDataTC, logoutTC, updateProfileDataTC } from './profile-reducer'
+import { logoutTC, updateProfileDataTC } from './profile-reducer'
 import s from './Profile.module.css'
 
 const Profile = () => {
   const dispatch = useAppDispatch()
   const user = useAppSelector<ProfileDataType>(state => state.profile.user)
-  // const isLoggedIn = useAppSelector(state => state.auth.isLogged)
-
-  useEffect(() => {
-    dispatch(getProfileDataTC())
-  }, [])
 
   const onChangeTextHandler = useCallback(
     (name: string) => {

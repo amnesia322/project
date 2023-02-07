@@ -55,6 +55,7 @@ export const SearchComponent = ({
           <SearchIcon />
         </IconButton>
         <InputBase
+          size={'small'}
           sx={{ ml: 1, flex: 1 }}
           placeholder="Provide your text"
           inputProps={{ 'aria-label': 'Provide your text' }}

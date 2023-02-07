@@ -32,8 +32,6 @@ export const PacksPage = () => {
   const maxFromState = useAppSelector(state => state.packs.queryParams.max)
   const minFromState = useAppSelector(state => state.packs.queryParams.min)
   const user_id = useAppSelector(state => state.packs.queryParams.user_id)
-  const packName = useAppSelector(state => state.packs.queryParams.packName)
-  const sortPacks = useAppSelector(state => state.packs.queryParams.sortPacks)
   const pageCount = useAppSelector(state => state.packs.queryParams.pageCount)
 
   const [searchParams, setSearchParams]: [URLSearchParams, Function] = useSearchParams()
@@ -56,7 +54,7 @@ export const PacksPage = () => {
 
   useEffect(() => {
     dispatch(setPacksTC())
-  }, [searchParams])
+  }, [searchParams, dispatch])
 
   if (!isFetched) {
     return (
