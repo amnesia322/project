@@ -81,7 +81,7 @@ export const PacksList = () => {
                     ) : (
                       <img className={s.cover} src={row.deckCover} alt={'deckCover'} />
                     )}
-                    <span>{row.name}</span>
+                    <span className={s.packName}>{row.name}</span>
                   </Link>
                 </StyledTableCell>
                 <StyledTableCell align="center">{row.cardsCount}</StyledTableCell>

@@ -21,6 +21,13 @@
   text-decoration: none;
 }
 
+.packName {
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .cover {
   display: block;
 

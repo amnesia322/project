@@ -36,7 +36,7 @@ export const DeletePackModal = memo(({ children, packId, packName }: PropsType) 
       <BasicModal title={'Delete pack'} open={open} handleClose={handleClose}>
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
           Do you really want to remove&nbsp;
-          <span style={{ fontWeight: 600 }}>{packName}</span>? All tables will be deleted.
+          <span className={s.packName}>{packName}</span>? All tables will be deleted.
         </Typography>
         <div className={s.buttonsContainer}>
           <ClassicButton title={'Cancel'} onClick={handleClose} color={'inherit'} />
