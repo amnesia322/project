@@ -1,6 +1,6 @@
 # Learning Cards App
 
-Create yor iwn card set for learning something important for you or you are able to use other cards created by other students.
+Create your own card set for learning something important for you or you are able to use other cards created by other students.
 UI is the simplest one. So you can start without any tutorials
 
 ## Demo:
