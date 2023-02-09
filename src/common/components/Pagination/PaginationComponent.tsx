@@ -3,12 +3,9 @@ import React, { useEffect } from 'react'
 import { FormControl, MenuItem, Pagination, Select, SelectChangeEvent } from '@mui/material'
 
 import { useAppDispatch, useAppSelector } from '../../../app/store'
-import {
-  setCardsCurrentPage,
-  setCardsPerPage,
-} from '../../../features/packsPage/cards/cards-reducer'
-import { setPacksCurrentPage, setPacksPerPage } from '../../../features/packsPage/packs-reducer'
-import { SearchParamsType } from '../../../features/packsPage/PacksPage'
+import { setCardsCurrentPage, setCardsPerPage } from '../../../features/cards/cards-reducer'
+import { SearchParamsType } from '../../../features/packs/Packs'
+import { setPacksCurrentPage, setPacksPerPage } from '../../../features/packs/packs-reducer'
 
 import s from './PaginationComponent.module.css'
 

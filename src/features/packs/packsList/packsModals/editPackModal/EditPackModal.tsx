@@ -9,7 +9,7 @@ import { useAppDispatch } from '../../../../../app/store'
 import { BasicModal } from '../../../../../common/components/BasicModal/BasicModal'
 import { ClassicButton } from '../../../../../common/components/ClassicButton/ClassicButton'
 import { ClassicFileInput } from '../../../../../common/components/ClassicFileInput/ClassicFileInput'
-import { editPackTitleTC } from '../../../packs-reducer'
+import { editPackTC } from '../../../packs-reducer'
 
 import s from './EditPackModal.module.css'
 
@@ -39,7 +39,7 @@ export const EditPackModal = memo(
     }
     const editPackHandler = () => {
       dispatch(
-        editPackTitleTC({
+        editPackTC({
           cardsPack: { _id: packId, name: newPackName, private: packStatus, deckCover: cover },
         })
       )

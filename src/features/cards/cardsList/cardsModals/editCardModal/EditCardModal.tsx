@@ -3,12 +3,13 @@ import React, { ChangeEvent, memo, ReactNode, useCallback, useState } from 'reac
 import FormControl from '@mui/material/FormControl'
 import TextField from '@mui/material/TextField'
 
-import { useAppDispatch } from '../../../../../../app/store'
-import { BasicModal } from '../../../../../../common/components/BasicModal/BasicModal'
-import { ClassicButton } from '../../../../../../common/components/ClassicButton/ClassicButton'
-import { ClassicFileInput } from '../../../../../../common/components/ClassicFileInput/ClassicFileInput'
+import { useAppDispatch } from '../../../../../app/store'
+import { BasicModal } from '../../../../../common/components/BasicModal/BasicModal'
+import { ClassicButton } from '../../../../../common/components/ClassicButton/ClassicButton'
+import { ClassicFileInput } from '../../../../../common/components/ClassicFileInput/ClassicFileInput'
 import { editCardTitleTC } from '../../../cards-reducer'
-import s from '../editCardModal/EditCardModal.module.css'
+
+import s from './EditCardModal.module.css'
 
 type PropsType = {
   children?: ReactNode

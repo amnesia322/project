@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react'
 
 import { useAppDispatch } from '../../../app/store'
-import { setSortCards } from '../../../features/packsPage/cards/cards-reducer'
-import { setSortPacks } from '../../../features/packsPage/packs-reducer'
+import { setSortCards } from '../../../features/cards/cards-reducer'
+import { setSortPacks } from '../../../features/packs/packs-reducer'
 import { sortingCardsMethods, sortingPacksMethods } from '../../constants/sortingMethods'
 
 import { Caption } from './Caption'

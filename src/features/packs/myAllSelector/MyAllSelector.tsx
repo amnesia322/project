@@ -2,8 +2,8 @@ import React from 'react'
 
 import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { SuperButton } from '../../../common/components/SuperButton/SuperButton'
+import { SearchParamsType } from '../Packs'
 import { setUserPacks } from '../packs-reducer'
-import { SearchParamsType } from '../PacksPage'
 
 import s from './MyAllSelector.module.css'
 

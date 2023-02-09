@@ -7,9 +7,9 @@ import { ForgotPassword } from '../../features/auth/ForgotPassword/ForgotPasswor
 import NewPass from '../../features/auth/ForgotPassword/NewPass/NewPass'
 import { Login } from '../../features/auth/Login/Login'
 import { Register } from '../../features/auth/Register/Register'
+import { Cards } from '../../features/cards/Cards'
 import { Learn } from '../../features/learn/Learn'
-import { Cards } from '../../features/packsPage/cards/Cards'
-import { PacksPage } from '../../features/packsPage/PacksPage'
+import { Packs } from '../../features/packs/Packs'
 import Profile from '../../features/profile/Profile'
 
 import Error404 from './Error404/Error404'
@@ -35,7 +35,7 @@ function Pages() {
         <Route element={<PrivateRoutes />}>
           <Route path="/" element={<Navigate to={PATH.PROFILE} />} />
           <Route path={PATH.PROFILE} element={<Profile />} />
-          <Route path={PATH.PACK_LIST} element={<PacksPage />} />
+          <Route path={PATH.PACK_LIST} element={<Packs />} />
           <Route path={PATH.CARDS_LIST} element={<Cards />} />
           <Route path={PATH.LEARN} element={<Learn />} />
         </Route>

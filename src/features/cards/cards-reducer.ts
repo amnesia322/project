@@ -1,9 +1,9 @@
 import { AxiosError } from 'axios'
 
-import { setAppStatusAC } from '../../../app/app-reducer'
-import { AppThunk } from '../../../app/store'
-import { sortingCardsMethods } from '../../../common/constants/sortingMethods'
-import { errorUtils } from '../../../common/utils/error-utils'
+import { setAppStatusAC } from '../../app/app-reducer'
+import { AppThunk } from '../../app/store'
+import { sortingCardsMethods } from '../../common/constants/sortingMethods'
+import { errorUtils } from '../../common/utils/error-utils'
 
 import {
   cardsApi,

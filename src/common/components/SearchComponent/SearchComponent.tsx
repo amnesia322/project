@@ -5,10 +5,10 @@ import { IconButton, InputBase } from '@mui/material'
 import Paper from '@mui/material/Paper'
 
 import { useAppDispatch, useAppSelector } from '../../../app/store'
-import { setCardsQuestion } from '../../../features/packsPage/cards/cards-reducer'
-import { setSortPacksName } from '../../../features/packsPage/packs-reducer'
-import { SearchParamsType } from '../../../features/packsPage/PacksPage'
-import s from '../../../features/packsPage/PacksPage.module.css'
+import { setCardsQuestion } from '../../../features/cards/cards-reducer'
+import { SearchParamsType } from '../../../features/packs/Packs'
+import { setSortPacksName } from '../../../features/packs/packs-reducer'
+import s from '../../../features/packs/Packs.module.css'
 import { useDebounce } from '../../hooks/useDebounce'
 
 export const SearchComponent = ({

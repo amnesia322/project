@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { Slider } from '@mui/material'
 
 import { useAppDispatch, useAppSelector } from '../../../app/store'
-import { setSliderValue } from '../../../features/packsPage/packs-reducer'
-import { SearchParamsType } from '../../../features/packsPage/PacksPage'
-import s from '../../../features/packsPage/PacksPage.module.css'
+import { SearchParamsType } from '../../../features/packs/Packs'
+import { setSliderValue } from '../../../features/packs/packs-reducer'
+import s from '../../../features/packs/Packs.module.css'
 
 export const PackCardsDoubleRange = ({
   params,
