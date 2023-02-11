@@ -98,7 +98,7 @@ export type ResponseUpdatedGradeType = {
     shots: number
   }
 }
-
+console.log()
 // _id: string
 // answer: string
 // question: string
