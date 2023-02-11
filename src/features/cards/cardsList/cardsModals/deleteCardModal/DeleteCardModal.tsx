@@ -2,11 +2,12 @@ import React, { memo, ReactNode, useCallback, useState } from 'react'
 
 import Typography from '@mui/material/Typography'
 
-import { useAppDispatch } from '../../../../../../app/store'
-import { BasicModal } from '../../../../../../common/components/BasicModal/BasicModal'
-import { ClassicButton } from '../../../../../../common/components/ClassicButton/ClassicButton'
+import { useAppDispatch } from '../../../../../app/store'
+import { BasicModal } from '../../../../../common/components/BasicModal/BasicModal'
+import { ClassicButton } from '../../../../../common/components/ClassicButton/ClassicButton'
 import { deleteCardTC } from '../../../cards-reducer'
-import s from '../deleteCardModal/DeleteCardModal.module.css'
+
+import s from './DeleteCardModal.module.css'
 
 type PropsType = {
   children?: ReactNode

@@ -151,7 +151,7 @@ export const deletePackTC =
     }
   }
 
-export const editPackTitleTC =
+export const editPackTC =
   (editPackTitlePayload: UpdatePackRequestType): AppThunk =>
   async dispatch => {
     dispatch(setAppStatusAC('loading'))

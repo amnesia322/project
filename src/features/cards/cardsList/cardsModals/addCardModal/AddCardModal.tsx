@@ -3,13 +3,14 @@ import React, { ChangeEvent, memo, ReactNode, useCallback, useState } from 'reac
 import FormControl from '@mui/material/FormControl'
 import TextField from '@mui/material/TextField'
 
-import { useAppDispatch } from '../../../../../../app/store'
-import { BasicModal } from '../../../../../../common/components/BasicModal/BasicModal'
-import { ClassicButton } from '../../../../../../common/components/ClassicButton/ClassicButton'
-import { ClassicFileInput } from '../../../../../../common/components/ClassicFileInput/ClassicFileInput'
-import { ClassicSelect } from '../../../../../../common/components/ClassicSelect/CalssicSelect'
+import { useAppDispatch } from '../../../../../app/store'
+import { BasicModal } from '../../../../../common/components/BasicModal/BasicModal'
+import { ClassicButton } from '../../../../../common/components/ClassicButton/ClassicButton'
+import { ClassicFileInput } from '../../../../../common/components/ClassicFileInput/ClassicFileInput'
+import { ClassicSelect } from '../../../../../common/components/ClassicSelect/CalssicSelect'
 import { addCardTC } from '../../../cards-reducer'
-import s from '../addCardModal/AddCardModal.module.css'
+
+import s from './AddCardModal.module.css'
 
 type PropsType = {
   children?: ReactNode

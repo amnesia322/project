@@ -3,11 +3,11 @@ import React, { useEffect } from 'react'
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 
-import { useAppDispatch, useAppSelector } from '../../../app/store'
-import { BackToPackList } from '../../../common/components/BackToPackListButton/BackToPackList'
-import { ClassicButton } from '../../../common/components/ClassicButton/ClassicButton'
-import { PaginationComponent } from '../../../common/components/Pagination/PaginationComponent'
-import { SearchComponent } from '../../../common/components/SearchComponent/SearchComponent'
+import { useAppDispatch, useAppSelector } from '../../app/store'
+import { BackToPackList } from '../../common/components/BackToPackListButton/BackToPackList'
+import { ClassicButton } from '../../common/components/ClassicButton/ClassicButton'
+import { PaginationComponent } from '../../common/components/Pagination/PaginationComponent'
+import { SearchComponent } from '../../common/components/SearchComponent/SearchComponent'
 
 import { setCardsPerPage, setCardsTC } from './cards-reducer'
 import s from './Cards.module.css'
@@ -39,7 +39,19 @@ export const Cards = () => {
 
   useEffect(() => {
     dispatch(setCardsTC(id || cardsPack_id))
-  }, [dispatch, totalCount, page, cardsPack_id, pageCount, cardQuestion, min, max, sortCards])
+  }, [
+    dispatch,
+    totalCount,
+    page,
+    cardsPack_id,
+    pageCount,
+    cardQuestion,
+    min,
+    max,
+    sortCards,
+    packDeckCover,
+    packName,
+  ])
 
   const isMyId = myId === packUserId
 

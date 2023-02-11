@@ -5,12 +5,13 @@ import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 
-import deleteIcon from '../../../../assets/svg/delete.svg'
-import editIcon from '../../../../assets/svg/edit.svg'
-import learnIcon from '../../../../assets/svg/leran.svg'
-import { DeletePackModal } from '../../packsList/packsModals/deletePackModal/DeletePackModal'
-import { EditPackModal } from '../../packsList/packsModals/editPackModal/EditPackModal'
-import s from '../myPackMenu/MyPackMenu.module.css'
+import deleteIcon from '../../../assets/svg/delete.svg'
+import editIcon from '../../../assets/svg/edit.svg'
+import learnIcon from '../../../assets/svg/leran.svg'
+import { DeletePackModal } from '../../packs/packsList/packsModals/deletePackModal/DeletePackModal'
+import { EditPackModal } from '../../packs/packsList/packsModals/editPackModal/EditPackModal'
+
+import s from './MyPackMenu.module.css'
 
 type MyPackMenuPropsType = {
   onLearnHandler: () => void

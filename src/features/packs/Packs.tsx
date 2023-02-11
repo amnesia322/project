@@ -18,11 +18,11 @@ import {
   setSortPacksName,
   setUserPacks,
 } from './packs-reducer'
+import s from './Packs.module.css'
 import { PacksList } from './packsList/PacksList'
 import { AddPackModal } from './packsList/packsModals/addPackModal/AddPackModal'
-import s from './PacksPage.module.css'
 import { RefreshFilter } from './refreshFilter/RefreshFilter'
-export const PacksPage = () => {
+export const Packs = () => {
   const dispatch = useAppDispatch()
   const appStatus = useAppSelector(state => state.app.status)
   const totalCount = useAppSelector(state => state.packs.cardPacksTotalCount)

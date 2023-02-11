@@ -9,8 +9,8 @@ import { SuperRadio } from '../../common/components/SuperRadio/SuperRadio'
 import { answerArr } from '../../common/constants/answerArr'
 import { buttonLearning } from '../../common/utils/css/ButtonStyle'
 import { getCard } from '../../common/utils/getCard'
-import { CardType } from '../packsPage/cards/cards-api'
-import { setCardGradeTC, setCardsPerPage, setCardsTC } from '../packsPage/cards/cards-reducer'
+import { CardType } from '../cards/cards-api'
+import { setCardGradeTC, setCardsPerPage, setCardsTC } from '../cards/cards-reducer'
 
 import s from './Learn.module.css'
 

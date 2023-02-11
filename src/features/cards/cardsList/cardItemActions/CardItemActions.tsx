@@ -2,8 +2,8 @@ import React from 'react'
 
 import Tooltip from '@material-ui/core/Tooltip'
 
-import deleteIcon from '../../../../../assets/svg/delete.svg'
-import editIcon from '../../../../../assets/svg/edit.svg'
+import deleteIcon from '../../../../assets/svg/delete.svg'
+import editIcon from '../../../../assets/svg/edit.svg'
 import { DeleteCardModal } from '../cardsModals/deleteCardModal/DeleteCardModal'
 import { EditCardModal } from '../cardsModals/editCardModal/EditCardModal'
 

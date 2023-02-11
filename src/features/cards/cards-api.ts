@@ -1,4 +1,4 @@
-import { instance } from '../../../app/api'
+import { instance } from '../../app/api'
 
 export const cardsApi = {
   getCards(payload: GetCardsRequestType) {
@@ -98,7 +98,7 @@ export type ResponseUpdatedGradeType = {
     shots: number
   }
 }
-
+console.log()
 // _id: string
 // answer: string
 // question: string

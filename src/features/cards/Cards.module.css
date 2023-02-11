@@ -1,9 +1,9 @@
 .wrapper {
-  composes: wrapper from '../PacksPage.module.css';
+  composes: wrapper from '../packs/Packs.module.css';
 }
 
 .wrapperButton {
-  composes: wrapperButton from '../PacksPage.module.css';
+  composes: wrapperButton from '../packs/Packs.module.css';
 }
 
 .titleTable {
@@ -35,7 +35,7 @@
 }
 
 .wrapperTable {
-  composes: wrapperTable from '../PacksPage.module.css';
+  composes: wrapperTable from '../packs/Packs.module.css';
 }
 
 .wrapperForSearchComponent{
@@ -44,7 +44,7 @@
 }
 
 .titleButton {
-  composes: titleButton from '../PacksPage.module.css';
+  composes: titleButton from '../packs/Packs.module.css';
 }
 
 

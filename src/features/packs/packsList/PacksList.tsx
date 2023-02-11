@@ -14,7 +14,7 @@ import { Captions } from '../../../common/components/Captions/Captions'
 import { packsCaptions } from '../../../common/constants/captionsArray'
 import { StyledTableCell, StyledTableRow } from '../../../common/utils/css/StyledTable'
 import { findSubstr } from '../../../common/utils/findSubscr'
-import { setPackCards } from '../cards/cards-reducer'
+import { setPackCards } from '../../cards/cards-reducer'
 
 import { PackItemActions } from './packItremActions/PackItemActions'
 import s from './PacksList.module.css'
