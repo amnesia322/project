@@ -56,7 +56,7 @@ export const Cards = () => {
   const isMyId = myId === packUserId
 
   const learnPackHandler = () => {
-    dispatch(setCardsPerPage(totalCount))
+    dispatch(setCardsPerPage({ pageCount: totalCount }))
     dispatch(setCardsTC(cardsPack_id))
     navigate(`/learn/${cardsPack_id}`)
   }

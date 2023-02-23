@@ -1,3 +1,4 @@
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AxiosError } from 'axios'
 
 import { setAppStatusAC } from '../../app/app-reducer'
@@ -19,110 +20,134 @@ const initialState = {
     isNewPassSet: false,
   },
 }
-
-export const authReducer = (
-  state: InitialStateType = initialState,
-  action: AuthActionsType
-): InitialStateType => {
-  switch (action.type) {
-    case 'auth/SET-IS-LOGGED': {
-      return { ...state, isLogged: action.payload.value }
-    }
-    case 'auth/REGISTER': {
-      return { ...state, isRegister: action.isRegister }
-    }
-    case 'auth/FORGOT-PASSWORD/SET-IS-SEND-EMAIL': {
-      return {
-        ...state,
-        forgotPassword: { ...state.forgotPassword, isSendEmail: action.payload.value },
-      }
-    }
-    case 'auth/FORGOT-PASSWORD/SET-EMAIL': {
-      return {
-        ...state,
-        forgotPassword: { ...state.forgotPassword, emailForLink: action.payload.value },
-      }
-    }
-    case 'auth/FORGOT-PASSWORD/SET_NEW_PASS':
-      return {
-        ...state,
-        forgotPassword: { ...state.forgotPassword, isNewPassSet: action.isNewPassSet },
-      }
-    default:
-      return state
-  }
-}
-
-export const setIsLoggedInAC = (value: boolean) => {
-  return {
-    type: 'auth/SET-IS-LOGGED',
-    payload: {
-      value,
+const slice = createSlice({
+  name: 'auth',
+  initialState: initialState,
+  reducers: {
+    setIsLoggedInAC(state, action: PayloadAction<{ isLogged: boolean }>) {
+      state.isLogged = action.payload.isLogged
     },
-  } as const
-}
-
-export const registerAC = (isRegister: boolean) =>
-  ({
-    type: 'auth/REGISTER',
-    isRegister,
-  } as const)
-
-export const setIsSendEmailAC = (value: boolean) => {
-  return {
-    type: 'auth/FORGOT-PASSWORD/SET-IS-SEND-EMAIL',
-    payload: {
-      value,
+    registerAC(state, action: PayloadAction<{ isRegister: boolean }>) {
+      state.isRegister = action.payload.isRegister
     },
-  } as const
-}
-export const setEmailForLinkAC = (value: string) => {
-  return {
-    type: 'auth/FORGOT-PASSWORD/SET-EMAIL',
-    payload: {
-      value,
+    setIsSendEmailAC(state, action: PayloadAction<{ isSendEmail: boolean }>) {
+      state.forgotPassword.isSendEmail = action.payload.isSendEmail
     },
-  } as const
-}
+    setEmailForLinkAC(state, action: PayloadAction<{ emailForLink: string }>) {
+      state.forgotPassword.emailForLink = action.payload.emailForLink
+    },
+    setNewPassAC(state, action: PayloadAction<{ isNewPassSet: boolean }>) {
+      state.forgotPassword.isNewPassSet = action.payload.isNewPassSet
+    },
+  },
+})
 
-export const setNewPassAC = (isNewPassSet: boolean) =>
-  ({ type: 'auth/FORGOT-PASSWORD/SET_NEW_PASS', isNewPassSet } as const)
+export const { setIsLoggedInAC, registerAC, setIsSendEmailAC, setEmailForLinkAC, setNewPassAC } =
+  slice.actions
+export const authReducer = slice.reducer
+// export const authReducer = (
+//   state: InitialStateType = initialState,
+//   action: AuthActionsType
+// ): InitialStateType => {
+//   switch (action.type) {
+//     case 'auth/SET-IS-LOGGED': {
+//       return { ...state, isLogged: action.payload.value }
+//     }
+//     case 'auth/REGISTER': {
+//       return { ...state, isRegister: action.isRegister }
+//     }
+//     case 'auth/FORGOT-PASSWORD/SET-IS-SEND-EMAIL': {
+//       return {
+//         ...state,
+//         forgotPassword: { ...state.forgotPassword, isSendEmail: action.payload.value },
+//       }
+//     }
+//     case 'auth/FORGOT-PASSWORD/SET-EMAIL': {
+//       return {
+//         ...state,
+//         forgotPassword: { ...state.forgotPassword, emailForLink: action.payload.value },
+//       }
+//     }
+//     case 'auth/FORGOT-PASSWORD/SET_NEW_PASS':
+//       return {
+//         ...state,
+//         forgotPassword: { ...state.forgotPassword, isNewPassSet: action.isNewPassSet },
+//       }
+//     default:
+//       return state
+//   }
+// }
+//
+// export const setIsLoggedInAC = (value: boolean) => {
+//   return {
+//     type: 'auth/SET-IS-LOGGED',
+//     payload: {
+//       value,
+//     },
+//   } as const
+// }
+//
+// export const registerAC = (isRegister: boolean) =>
+//   ({
+//     type: 'auth/REGISTER',
+//     isRegister,
+//   } as const)
+//
+// export const setIsSendEmailAC = (value: boolean) => {
+//   return {
+//     type: 'auth/FORGOT-PASSWORD/SET-IS-SEND-EMAIL',
+//     payload: {
+//       value,
+//     },
+//   } as const
+// }
+// export const setEmailForLinkAC = (value: string) => {
+//   return {
+//     type: 'auth/FORGOT-PASSWORD/SET-EMAIL',
+//     payload: {
+//       value,
+//     },
+//   } as const
+// }
+//
+// export const setNewPassAC = (isNewPassSet: boolean) =>
+//   ({ type: 'auth/FORGOT-PASSWORD/SET_NEW_PASS', isNewPassSet } as const)
 
 export const loginTC =
   (data: FormikValueType): AppThunk =>
   async dispatch => {
-    dispatch(setAppStatusAC('loading'))
+    dispatch(setAppStatusAC({ status: 'loading' }))
     try {
       await authAPI.login(data)
       const userData = await profileAPI.getProfileData()
 
-      dispatch(setProfileData(userData.data))
-      dispatch(setIsLoggedInAC(true))
-      dispatch(setAppStatusAC('succeeded'))
+      dispatch(setProfileData({ user: userData.data }))
+      dispatch(setIsLoggedInAC({ isLogged: true }))
+      dispatch(setAppStatusAC({ status: 'succeeded' }))
     } catch (error) {
       const err = error as Error | AxiosError<{ error: string }>
 
       errorUtils(err, dispatch)
     } finally {
-      dispatch(setAppStatusAC('idle'))
+      dispatch(setAppStatusAC({ status: 'idle' }))
     }
   }
 
 export const registerTC =
   (payload: registerPayloadType): AppThunk =>
   async dispatch => {
-    dispatch(setAppStatusAC('loading'))
+    dispatch(setAppStatusAC({ status: 'loading' }))
     try {
       await authAPI.register(payload)
 
-      dispatch(registerAC(true))
-      dispatch(setAppStatusAC('succeeded'))
+      dispatch(registerAC({ isRegister: true }))
+      dispatch(setAppStatusAC({ status: 'succeeded' }))
     } catch (error) {
       const err = error as Error | AxiosError<{ error: string }>
 
       errorUtils(err, dispatch)
     } finally {
-      dispatch(setAppStatusAC('idle'))
+      dispatch(setAppStatusAC({ status: 'idle' }))
     }
   }
 
@@ -139,41 +164,41 @@ export const forgotPasswordTC =
               </div>`, // хтмп-письмо, вместо $token$ бэк вставит токен
     }
 
-    dispatch(setAppStatusAC('loading'))
+    dispatch(setAppStatusAC({ status: 'loading' }))
     try {
       await authAPI.forgot(dataForRequest)
 
-      dispatch(setIsSendEmailAC(true))
-      dispatch(setEmailForLinkAC(data.email))
-      dispatch(setAppStatusAC('succeeded'))
+      dispatch(setIsSendEmailAC({ isSendEmail: true }))
+      dispatch(setEmailForLinkAC({ emailForLink: data.email }))
+      dispatch(setAppStatusAC({ status: 'succeeded' }))
     } catch (error) {
       const err = error as Error | AxiosError<{ error: string }>
 
       errorUtils(err, dispatch)
     } finally {
-      dispatch(setAppStatusAC('idle'))
+      dispatch(setAppStatusAC({ status: 'idle' }))
     }
   }
 
 export const setNewPassTC =
   (data: NewPassDataType): AppThunk =>
   async dispatch => {
-    dispatch(setAppStatusAC('loading'))
+    dispatch(setAppStatusAC({ status: 'loading' }))
     try {
       await authAPI.setNewPass(data)
 
-      dispatch(setNewPassAC(true))
-      dispatch(setAppStatusAC('succeeded'))
+      dispatch(setNewPassAC({ isNewPassSet: true }))
+      dispatch(setAppStatusAC({ status: 'succeeded' }))
     } catch (error) {
       const err = error as Error | AxiosError<{ error: string }>
 
       errorUtils(err, dispatch)
     } finally {
-      dispatch(setAppStatusAC('idle'))
+      dispatch(setAppStatusAC({ status: 'idle' }))
     }
   }
 
-type InitialStateType = typeof initialState
+// type InitialStateType = typeof initialState
 type SetIsLoggedInACType = ReturnType<typeof setIsLoggedInAC>
 type RegisterACType = ReturnType<typeof registerAC>
 type SetIsSendEmailACType = ReturnType<typeof setIsSendEmailAC>

@@ -18,15 +18,15 @@ export const PaginationComponent = (props: PaginationPropsType) => {
 
   useEffect(() => {
     if (limit < currentPage) {
-      if (isThisPlaceCards) dispatch(setCardsCurrentPage(1))
-      if (!isThisPlaceCards) dispatch(setPacksCurrentPage(1))
+      if (isThisPlaceCards) dispatch(setCardsCurrentPage({ page: 1 }))
+      if (!isThisPlaceCards) dispatch(setPacksCurrentPage({ page: 1 }))
     }
   }, [dispatch, currentPage, limit])
 
   const handler = (event: React.ChangeEvent<unknown>, currentPage: number) => {
-    if (isThisPlaceCards) dispatch(setCardsCurrentPage(currentPage))
+    if (isThisPlaceCards) dispatch(setCardsCurrentPage({ page: currentPage }))
     if (!isThisPlaceCards) {
-      dispatch(setPacksCurrentPage(currentPage))
+      dispatch(setPacksCurrentPage({ page: currentPage }))
       props.setSearchParams({ ...props.params, page: currentPage })
     }
   }
@@ -34,8 +34,8 @@ export const PaginationComponent = (props: PaginationPropsType) => {
   const perPageHandler = (event: SelectChangeEvent) => {
     const pageCount = +event.target.value
 
-    if (isThisPlaceCards) dispatch(setCardsPerPage(pageCount))
-    if (!isThisPlaceCards) dispatch(setPacksPerPage(pageCount))
+    if (isThisPlaceCards) dispatch(setCardsPerPage({ pageCount: pageCount }))
+    if (!isThisPlaceCards) dispatch(setPacksPerPage({ packsPerPage: pageCount }))
   }
 
   return (

@@ -36,7 +36,7 @@ export const PackCardsDoubleRange = ({
   }
 
   const changeCommitted = () => {
-    dispatch(setSliderValue(sliderLocalValue))
+    dispatch(setSliderValue({ sliderValue: sliderLocalValue }))
     setSearchParams({ ...params, min: sliderLocalValue[0], max: sliderLocalValue[1] })
   }
 

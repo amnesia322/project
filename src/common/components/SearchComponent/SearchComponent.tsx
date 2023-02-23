@@ -38,9 +38,9 @@ export const SearchComponent = ({
 
   useEffect(() => {
     if (isThisPlaceCards) {
-      dispatch(setCardsQuestion(value))
+      dispatch(setCardsQuestion({ cardQuestion: value }))
     } else {
-      dispatch(setSortPacksName(value))
+      dispatch(setSortPacksName({ packName: value }))
     }
   }, [dispatch, debouncedValue, packsNameValue])
 

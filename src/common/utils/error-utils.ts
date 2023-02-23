@@ -19,7 +19,7 @@ export const errorUtils = (
 
     dispatch(setAppErrorAC(error))
   } else {
-    dispatch(setAppErrorAC(`Native error ${err.message}`))
+    dispatch(setAppErrorAC({ error: `Native error ${err.message}` }))
   }
-  dispatch(setAppStatusAC('failed'))
+  dispatch(setAppStatusAC({ status: 'failed' }))
 }

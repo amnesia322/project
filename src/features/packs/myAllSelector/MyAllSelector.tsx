@@ -14,11 +14,11 @@ export const MyAllSelector = ({ params, setSearchParams }: MyAllSelectorPropsTyp
   const dispatch = useAppDispatch()
 
   const userPackHandler = () => {
-    dispatch(setUserPacks(userId))
+    dispatch(setUserPacks({ user_id: userId }))
     setSearchParams({ ...params, user_id: userId })
   }
   const allPackHandler = () => {
-    dispatch(setUserPacks(''))
+    dispatch(setUserPacks({ user_id: '' }))
     setSearchParams({ ...params, user_id: '' })
   }
   const onStyle = {

@@ -1,5 +1,6 @@
+import { configureStore } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
-import { AnyAction, applyMiddleware, combineReducers, legacy_createStore } from 'redux'
+import { AnyAction, combineReducers } from 'redux'
 import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk'
 
 import { AuthActionsType, authReducer } from '../features/auth/auth-reducer'
@@ -17,8 +18,11 @@ const reducers = combineReducers({
   cards: cardsReducer,
 })
 
-export const store = legacy_createStore(reducers, applyMiddleware(thunkMiddleware))
-
+// export const store = legacy_createStore(reducers, applyMiddleware(thunkMiddleware))
+export const store = configureStore({
+  reducer: reducers,
+  middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunkMiddleware),
+})
 export type AppRootStateType = ReturnType<typeof reducers>
 
 export type AppThunkDispatch = ThunkDispatch<AppRootStateType, any, AnyAction>

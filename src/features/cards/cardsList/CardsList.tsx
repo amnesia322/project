@@ -28,7 +28,7 @@ export const CardsList = ({ isMyId }: CardItemPropsType) => {
   let cardsCountInPage = 5
 
   useEffect(() => {
-    dispatch(dispatch(setCardsPerPage(cardsCountInPage)))
+    dispatch(dispatch(setCardsPerPage({ pageCount: cardsCountInPage })))
   }, [])
 
   const createData = (

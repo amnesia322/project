@@ -10,7 +10,7 @@ import { emptyQueryParams, refreshFilters } from '../packs-reducer'
 export const RefreshFilter = ({ setSearchParams }: RefreshFilterPropsType) => {
   const dispatch = useAppDispatch()
   const onClickHandler = () => {
-    dispatch(refreshFilters(emptyQueryParams))
+    dispatch(refreshFilters({ queryParams: emptyQueryParams }))
     setSearchParams({})
   }
 

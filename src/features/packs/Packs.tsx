@@ -45,13 +45,13 @@ export const Packs = () => {
       params.min &&
       (+params.max !== maxFromState || +params.min !== minFromState)
     ) {
-      dispatch(setSliderValue([+params.min, +params.max]))
+      dispatch(setSliderValue({ sliderValue: [+params.min, +params.max] }))
     }
     if (params.user_id && params.user_id !== user_id) {
-      dispatch(setUserPacks(params.user_id))
+      dispatch(setUserPacks({ user_id: params.user_id }))
     }
-    if (params.packName) dispatch(setSortPacksName(params.packName))
-    if (params.page) dispatch(setPacksCurrentPage(+params.page))
+    if (params.packName) dispatch(setSortPacksName({ packName: params.packName }))
+    if (params.page) dispatch(setPacksCurrentPage({ page: +params.page }))
   }, [])
 
   useEffect(() => {
